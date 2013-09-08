@@ -79,12 +79,12 @@
                 android:weightSum="10 " >
 
                 <DigitalClock
-                    android:id="@+id/digitalClock1"
+                    android:id="@+id/digClock"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="DigitalClock"
+                    android:text="12:00"
                     android:textSize="45dp" />
 
                 <ImageView

@@ -25,11 +25,19 @@
         </activity>
         <activity
             android:name="com.patsud.melden.InClass"
-            android:label="lala"
             android:screenOrientation="sensorLandscape" >
             <intent-filter>
                 <action android:name="android.intent.action.INCLASS" />
                 <category android:name="android.intent.category.INCLASS" />
+            </intent-filter>
+        </activity>
+        //Preference Activity
+        <activity
+            android:name="com.patsud.melden.Einstellungen"
+            android:screenOrientation="sensorLandscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.EINSTELLUNGEN" />
+                <category android:name="android.intent.category.EINSTELLUNGEN" />
             </intent-filter>
         </activity>
     </application>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <EditTextPreference
+        android:title="Dein Name:"
+        android:key="name"
+        android:summary="Gib deinen Namen ein" />
+    
+    <PreferenceCategory
+        android:title="In Class"/>
+    <SwitchPreference
+        android:title="Show upper Bar"
+        android:key="showBar"/>
+    
+    
+    
+</PreferenceScreen>
