@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="13"
         android:targetSdkVersion="17" />
+    
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -18,8 +20,16 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.patsud.melden.InClass"
+            android:label="lala"
+            android:screenOrientation="sensorLandscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.INCLASS" />
+                <category android:name="android.intent.category.INCLASS" />
             </intent-filter>
         </activity>
     </application>
