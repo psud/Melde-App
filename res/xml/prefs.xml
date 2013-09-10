@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    
+
     <EditTextPreference
-        android:title="Dein Name:"
         android:key="name"
-        android:summary="Gib deinen Namen ein" />
+        android:summary="Gib deinen Namen ein"
+        android:title="Dein Name:" />
     
-    <PreferenceCategory
-        android:title="In Class"/>
+     <SwitchPreference
+        android:defaultValue="false"
+        android:key="skipMenu"
+        android:summaryOff="App startet immer beim Menu"
+        android:summaryOn="Während der Schulzeit geht startet die App automatisch mit dem Meldetracker"
+        android:title="Menu Überspringen" />
+
+    <PreferenceCategory android:title="In Class" />
+
     <SwitchPreference
-        android:title="Show upper Bar"
-        android:key="showBar"/>
+        android:defaultValue="false"
+        android:key="showBar"
+        android:summaryOff="Zeigt keine Benachrichtungsleiste an"
+        android:summaryOn="Zeigt Benachrichtungsleiste mit Uhrzeit an"
+        android:title="Show Notification Bar" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="showRemainingColor"
+        android:summaryOff="Hintergrund der restlichen Minuten bleibt immer Weiß"
+        android:summaryOn="Hinterlegt restliche Minuten mit Farben"
+        android:title="Show remaining Minutes Color" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="screenStayOn"
+        android:summaryOff="Der Bildschirm schaltet sich nach einer bestimmten Zeit aus"
+        android:summaryOn="Der Bildschirm schaltet sich nicht automatisch aus"
+        android:title="Screen anlassen" />
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="showBattery"
+        android:summaryOff="Zeigt nie eine Batterieanzeige an"
+        android:summaryOn="Zeigt den Akkustand als Warnung bei unter 20% an"
+        android:title="Batterie anzeige" />
+
+    <PreferenceCategory android:title="Debugging" />
+
+    <EditTextPreference
+        android:fragment="lalala"
+        android:key="endtime"
+        android:title="Endtime" >
+    </EditTextPreference>
+
+    <PreferenceCategory android:title="About" />
+
     
-    
-    
+   
+
 </PreferenceScreen>

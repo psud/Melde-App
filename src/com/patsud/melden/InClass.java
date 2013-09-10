@@ -5,12 +5,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.NoCopySpan;
 import android.text.TextWatcher;
@@ -19,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class InClass extends Activity implements OnClickListener, NoCopySpan {
@@ -28,6 +33,7 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 	Button bFertig, bEinstellung, bHa;
 
 	WakeLock wL;
+	int batteryLevel;
 
 	int meldDran, meld, nDran, rundDran;
 
@@ -36,16 +42,7 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		// FULL SCREEN
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-		// Keep Screen On
-		PowerManager pM = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		wL = pM.newWakeLock(PowerManager.FULL_WAKE_LOCK, "WakeLock");
-
-		wL.acquire();
+		CheckSettings();
 
 		setContentView(R.layout.inclass);
 
@@ -53,11 +50,39 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		InitialiseListeners();
 
 		GetTimeChanged();
+		
+		registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
 	}
+
+	private void CheckSettings() {
+		// TODO Auto-generated method stub
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		// FULL SCREEN
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if (getPrefs.getBoolean("showBar", true) == false)
+			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		// Keep Screen On
+		if (getPrefs.getBoolean("screenStayOn", false)) {
+			PowerManager pM = (PowerManager) getSystemService(Context.POWER_SERVICE);
+			wL = pM.newWakeLock(PowerManager.FULL_WAKE_LOCK, "WakeLock");
+			wL.acquire();
+		}
+
+	}
+
+	int showWhat = 0;
 	private void GetTimeChanged() {
 		// TODO Auto-generated method stub
 		clock.addTextChangedListener(new TextWatcher() {
+			
+		
+			SharedPreferences getPrefs = PreferenceManager
+					.getDefaultSharedPreferences(getBaseContext());
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -76,7 +101,28 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-				CalEndTime();
+				
+				//if (batteryLevel < 21 && getPrefs.getBoolean("showBattery", true)){
+					if ( getPrefs.getBoolean("showBattery", true)){
+					showWhat++;
+					if (showWhat%4 == 0 || showWhat%4 == 1){
+						CalEndTime();
+						timeRemaining.setBackgroundColor(Color.WHITE);
+					}
+					else {
+						timeRemaining.setText("Battery Level: " + Integer.toString(batteryLevel) + "%");
+						if (batteryLevel < 5)
+							timeRemaining.setBackgroundColor(Color.RED);
+						else if (batteryLevel < 15)
+							timeRemaining.setBackgroundColor(Color.YELLOW);
+						else if (batteryLevel < 20)
+							timeRemaining.setBackgroundColor(Color.LTGRAY);
+					}
+					
+				}
+				else
+					CalEndTime();
+				
 			}
 		});
 	}
@@ -101,7 +147,7 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 	}
 
 	private void InitialiseListeners() {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
 		rundeDran.setOnClickListener(this);
 		dran.setOnClickListener(this);
 		gemeldet.setOnClickListener(this);
@@ -117,19 +163,15 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 
 		switch (v.getId()) {
 		case R.id.bRundeDran:
-			timeRemaining.setBackgroundColor(Color.DKGRAY);
 			CalEndTime();
 			break;
 		case R.id.bDran:
-			timeRemaining.setBackgroundColor(Color.RED);
 			break;
 		case R.id.bGemeldet:
-			timeRemaining.setBackgroundColor(Color.YELLOW);
 			meld++;
 			SomeChange();
 			break;
 		case R.id.bMeldDran:
-			timeRemaining.setBackgroundColor(Color.GREEN);
 			meldDran++;
 			meld++;
 			SomeChange();
@@ -144,15 +186,36 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 	int remainingMin;
 
 	private void CalEndTime() {
+
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		// Get Endtime
+		String endtime = getPrefs.getString("endtime", "12:00");
+
 		// TODO Auto-generated method stub
-		int nowMinInt;
+		String endMin = endtime.substring(3, 5);
+		String endHour = endtime.substring(0, 2);
+		// int nowMinInt;
 		String nowHour = clock.getText().toString().substring(0, 2);
 		String nowMin = clock.getText().toString().substring(3, 5);
-		final Calendar c = Calendar.getInstance();
-		nowMinInt = c.get(Calendar.MINUTE);
-		remainingMin = 60 - nowMinInt;
-		timeRemaining.setText(Integer.toString(remainingMin)
-				+ " min\nremaining");
+		// final Calendar c = Calendar.getInstance();
+		// nowMinInt = c.get(Calendar.MINUTE);
+		// remainingMin = 60 - nowMinInt;
+		// timeRemaining.setText(Integer.toString(remainingMin)
+		// + " min\nremaining");
+
+		int endminInt = Integer.parseInt(endMin);
+		int endHourInt = Integer.parseInt(endHour);
+
+		endminInt = endminInt - Integer.parseInt(nowMin);
+		endHourInt = endHourInt - Integer.parseInt(nowHour);
+		endminInt = endminInt + endHourInt * 60;
+
+		timeRemaining
+				.setText((Integer.toString(endminInt) + " min\nremaining"));
+
+		remainingMin = endminInt;
 
 		RemainingColor();
 	}
@@ -176,4 +239,13 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		malGemeldet.setText(Integer.toString(meld) + "x\ngemeldet");
 		malDran.setText(Integer.toString(meldDran) + "x\ndavon dran");
 	}
+
+	private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context c, Intent i) {
+			int level = i.getIntExtra("level", 0);
+			batteryLevel = level;
+			//bHa.setText("Battery Level: " + Integer.toString(level) + "%");
+		}
+	};
 }

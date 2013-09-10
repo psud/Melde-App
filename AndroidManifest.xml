@@ -34,6 +34,7 @@
         //Preference Activity
         <activity
             android:name="com.patsud.melden.Einstellungen"
+            android:label="Einstellungen"
             android:screenOrientation="sensorLandscape" >
             <intent-filter>
                 <action android:name="android.intent.action.EINSTELLUNGEN" />
