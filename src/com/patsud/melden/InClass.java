@@ -23,7 +23,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ProgressBar;
+
 import android.widget.TextView;
 
 public class InClass extends Activity implements OnClickListener, NoCopySpan {
@@ -50,8 +50,9 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		InitialiseListeners();
 
 		GetTimeChanged();
-		
-		registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+		registerReceiver(mBatInfoReceiver, new IntentFilter(
+				Intent.ACTION_BATTERY_CHANGED));
 
 	}
 
@@ -76,11 +77,11 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 	}
 
 	int showWhat = 0;
+
 	private void GetTimeChanged() {
 		// TODO Auto-generated method stub
 		clock.addTextChangedListener(new TextWatcher() {
-			
-		
+
 			SharedPreferences getPrefs = PreferenceManager
 					.getDefaultSharedPreferences(getBaseContext());
 
@@ -101,16 +102,17 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-				
-				//if (batteryLevel < 21 && getPrefs.getBoolean("showBattery", true)){
-					if ( getPrefs.getBoolean("showBattery", true)){
+
+				if (batteryLevel < 21
+						&& getPrefs.getBoolean("showBattery", true)) {
+					// if ( getPrefs.getBoolean("showBattery", true)){
 					showWhat++;
-					if (showWhat%4 == 0 || showWhat%4 == 1){
+					if (showWhat % 4 == 0 || showWhat % 4 == 1) {
 						CalEndTime();
 						timeRemaining.setBackgroundColor(Color.WHITE);
-					}
-					else {
-						timeRemaining.setText("Battery Level: " + Integer.toString(batteryLevel) + "%");
+					} else {
+						timeRemaining.setText("Battery Level: "
+								+ Integer.toString(batteryLevel) + "%");
 						if (batteryLevel < 5)
 							timeRemaining.setBackgroundColor(Color.RED);
 						else if (batteryLevel < 15)
@@ -118,11 +120,27 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 						else if (batteryLevel < 20)
 							timeRemaining.setBackgroundColor(Color.LTGRAY);
 					}
-					
+
+				} else if (getPrefs.getBoolean("showBatteryDebug", true)) {
+					showWhat++;
+					if (showWhat % 4 == 0 || showWhat % 4 == 1) {
+						timeRemaining.setBackgroundColor(Color.WHITE);
+						CalEndTime();
+					} else {
+						timeRemaining.setText("Battery Level: "
+								+ Integer.toString(batteryLevel) + "%");
+						if (batteryLevel < 5)
+							timeRemaining.setBackgroundColor(Color.RED);
+						else if (batteryLevel < 15)
+							timeRemaining.setBackgroundColor(Color.YELLOW);
+						else if (batteryLevel < 101)
+							timeRemaining.setBackgroundColor(Color.LTGRAY);
+					}
 				}
+
 				else
 					CalEndTime();
-				
+
 			}
 		});
 	}
@@ -172,6 +190,7 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 			SomeChange();
 			break;
 		case R.id.bMeldDran:
+
 			meldDran++;
 			meld++;
 			SomeChange();
@@ -196,14 +215,8 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		// TODO Auto-generated method stub
 		String endMin = endtime.substring(3, 5);
 		String endHour = endtime.substring(0, 2);
-		// int nowMinInt;
 		String nowHour = clock.getText().toString().substring(0, 2);
 		String nowMin = clock.getText().toString().substring(3, 5);
-		// final Calendar c = Calendar.getInstance();
-		// nowMinInt = c.get(Calendar.MINUTE);
-		// remainingMin = 60 - nowMinInt;
-		// timeRemaining.setText(Integer.toString(remainingMin)
-		// + " min\nremaining");
 
 		int endminInt = Integer.parseInt(endMin);
 		int endHourInt = Integer.parseInt(endHour);
@@ -221,16 +234,24 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 	}
 
 	private void RemainingColor() {
-		// TODO Auto-generated method stub
-		if (remainingMin > 30)
-			timeRemaining.setBackgroundColor(Color.WHITE);
-		else if (remainingMin > 15)
-			timeRemaining.setBackgroundColor(Color.YELLOW);
-		else if (remainingMin > 5)
-			timeRemaining.setBackgroundColor(Color.rgb(0, 200, 0));
-		else if (remainingMin > 0)
-			timeRemaining.setBackgroundColor(Color.GREEN);
-		else if (remainingMin == 0)
+
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		// Setting show background Color
+		if (getPrefs.getBoolean("showRemainingColor", true)) {
+			// TODO Auto-generated method stub
+			if (remainingMin > 30)
+				timeRemaining.setBackgroundColor(Color.WHITE);
+			else if (remainingMin > 15)
+				timeRemaining.setBackgroundColor(Color.YELLOW);
+			else if (remainingMin > 5)
+				timeRemaining.setBackgroundColor(Color.rgb(0, 200, 0));
+			else if (remainingMin > 0)
+				timeRemaining.setBackgroundColor(Color.GREEN);
+			else if (remainingMin == 0)
+				timeRemaining.setBackgroundColor(Color.WHITE);
+		} else
 			timeRemaining.setBackgroundColor(Color.WHITE);
 	}
 
@@ -245,7 +266,6 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		public void onReceive(Context c, Intent i) {
 			int level = i.getIntExtra("level", 0);
 			batteryLevel = level;
-			//bHa.setText("Battery Level: " + Integer.toString(level) + "%");
 		}
 	};
 }

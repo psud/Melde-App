@@ -43,14 +43,23 @@
     <PreferenceCategory android:title="Debugging" />
 
     <EditTextPreference
-        android:fragment="lalala"
         android:key="endtime"
-        android:title="Endtime" >
-    </EditTextPreference>
+        android:title="Endtime" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="showBatteryDebug"
+        android:summaryOff="Zeigt nach anderer Einstellung eine Batterieanzeige an"
+        android:summaryOn="Zeigt den Akkustand immer an"
+        android:title="Batterie immer anzeige" />
+
 
     <PreferenceCategory android:title="About" />
 
-    
-   
+    <PreferenceScreen
+        android:key="openAbout"
+        android:title="About" />
 
 </PreferenceScreen>
+
+
