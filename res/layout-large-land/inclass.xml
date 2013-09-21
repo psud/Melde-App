@@ -7,6 +7,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="200dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
@@ -56,6 +57,7 @@
         android:src="@drawable/bluecircle" />
 
     <LinearLayout
+        android:id="@+id/llTotalLeft"
         android:layout_width="177dp"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
@@ -63,7 +65,7 @@
         android:weightSum="50" >
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
+            android:id="@+id/llLeftBoxes"
             android:layout_width="170dp"
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
@@ -86,6 +88,17 @@
                     android:gravity="center"
                     android:text="12:00"
                     android:textSize="45dp" />
+
+                <!--
+                     <TextView
+                    android:id="@+id/digClock"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="14:02"
+                    android:textSize="25dp" />
+                -->
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -245,6 +258,48 @@
             android:layout_height="fill_parent"
             android:gravity="left"
             android:src="@drawable/blacklineup" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llButDown"
+        android:layout_width="590dp"
+        android:layout_height="125dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/llTotalLeft"
+        android:visibility="invisible"
+        android:weightSum="4" >
+
+        <Button
+            android:id="@+id/bAfFrage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/graudown"
+            android:text="Frage" />
+
+        <Button
+            android:id="@+id/bAfSchlecht"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rotdown"
+            android:text="Schlecht" />
+
+        <Button
+            android:id="@+id/bAfOk"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/gelbdown"
+            android:text="Ok" />
+
+        <Button
+            android:id="@+id/bAfGut"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/greendown"
+            android:text="Gut" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -14,6 +14,15 @@
         android:title="Menu Überspringen" />
 
     <PreferenceCategory android:title="In Class" />
+    
+    <ListPreference
+        android:title="Bewertung"
+        android:key="bewertung"
+        android:summary="Auswahl wie bzw. ob du dich bewerten kannst"
+        android:entries="@array/bewertunglist"
+        android:entryValues="@array/lValues" 
+        android:defaultValue="1"/>
+        
 
     <SwitchPreference
         android:defaultValue="false"

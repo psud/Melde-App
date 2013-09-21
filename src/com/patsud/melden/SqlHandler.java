@@ -2,6 +2,7 @@ package com.patsud.melden;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,6 +25,10 @@ public class SqlHandler {
 	private dbHelper ourHelper;
 	private final Context ourContext;
 	private SQLiteDatabase ourDatabase;
+	
+	//send to inclass
+	public static int KEY_ROWNUM = 0;
+	
 	
 	private static class dbHelper extends SQLiteOpenHelper{
 
@@ -67,11 +72,17 @@ public class SqlHandler {
 
 	public long createEntry(String time, String kind, String goodness) {
 		// TODO Auto-generated method stub
+		//Get info for INCLASS
+		Cursor c = ourDatabase.query(DATABASE_TABLE, null, null, null, null, null, null);
+		KEY_ROWNUM= c.getCount()+1;
+		
 		ContentValues cv = new ContentValues();
 		cv.put(KEY_TIME, time);
 		cv.put(KEY_KIND, kind);
 		cv.put(KEY_GOODNESS, goodness);
  		return ourDatabase.insert(DATABASE_TABLE, null, cv);
+ 		
+ 		
 	}
 
 	public String getData() {
@@ -84,13 +95,36 @@ public class SqlHandler {
 		int iTime = c.getColumnIndex(KEY_TIME);
 		int iKind = c.getColumnIndex(KEY_KIND);
 		int iGoodness = c.getColumnIndex(KEY_GOODNESS);
+
 		
 		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-			result = result + c.getString(iRow)+ " , " + c.getString(iTime) + " , " + c.getString(iKind)+ " , "+ c.getString(iGoodness)+ "\n";
-			
+			result = result + c.getString(iRow)+ " --- " + c.getString(iTime) + " --- " + c.getString(iKind)+ " --- "+ c.getString(iGoodness)+ "\n";
 		}
+
+		result += "\n1. Spalte: Row ID\n2.Spalte: Datum und Zeit" +
+				"\n3.Spalte: Wie gemeldet: 1=Gemeldet+Dran, 2=Gemeldet, 3=nur Dran, 4=Runde Dran" +
+				"\n4.Spalte: Qualität des beitrags: 0=keine Angabe, 1= Gut, 2= Ok, 3=Schlecht, 4= Frage";
 		
 		return result;
+		
+		
+ 		
+ 		
 	}
+
+	public void updateEntry(int goodness) {
+		// TODO Auto-generated method stub
+		
+		//Get Last Row num
+		Cursor c = ourDatabase.query(DATABASE_TABLE, null, null, null, null, null, null);
+		long longRow = Long.valueOf(c.getCount());
+		
+		ContentValues cvUpdate = new ContentValues();
+		String goodnessStr = Integer.toString(goodness);
+		cvUpdate.put(KEY_GOODNESS, goodnessStr);
+		ourDatabase.update(DATABASE_TABLE, cvUpdate, KEY_ROWID + "="+ longRow, null);
+	}
+	
+	
 	
 }

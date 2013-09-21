@@ -1,6 +1,8 @@
 package com.patsud.melden;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -23,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import android.widget.TextView;
 
@@ -31,6 +35,8 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 	Button rundeDran, dran, gemeldet, gemeldetDran;
 	TextView clock, timeRemaining, malGemeldet, malDran;
 	Button bFertig, bEinstellung, bHa;
+	LinearLayout downLayout;
+	Button downGut, downOk, downSchlecht, downFrage;
 
 	WakeLock wL;
 	int batteryLevel;
@@ -162,6 +168,13 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		gemeldet = (Button) findViewById(R.id.bGemeldet);
 		gemeldetDran = (Button) findViewById(R.id.bMeldDran);
 
+		// Bottom
+		downLayout = (LinearLayout) findViewById(R.id.llButDown);
+		downGut = (Button) findViewById(R.id.bAfGut);
+		downOk = (Button) findViewById(R.id.bAfOk);
+		downSchlecht = (Button) findViewById(R.id.bAfSchlecht);
+		downFrage = (Button) findViewById(R.id.bAfFrage);
+
 	}
 
 	private void InitialiseListeners() {
@@ -173,6 +186,12 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		bFertig.setOnClickListener(this);
 		bEinstellung.setOnClickListener(this);
 		bHa.setOnClickListener(this);
+
+		// BottomListeners
+		downGut.setOnClickListener(this);
+		downOk.setOnClickListener(this);
+		downSchlecht.setOnClickListener(this);
+		downFrage.setOnClickListener(this);
 	}
 
 	@Override
@@ -181,25 +200,25 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 
 		switch (v.getId()) {
 		case R.id.bRundeDran:
-			PutInSQL("3", "00");
+			PutInSQL("4", "00");
+			ShowDownBewertung();
 			break;
 		case R.id.bDran:
-			PutInSQL("2", "00");
+			PutInSQL("3", "00");
+			ShowDownBewertung();
+
 			break;
 		case R.id.bGemeldet:
 			meld++;
 			SomeChange();
-			PutInSQL("1", "00");
+			PutInSQL("2", "00");
 			break;
 		case R.id.bMeldDran:
-
 			meldDran++;
 			meld++;
 			SomeChange();
-
-			PutInSQL("0", "00");
-			
-
+			PutInSQL("1", "00");
+			ShowDownBewertung();
 			break;
 		case R.id.bEinstellungen:
 			Intent openPrefs = new Intent(this, Einstellungen.class);
@@ -209,23 +228,69 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 			Intent openFertig = new Intent(this, Fertig.class);
 			startActivity(openFertig);
 			break;
+		// cases for down Buttons
+		case R.id.bAfGut:
+			AddGoodness(1);
+			break;
+		case R.id.bAfOk:
+			AddGoodness(2);
+			break;
+		case R.id.bAfSchlecht:
+			AddGoodness(3);
+			break;
+		case R.id.bAfFrage:
+			AddGoodness(4);
+			break;
 		}
+	}
+
+	private void ShowDownBewertung() {
+		// TODO Auto-generated method stub
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+		int howBewert = Integer.parseInt(getPrefs.getString("bewertung", "2"));
+	//	int da = getPrefs.getLong(key, defValue)
+		if (howBewert == 2)
+			downLayout.setVisibility(1);
+	}
+
+	private void AddGoodness(int goodness) {
+		// TODO Auto-generated method stub
+		// String s = sql
+		// Get Last Row num
+		int totalRows = SqlHandler.KEY_ROWNUM;
+		long longRow = Long.valueOf(totalRows);
+
+		SqlHandler handler = new SqlHandler(this);
+		handler.open();
+		handler.updateEntry(goodness);
+		handler.close();
+
+		// hide buttons
+		downLayout.setVisibility(View.INVISIBLE);
+
+		FeedbackClick(goodness);
+
+	}
+
+	private void FeedbackClick(int goodness) {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void PutInSQL(String kind, String goodness) {
 		// TODO Auto-generated method stub
 		try {
-			Calendar getSec = Calendar.getInstance();
-			String sec;
-			if (getSec.get(Calendar.SECOND) < 10)
-				sec = "0" + Integer.toString(getSec.get(Calendar.SECOND));
-			else
-				sec = Integer.toString(getSec.get(Calendar.SECOND));
-			String time = clock.getText().toString() + ":" + sec;
+			// Get Date and Time
+			SimpleDateFormat dateFormat = new SimpleDateFormat(
+					"dd.MM.yy HH:mm:ss");
+			Date date = new Date();
+			Calendar cal = Calendar.getInstance();
+			String dateStr = dateFormat.format(cal.getTime());
 
 			SqlHandler entry = new SqlHandler(this);
 			entry.open();
-			entry.createEntry(time, kind, goodness);
+			entry.createEntry(dateStr, kind, goodness);
 			entry.close();
 		} catch (Exception e) {
 
