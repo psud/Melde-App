@@ -9,6 +9,25 @@ package com.patsud.melden;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int labelPosition=0x7f010001;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int showText=0x7f010000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -17,8 +36,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int blackline=0x7f020000;
@@ -41,37 +60,42 @@ public final class R {
         public static final int rotnormal=0x7f020011;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f090001;
-        public static final int action_settings=0x7f090012;
-        public static final int bDran=0x7f090003;
-        public static final int bEinstellungen=0x7f09000e;
-        public static final int bFertig=0x7f09000d;
-        public static final int bGemeldet=0x7f090004;
-        public static final int bHaAufschreiben=0x7f09000f;
-        public static final int bMeldDran=0x7f090005;
-        public static final int bRundeDran=0x7f090002;
-        public static final int button1=0x7f090011;
-        public static final int digClock=0x7f090008;
-        public static final int imageView1=0x7f090006;
-        public static final int imageView2=0x7f090009;
-        public static final int imageView3=0x7f090010;
-        public static final int linearLayout1=0x7f090007;
-        public static final int textView1=0x7f090000;
-        public static final int tvMalDran=0x7f09000c;
-        public static final int tvMalGemeldet=0x7f09000b;
-        public static final int tvRemaining=0x7f09000a;
+        public static final int RelativeLayout1=0x7f050004;
+        public static final int action_settings=0x7f050015;
+        public static final int bDran=0x7f050006;
+        public static final int bEinstellungen=0x7f050011;
+        public static final int bFertig=0x7f050010;
+        public static final int bGemeldet=0x7f050007;
+        public static final int bHaAufschreiben=0x7f050012;
+        public static final int bMeldDran=0x7f050008;
+        public static final int bRundeDran=0x7f050005;
+        public static final int button1=0x7f050014;
+        public static final int digClock=0x7f05000b;
+        public static final int imageView1=0x7f050009;
+        public static final int imageView2=0x7f05000c;
+        public static final int imageView3=0x7f050013;
+        public static final int left=0x7f050000;
+        public static final int linearLayout1=0x7f05000a;
+        public static final int right=0x7f050001;
+        public static final int scrollView1=0x7f050002;
+        public static final int textView1=0x7f050003;
+        public static final int tvMalDran=0x7f05000f;
+        public static final int tvMalGemeldet=0x7f05000e;
+        public static final int tvRemaining=0x7f05000d;
     }
     public static final class layout {
-        public static final int inclass=0x7f030000;
-        public static final int menu=0x7f030001;
+        public static final int fertig=0x7f030000;
+        public static final int inclass=0x7f030001;
+        public static final int menu=0x7f030002;
+        public static final int testview=0x7f030003;
     }
     public static final class menu {
-        public static final int menu=0x7f080000;
+        public static final int menu=0x7f090000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
+        public static final int action_settings=0x7f070001;
+        public static final int app_name=0x7f070000;
+        public static final int hello_world=0x7f070002;
     }
     public static final class style {
         /** 
@@ -95,13 +119,61 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
     public static final class xml {
         public static final int prefs=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a CircleView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircleView_labelPosition com.patsud.melden:labelPosition}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleView_showText com.patsud.melden:showText}</code></td><td></td></tr>
+           </table>
+           @see #CircleView_labelPosition
+           @see #CircleView_showText
+         */
+        public static final int[] CircleView = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.patsud.melden.R.attr#labelPosition}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:labelPosition
+        */
+        public static final int CircleView_labelPosition = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.patsud.melden.R.attr#showText}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:showText
+        */
+        public static final int CircleView_showText = 0;
+    };
 }

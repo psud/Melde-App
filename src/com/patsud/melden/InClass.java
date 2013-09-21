@@ -181,24 +181,54 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 
 		switch (v.getId()) {
 		case R.id.bRundeDran:
-			CalEndTime();
+			PutInSQL("3", "00");
 			break;
 		case R.id.bDran:
+			PutInSQL("2", "00");
 			break;
 		case R.id.bGemeldet:
 			meld++;
 			SomeChange();
+			PutInSQL("1", "00");
 			break;
 		case R.id.bMeldDran:
 
 			meldDran++;
 			meld++;
 			SomeChange();
+
+			PutInSQL("0", "00");
+			
+
 			break;
 		case R.id.bEinstellungen:
 			Intent openPrefs = new Intent(this, Einstellungen.class);
 			startActivity(openPrefs);
-			// break;
+			break;
+		case R.id.bFertig:
+			Intent openFertig = new Intent(this, Fertig.class);
+			startActivity(openFertig);
+			break;
+		}
+	}
+
+	private void PutInSQL(String kind, String goodness) {
+		// TODO Auto-generated method stub
+		try {
+			Calendar getSec = Calendar.getInstance();
+			String sec;
+			if (getSec.get(Calendar.SECOND) < 10)
+				sec = "0" + Integer.toString(getSec.get(Calendar.SECOND));
+			else
+				sec = Integer.toString(getSec.get(Calendar.SECOND));
+			String time = clock.getText().toString() + ":" + sec;
+
+			SqlHandler entry = new SqlHandler(this);
+			entry.open();
+			entry.createEntry(time, kind, goodness);
+			entry.close();
+		} catch (Exception e) {
+
 		}
 	}
 

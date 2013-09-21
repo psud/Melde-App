@@ -41,6 +41,16 @@
                 <category android:name="android.intent.category.EINSTELLUNGEN" />
             </intent-filter>
         </activity>
+        //Fertig
+        <activity
+            android:name="com.patsud.melden.Fertig"
+            android:label="Ferig"
+            android:screenOrientation="sensorLandscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.FERTIG" />
+                <category android:name="android.intent.category.FERTIG" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
