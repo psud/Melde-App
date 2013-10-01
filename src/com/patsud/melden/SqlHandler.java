@@ -106,10 +106,6 @@ public class SqlHandler {
 				"\n4.Spalte: Qualität des beitrags: 0=keine Angabe, 1= Gut, 2= Ok, 3=Schlecht, 4= Frage";
 		
 		return result;
-		
-		
- 		
- 		
 	}
 
 	public void updateEntry(int goodness) {

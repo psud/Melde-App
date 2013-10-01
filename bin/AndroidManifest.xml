@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="13"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
     
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
@@ -26,30 +26,38 @@
         <activity
             android:name="com.patsud.melden.InClass"
             android:screenOrientation="sensorLandscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.INCLASS" />
-                <category android:name="android.intent.category.INCLASS" />
-            </intent-filter>
+           
         </activity>
         //Preference Activity
         <activity
             android:name="com.patsud.melden.Einstellungen"
             android:label="Einstellungen"
             android:screenOrientation="sensorLandscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.EINSTELLUNGEN" />
-                <category android:name="android.intent.category.EINSTELLUNGEN" />
-            </intent-filter>
         </activity>
         //Fertig
         <activity
             android:name="com.patsud.melden.Fertig"
             android:label="Ferig"
             android:screenOrientation="sensorLandscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.FERTIG" />
-                <category android:name="android.intent.category.FERTIG" />
-            </intent-filter>
+        </activity>
+         //CircleView
+        <activity
+            android:name="com.patsud.melden.DragActivity"
+            android:label="Ferig"
+            android:screenOrientation="sensorLandscape" >
+           
+        </activity>
+        //HASchreibenSimple
+        <activity
+            android:name="com.patsud.melden.HaSchreibenSimple"
+            android:label="Ferig"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+        //HASchreibenNormal
+        <activity
+            android:name="com.patsud.melden.HaSchreibenNormal"
+            android:label="Ferig"
+            android:screenOrientation="sensorLandscape" >
         </activity>
     </application>
 

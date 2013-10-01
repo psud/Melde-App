@@ -22,4 +22,11 @@
         android:layout_centerVertical="true"
         android:text="In Class" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button1"
+        android:background="@drawable/arrow_up"
+        android:rotation="90" />
+
 </RelativeLayout>

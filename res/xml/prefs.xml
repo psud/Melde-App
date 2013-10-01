@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    
+
     <EditTextPreference
         android:key="name"
         android:summary="Gib deinen Namen ein"
@@ -16,7 +18,7 @@
     <PreferenceCategory android:title="In Class" />
     
     <ListPreference
-        android:title="Bewertung"
+        android:title="Bewertung" 
         android:key="bewertung"
         android:summary="Auswahl wie bzw. ob du dich bewerten kannst"
         android:entries="@array/bewertunglist"

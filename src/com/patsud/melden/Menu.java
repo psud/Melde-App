@@ -14,7 +14,7 @@ public class Menu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
-		final Intent openDebuggApp = new Intent(this, InClass.class);
+		final Intent openDebuggApp = new Intent(this,  InClass.class);
 		startActivity(openDebuggApp);
 		
 		inclass = (Button) findViewById(R.id.button1);
@@ -24,7 +24,7 @@ public class Menu extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(openDebuggApp);
+			startActivity(openDebuggApp);
 			}
 		});
 		

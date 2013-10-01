@@ -3,8 +3,6 @@ package com.patsud.melden;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -12,31 +10,40 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.database.Cursor;
+import android.drm.DrmStore.Action;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.text.NoCopySpan;
 import android.text.TextWatcher;
+import android.text.InputFilter.LengthFilter;
+import android.text.format.DateFormat;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import android.widget.TextView;
 
-public class InClass extends Activity implements OnClickListener, NoCopySpan {
+public class InClass extends Activity implements OnClickListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
 	TextView clock, timeRemaining, malGemeldet, malDran;
 	Button bFertig, bEinstellung, bHa;
-	LinearLayout downLayout;
-	Button downGut, downOk, downSchlecht, downFrage;
+	LinearLayout downLayout, bewertungLayout;
+	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen;
 
 	WakeLock wL;
 	int batteryLevel;
@@ -53,10 +60,11 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		setContentView(R.layout.inclass);
 
 		Initialize();
+		
 		InitialiseListeners();
 
 		GetTimeChanged();
-
+		
 		registerReceiver(mBatInfoReceiver, new IntentFilter(
 				Intent.ACTION_BATTERY_CHANGED));
 
@@ -163,17 +171,23 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		bHa = (Button) findViewById(R.id.bHaAufschreiben);
 
 		// Right
+		//normal
 		rundeDran = (Button) findViewById(R.id.bRundeDran);
 		dran = (Button) findViewById(R.id.bDran);
 		gemeldet = (Button) findViewById(R.id.bGemeldet);
 		gemeldetDran = (Button) findViewById(R.id.bMeldDran);
-
+		//bewertet
+		bewertungLayout = (LinearLayout) findViewById(R.id.lLayoutRightBewertung);
+		bewertungLayout.setVisibility(View.GONE);
+		bewGut = (Button) findViewById(R.id.bAfGut);
+		bewOk = (Button) findViewById(R.id.bAfOk);
+		bewSchlecht = (Button) findViewById(R.id.bAfSchlecht);
+		bewFrage = (Button) findViewById(R.id.bAfFrage);
+		bewSpringen=(Button) findViewById(R.id.bAfSkip);
 		// Bottom
-		downLayout = (LinearLayout) findViewById(R.id.llButDown);
-		downGut = (Button) findViewById(R.id.bAfGut);
-		downOk = (Button) findViewById(R.id.bAfOk);
-		downSchlecht = (Button) findViewById(R.id.bAfSchlecht);
-		downFrage = (Button) findViewById(R.id.bAfFrage);
+	//	downLayout = (LinearLayout) findViewById(R.id.llButDown);
+		//animation bewertung
+		
 
 	}
 
@@ -188,10 +202,29 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		bHa.setOnClickListener(this);
 
 		// BottomListeners
-		downGut.setOnClickListener(this);
-		downOk.setOnClickListener(this);
-		downSchlecht.setOnClickListener(this);
-		downFrage.setOnClickListener(this);
+		bewGut.setOnClickListener(this);
+		bewOk.setOnClickListener(this);
+		bewSchlecht.setOnClickListener(this);
+		bewFrage.setOnClickListener(this);
+		bewSpringen.setOnClickListener(this);
+
+		// clock
+		//clock.setOnClickListener(this);
+		clock.setOnTouchListener(new View.OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				int action = event.getAction();
+				if (action == event.ACTION_DOWN){
+					clockClicked();
+				}
+				else if (action == event.ACTION_UP){
+					CalEndTime();
+				}
+				return true;
+			}
+		});
 	}
 
 	@Override
@@ -206,7 +239,7 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		case R.id.bDran:
 			PutInSQL("3", "00");
 			ShowDownBewertung();
-
+			
 			break;
 		case R.id.bGemeldet:
 			meld++;
@@ -228,6 +261,11 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 			Intent openFertig = new Intent(this, Fertig.class);
 			startActivity(openFertig);
 			break;
+		case R.id.bHaAufschreiben:
+		//	Toast.makeText(InClass.this, "Hi Nick", Toast.LENGTH_SHORT);
+			Intent openCircle = new Intent(this, HaSchreibenNormal.class);
+			startActivity(openCircle);
+			break;
 		// cases for down Buttons
 		case R.id.bAfGut:
 			AddGoodness(1);
@@ -241,23 +279,76 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		case R.id.bAfFrage:
 			AddGoodness(4);
 			break;
+		case R.id.bAfSkip:
+			bewertungLayout.setVisibility(View.GONE);
+			Animation animRight = AnimationUtils.loadAnimation(this, R.anim.animationright);
+			bewertungLayout.startAnimation(animRight);
+			break;
+		//case R.id.digClock:
+		//	clockClicked();
+		//	break;
 		}
+	}
+
+	private void clockClicked() {
+		// TODO Auto-generated method stub
+		final Calendar c = Calendar.getInstance();
+		String thedate = "";
+		
+		switch (c.get(Calendar.DAY_OF_WEEK)) {
+		case 1:
+			thedate += "Montag";
+			break;
+		case 2:
+			thedate += "Dienstag";
+			break;
+		case 3:
+			thedate += "Mittwoch";
+			break;
+		case 4:
+			thedate += "Donnerstag";
+			break;
+		case 5:
+			thedate += "Freitag";
+			break;
+		case 6:
+			thedate += "Samstag";
+			break;
+		case 7:
+			thedate += "Sonntag";
+			break;
+		}
+		thedate+= "\n";
+		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
+				+ Integer.toString(c.get(Calendar.MONTH))+ "."
+				+ Integer.toString(c.get(Calendar.YEAR));
+		timeRemaining.setText(thedate);
 	}
 
 	private void ShowDownBewertung() {
 		// TODO Auto-generated method stub
 		SharedPreferences getPrefs = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
-		int howBewert = Integer.parseInt(getPrefs.getString("bewertung", "2"));
-	//	int da = getPrefs.getLong(key, defValue)
+		int howBewert = Integer
+				.parseInt(getPrefs.getString("bewertung", "2m "));
+		// int da = getPrefs.getLong(key, defValue)
 		if (howBewert == 2)
-			downLayout.setVisibility(1);
+			AnimateBewwertungen();
+		//	bewertungLayout.setVisibility(View.VISIBLE);
+	}
+
+	private void AnimateBewwertungen() {
+		// TODO Auto-generated method stub
+		bewertungLayout.setVisibility(View.VISIBLE);
+		Animation animLeft = AnimationUtils.loadAnimation(this, R.anim.animationleft);
+		bewertungLayout.startAnimation(animLeft);
 	}
 
 	private void AddGoodness(int goodness) {
 		// TODO Auto-generated method stub
 		// String s = sql
 		// Get Last Row num
+		
 		int totalRows = SqlHandler.KEY_ROWNUM;
 		long longRow = Long.valueOf(totalRows);
 
@@ -267,16 +358,12 @@ public class InClass extends Activity implements OnClickListener, NoCopySpan {
 		handler.close();
 
 		// hide buttons
-		downLayout.setVisibility(View.INVISIBLE);
-
-		FeedbackClick(goodness);
-
+		bewertungLayout.setVisibility(View.GONE);
+		Animation animRight = AnimationUtils.loadAnimation(this, R.anim.animationright);
+		bewertungLayout.startAnimation(animRight);
 	}
 
-	private void FeedbackClick(int goodness) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	private void PutInSQL(String kind, String goodness) {
 		// TODO Auto-generated method stub

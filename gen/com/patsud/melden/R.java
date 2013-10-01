@@ -8,9 +8,13 @@
 package com.patsud.melden;
 
 public final class R {
+    public static final class anim {
+        public static final int animationleft=0x7f040000;
+        public static final int animationright=0x7f040001;
+    }
     public static final class array {
-        public static final int bewertunglist=0x7f050000;
-        public static final int lValues=0x7f050001;
+        public static final int bewertunglist=0x7f060000;
+        public static final int lValues=0x7f060001;
     }
     public static final class attr {
         /** <p>Must be one of the following constant values.</p>
@@ -40,80 +44,147 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f070000;
-        public static final int activity_vertical_margin=0x7f070001;
+        public static final int activity_horizontal_margin=0x7f080000;
+        public static final int activity_vertical_margin=0x7f080001;
     }
     public static final class drawable {
-        public static final int blackline=0x7f020000;
-        public static final int blacklineup=0x7f020001;
-        public static final int bluecircle=0x7f020002;
-        public static final int button_gelb=0x7f020003;
-        public static final int button_grau=0x7f020004;
-        public static final int button_green=0x7f020005;
-        public static final int button_rot=0x7f020006;
-        public static final int circlegreybutton=0x7f020007;
-        public static final int gelbclicked=0x7f020008;
-        public static final int gelbdown=0x7f020009;
-        public static final int gelbnormal=0x7f02000a;
-        public static final int grauclicked=0x7f02000b;
-        public static final int graudown=0x7f02000c;
-        public static final int graunormal=0x7f02000d;
-        public static final int greenclicked=0x7f02000e;
-        public static final int greendown=0x7f02000f;
-        public static final int greennormal=0x7f020010;
-        public static final int ic_launcher=0x7f020011;
-        public static final int leftbutton=0x7f020012;
-        public static final int rotclicked=0x7f020013;
-        public static final int rotdown=0x7f020014;
-        public static final int rotdown2=0x7f020015;
-        public static final int rotnormal=0x7f020016;
+        public static final int arrow_up=0x7f020000;
+        public static final int blackline=0x7f020001;
+        public static final int blacklineup=0x7f020002;
+        public static final int blacklinexml=0x7f020003;
+        public static final int bluecircle=0x7f020004;
+        public static final int boxborder=0x7f020005;
+        public static final int boxinner=0x7f020006;
+        public static final int boxtogether=0x7f020007;
+        public static final int button_gelb=0x7f020008;
+        public static final int button_grau=0x7f020009;
+        public static final int button_green=0x7f02000a;
+        public static final int button_rot=0x7f02000b;
+        public static final int buttonbox=0x7f02000c;
+        public static final int circlegreybutton=0x7f02000d;
+        public static final int gelbclicked=0x7f02000e;
+        public static final int gelbclickedxml=0x7f02000f;
+        public static final int gelbdown=0x7f020010;
+        public static final int gelbnormal=0x7f020011;
+        public static final int gelbnormalxml=0x7f020012;
+        public static final int grauclicked=0x7f020013;
+        public static final int grauclickedxml=0x7f020014;
+        public static final int graudown=0x7f020015;
+        public static final int graunormal=0x7f020016;
+        public static final int graunormalxml=0x7f020017;
+        public static final int greenclicked=0x7f020018;
+        public static final int greenclickedxml=0x7f020019;
+        public static final int greendown=0x7f02001a;
+        public static final int greennormal=0x7f02001b;
+        public static final int greennormalxml=0x7f02001c;
+        public static final int ic_launcher=0x7f02001d;
+        public static final int leftbutton=0x7f02001e;
+        public static final int rotclicked=0x7f02001f;
+        public static final int rotclickedxml=0x7f020020;
+        public static final int rotdown=0x7f020021;
+        public static final int rotdown2=0x7f020022;
+        public static final int rotnormal=0x7f020023;
+        public static final int rotnormalxml=0x7f020024;
+        public static final int shape=0x7f020025;
+        public static final int shape_droptarget=0x7f020026;
+        public static final int whitebutton=0x7f020027;
+        public static final int whiteclickedxml=0x7f020028;
+        public static final int whitenormalxml=0x7f020029;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f060005;
-        public static final int action_settings=0x7f06001e;
-        public static final int bAfFrage=0x7f060019;
-        public static final int bAfGut=0x7f06001c;
-        public static final int bAfOk=0x7f06001b;
-        public static final int bAfSchlecht=0x7f06001a;
-        public static final int bDran=0x7f060008;
-        public static final int bEinstellungen=0x7f060015;
-        public static final int bEmailSQL=0x7f060004;
-        public static final int bFertig=0x7f060014;
-        public static final int bGemeldet=0x7f060009;
-        public static final int bHaAufschreiben=0x7f060016;
-        public static final int bMeldDran=0x7f06000a;
-        public static final int bRundeDran=0x7f060007;
-        public static final int button1=0x7f06001d;
-        public static final int digClock=0x7f06000f;
-        public static final int imageView1=0x7f06000b;
-        public static final int imageView2=0x7f060010;
-        public static final int imageView3=0x7f060017;
-        public static final int left=0x7f060000;
-        public static final int linearLayout1=0x7f06000e;
-        public static final int linearLayout2=0x7f060006;
-        public static final int llButDown=0x7f060018;
-        public static final int llLeftBoxes=0x7f06000d;
-        public static final int llTotalLeft=0x7f06000c;
-        public static final int right=0x7f060001;
-        public static final int scrollView1=0x7f060002;
-        public static final int textView1=0x7f060003;
-        public static final int tvMalDran=0x7f060013;
-        public static final int tvMalGemeldet=0x7f060012;
-        public static final int tvRemaining=0x7f060011;
+        public static final int LinearLayout1=0x7f070005;
+        public static final int RelativeLayout1=0x7f07002a;
+        public static final int action_settings=0x7f07004c;
+        public static final int bAfFrage=0x7f070033;
+        public static final int bAfGut=0x7f070036;
+        public static final int bAfOk=0x7f070035;
+        public static final int bAfSchlecht=0x7f070034;
+        public static final int bAfSkip=0x7f070032;
+        public static final int bDran=0x7f07002e;
+        public static final int bEinstellungen=0x7f070041;
+        public static final int bEmailSQL=0x7f070004;
+        public static final int bFertig=0x7f070040;
+        public static final int bGemeldet=0x7f07002f;
+        public static final int bHaAufschreiben=0x7f070042;
+        public static final int bMeldDran=0x7f070030;
+        public static final int bRundeDran=0x7f07002d;
+        public static final int bottomleft=0x7f070048;
+        public static final int bottomright=0x7f07004a;
+        public static final int button1=0x7f070028;
+        public static final int digClock=0x7f07003b;
+        public static final int etReturn=0x7f070029;
+        public static final int frameLayout=0x7f07002b;
+        public static final int haBFac2=0x7f070008;
+        public static final int haBFach1=0x7f070007;
+        public static final int haBFach10=0x7f070010;
+        public static final int haBFach11=0x7f070011;
+        public static final int haBFach12=0x7f070012;
+        public static final int haBFach13=0x7f070013;
+        public static final int haBFach14=0x7f070014;
+        public static final int haBFach15=0x7f070015;
+        public static final int haBFach16=0x7f070016;
+        public static final int haBFach17=0x7f070017;
+        public static final int haBFach18=0x7f070018;
+        public static final int haBFach19=0x7f070019;
+        public static final int haBFach20=0x7f07001a;
+        public static final int haBFach3=0x7f070009;
+        public static final int haBFach4=0x7f07000a;
+        public static final int haBFach5=0x7f07000b;
+        public static final int haBFach6=0x7f07000c;
+        public static final int haBFach7=0x7f07000d;
+        public static final int haBFach8=0x7f07000e;
+        public static final int haBFach9=0x7f07000f;
+        public static final int haCbErinnerung=0x7f070027;
+        public static final int haEtAufgabe1=0x7f07001d;
+        public static final int haEtAufgabe10=0x7f070026;
+        public static final int haEtAufgabe2=0x7f07001e;
+        public static final int haEtAufgabe3=0x7f07001f;
+        public static final int haEtAufgabe4=0x7f070020;
+        public static final int haEtAufgabe5=0x7f070021;
+        public static final int haEtAufgabe6=0x7f070022;
+        public static final int haEtAufgabe7=0x7f070023;
+        public static final int haEtAufgabe8=0x7f070024;
+        public static final int haEtAufgabe9=0x7f070025;
+        public static final int imageView1=0x7f070037;
+        public static final int imageView2=0x7f07003c;
+        public static final int imageView3=0x7f070043;
+        public static final int lLayoutRightBewertung=0x7f070031;
+        public static final int left=0x7f070000;
+        public static final int linearLayout1=0x7f07003a;
+        public static final int llLeftBoxes=0x7f070039;
+        public static final int llTotalLeft=0x7f070038;
+        public static final int llayoutRightNormal=0x7f07002c;
+        public static final int myimage1=0x7f070045;
+        public static final int myimage2=0x7f070047;
+        public static final int myimage3=0x7f070049;
+        public static final int myimage4=0x7f07004b;
+        public static final int right=0x7f070001;
+        public static final int scrollView1=0x7f070002;
+        public static final int scrollView2=0x7f07001c;
+        public static final int textView1=0x7f070003;
+        public static final int topleft=0x7f070044;
+        public static final int topright=0x7f070046;
+        public static final int tvHaAufgabe=0x7f07001b;
+        public static final int tvHaFach=0x7f070006;
+        public static final int tvMalDran=0x7f07003f;
+        public static final int tvMalGemeldet=0x7f07003e;
+        public static final int tvRemaining=0x7f07003d;
     }
     public static final class layout {
         public static final int fertig=0x7f030000;
-        public static final int inclass=0x7f030001;
-        public static final int menu=0x7f030002;
-        public static final int testview=0x7f030003;
+        public static final int haschreibennormal=0x7f030001;
+        public static final int haschreibensimple=0x7f030002;
+        public static final int inclass=0x7f030003;
+        public static final int menu=0x7f030004;
+        public static final int testview=0x7f030005;
     }
     public static final class menu {
-        public static final int menu=0x7f0a0000;
+        public static final int menu=0x7f0b0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f080001;
-        public static final int app_name=0x7f080000;
-        public static final int hello_world=0x7f080002;
+        public static final int action_settings=0x7f090001;
+        public static final int app_name=0x7f090000;
+        public static final int hello_world=0x7f090002;
     }
     public static final class style {
         /** 
@@ -137,14 +208,14 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class xml {
-        public static final int prefs=0x7f040000;
+        public static final int prefs=0x7f050000;
     }
     public static final class styleable {
         /** Attributes that can be used with a CircleView.

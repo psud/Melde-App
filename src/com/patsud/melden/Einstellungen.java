@@ -22,6 +22,7 @@ public class Einstellungen extends PreferenceActivity {
 
 	final Context context = this;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

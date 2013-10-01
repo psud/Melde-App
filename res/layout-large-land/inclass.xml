@@ -6,46 +6,100 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="200dp"
         android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:orientation="vertical"
-        android:weightSum="4 " >
+        android:layout_alignParentRight="true" >
 
-        <Button
-            android:id="@+id/bRundeDran"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_grau"
-            android:text="Runde\nDran" />
-
-        <Button
-            android:id="@+id/bDran"
+        <LinearLayout
+            android:id="@+id/llayoutRightNormal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_rot"
-            android:text="nur\nDran" />
+            android:orientation="vertical"
+            android:weightSum="4 " >
 
-        <Button
-            android:id="@+id/bGemeldet"
+            <Button
+                android:id="@+id/bRundeDran"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_grau"
+                android:text="Runde\nDran" />
+
+            <Button
+                android:id="@+id/bDran"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_rot"
+                android:text="nur\nDran" />
+
+            <Button
+                android:id="@+id/bGemeldet"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_gelb"
+                android:text="Gemeldet" />
+
+            <Button
+                android:id="@+id/bMeldDran"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_green"
+                android:text="Gemeldet\n+\nDran" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayoutRightBewertung"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_gelb"
-            android:text="Gemeldet" />
+            android:orientation="vertical"
+            android:weightSum="5 " >
 
-        <Button
-            android:id="@+id/bMeldDran"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_green"
-            android:text="Gemeldet\n+\nDran" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/bAfSkip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/whitebutton"
+                android:text="Überspringen" />
+
+            <Button
+                android:id="@+id/bAfFrage"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_grau"
+                android:text="Frage" />
+
+            <Button
+                android:id="@+id/bAfSchlecht"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_rot"
+                android:text="Schlecht" />
+
+            <Button
+                android:id="@+id/bAfOk"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_gelb"
+                android:text="Okay" />
+
+            <Button
+                android:id="@+id/bAfGut"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_green"
+                android:text="Gut" />
+        </LinearLayout>
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/imageView1"
@@ -80,33 +134,26 @@
                 android:orientation="vertical"
                 android:weightSum="10 " >
 
-                <DigitalClock
+      
+                     <DigitalClock
                     android:id="@+id/digClock"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="12:00"
-                    android:textSize="45dp" />
-
-                <!--
-                     <TextView
-                    android:id="@+id/digClock"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="14:02"
-                    android:textSize="25dp" />
-                -->
+                    android:textSize="45dp"
+                    >
+               </DigitalClock>
+       
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="15dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="9"
-                    android:src="@drawable/blackline" />
+                    android:src="@drawable/blacklinexml" />
             </LinearLayout>
 
             <LinearLayout
@@ -129,10 +176,10 @@
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="15dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="9"
-                    android:src="@drawable/blackline" />
+                    android:src="@drawable/blacklinexml" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,10 +202,10 @@
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="15dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="9"
-                    android:src="@drawable/blackline" />
+                    android:src="@drawable/blacklinexml" />
             </LinearLayout>
 
             <LinearLayout
@@ -181,10 +228,10 @@
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="15dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="9"
-                    android:src="@drawable/blackline" />
+                    android:src="@drawable/blacklinexml" />
             </LinearLayout>
 
             <LinearLayout
@@ -208,10 +255,10 @@
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="15dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="9"
-                    android:src="@drawable/blackline" />
+                    android:src="@drawable/blacklinexml" />
             </LinearLayout>
 
             <LinearLayout
@@ -235,10 +282,10 @@
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="15dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="9"
-                    android:src="@drawable/blackline" />
+                    android:src="@drawable/blacklinexml" />
             </LinearLayout>
 
             <Button
@@ -254,52 +301,10 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="fill_parent"
+            android:layout_width="5px"
             android:layout_height="fill_parent"
             android:gravity="left"
-            android:src="@drawable/blacklineup" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llButDown"
-        android:layout_width="590dp"
-        android:layout_height="125dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/llTotalLeft"
-        android:visibility="invisible"
-        android:weightSum="4" >
-
-        <Button
-            android:id="@+id/bAfFrage"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/graudown"
-            android:text="Frage" />
-
-        <Button
-            android:id="@+id/bAfSchlecht"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/rotdown"
-            android:text="Schlecht" />
-
-        <Button
-            android:id="@+id/bAfOk"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/gelbdown"
-            android:text="Ok" />
-
-        <Button
-            android:id="@+id/bAfGut"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/greendown"
-            android:text="Gut" />
+            android:src="@drawable/blacklinexml" />
     </LinearLayout>
 
 </RelativeLayout>
