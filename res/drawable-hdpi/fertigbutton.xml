@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+      <item android:state_pressed="true">
+         <layer-list>
+             <item >
+       			 <shape>
+            			<solid android:color="#4da4df" />
+        		</shape>
+    		</item>
+   			 <item
+        		android:drawable="@drawable/fertigcheck"
+       		 android:left="50dp"
+       		 android:right="60dp"
+       		 android:bottom="30dp"
+        		android:top="30dp"/>
+
+		</layer-list>
+        
+   
+    </item>
+    <item>
+        
+        <layer-list >
+             <item >
+       			 <shape>
+            			<solid android:color="#3498db" />
+        		</shape>
+    		</item>
+   			 <item
+        		android:drawable="@drawable/fertigcheck"
+       		 android:left="50dp"
+       		 android:right="60dp"
+       		 android:bottom="30dp"
+        		android:top="30dp"/>
+
+		</layer-list>
+        
+    </item>
+    
+   
+</selector>

@@ -10,39 +10,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.drm.DrmStore.Action;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.InputFilter.LengthFilter;
-import android.text.format.DateFormat;
-import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
+import android.widget.ListView;
 import android.widget.TextView;
+
 
 public class InClass extends Activity implements OnClickListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
-	TextView clock, timeRemaining, malGemeldet, malDran;
+	TextView clock;// , timeRemaining, malGemeldet, malDran;
 	Button bFertig, bEinstellung, bHa;
-	LinearLayout downLayout, bewertungLayout;
+	LinearLayout  bewertungLayout, leftLayout;
 	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen;
 
 	WakeLock wL;
@@ -60,15 +53,19 @@ public class InClass extends Activity implements OnClickListener {
 		setContentView(R.layout.inclass);
 
 		Initialize();
-		
+
 		InitialiseListeners();
 
 		GetTimeChanged();
-		
+
+		SetupDrawer();
+
 		registerReceiver(mBatInfoReceiver, new IntentFilter(
 				Intent.ACTION_BATTERY_CHANGED));
 
 	}
+
+	
 
 	private void CheckSettings() {
 		// TODO Auto-generated method stub
@@ -116,45 +113,32 @@ public class InClass extends Activity implements OnClickListener {
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-
-				if (batteryLevel < 21
-						&& getPrefs.getBoolean("showBattery", true)) {
-					// if ( getPrefs.getBoolean("showBattery", true)){
-					showWhat++;
-					if (showWhat % 4 == 0 || showWhat % 4 == 1) {
-						CalEndTime();
-						timeRemaining.setBackgroundColor(Color.WHITE);
-					} else {
-						timeRemaining.setText("Battery Level: "
-								+ Integer.toString(batteryLevel) + "%");
-						if (batteryLevel < 5)
-							timeRemaining.setBackgroundColor(Color.RED);
-						else if (batteryLevel < 15)
-							timeRemaining.setBackgroundColor(Color.YELLOW);
-						else if (batteryLevel < 20)
-							timeRemaining.setBackgroundColor(Color.LTGRAY);
-					}
-
-				} else if (getPrefs.getBoolean("showBatteryDebug", true)) {
-					showWhat++;
-					if (showWhat % 4 == 0 || showWhat % 4 == 1) {
-						timeRemaining.setBackgroundColor(Color.WHITE);
-						CalEndTime();
-					} else {
-						timeRemaining.setText("Battery Level: "
-								+ Integer.toString(batteryLevel) + "%");
-						if (batteryLevel < 5)
-							timeRemaining.setBackgroundColor(Color.RED);
-						else if (batteryLevel < 15)
-							timeRemaining.setBackgroundColor(Color.YELLOW);
-						else if (batteryLevel < 101)
-							timeRemaining.setBackgroundColor(Color.LTGRAY);
-					}
-				}
-
-				else
-					CalEndTime();
-
+				/*
+				 * if (batteryLevel < 21 && getPrefs.getBoolean("showBattery",
+				 * true)) { // if ( getPrefs.getBoolean("showBattery", true)){
+				 * showWhat++; if (showWhat % 4 == 0 || showWhat % 4 == 1) {
+				 * CalEndTime(); timeRemaining.setBackgroundColor(Color.WHITE);
+				 * } else { timeRemaining.setText("Battery Level: " +
+				 * Integer.toString(batteryLevel) + "%"); if (batteryLevel < 5)
+				 * timeRemaining.setBackgroundColor(Color.RED); else if
+				 * (batteryLevel < 15)
+				 * timeRemaining.setBackgroundColor(Color.YELLOW); else if
+				 * (batteryLevel < 20)
+				 * timeRemaining.setBackgroundColor(Color.LTGRAY); }
+				 * 
+				 * } else if (getPrefs.getBoolean("showBatteryDebug", true)) {
+				 * showWhat++; if (showWhat % 4 == 0 || showWhat % 4 == 1) {
+				 * timeRemaining.setBackgroundColor(Color.WHITE); CalEndTime();
+				 * } else { timeRemaining.setText("Battery Level: " +
+				 * Integer.toString(batteryLevel) + "%"); if (batteryLevel < 5)
+				 * timeRemaining.setBackgroundColor(Color.RED); else if
+				 * (batteryLevel < 15)
+				 * timeRemaining.setBackgroundColor(Color.YELLOW); else if
+				 * (batteryLevel < 101)
+				 * timeRemaining.setBackgroundColor(Color.LTGRAY); } }
+				 * 
+				 * else CalEndTime();
+				 */
 			}
 		});
 	}
@@ -163,31 +147,31 @@ public class InClass extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		// Left
 		clock = (TextView) findViewById(R.id.digClock);
-		timeRemaining = (TextView) findViewById(R.id.tvRemaining);
-		malGemeldet = (TextView) findViewById(R.id.tvMalGemeldet);
-		malDran = (TextView) findViewById(R.id.tvMalDran);
+		// timeRemaining = (TextView) findViewById(R.id.tvRemaining);
+		// malGemeldet = (TextView) findViewById(R.id.tvMalGemeldet);
+		// malDran = (TextView) findViewById(R.id.tvMalDran);
 		bFertig = (Button) findViewById(R.id.bFertig);
 		bEinstellung = (Button) findViewById(R.id.bEinstellungen);
 		bHa = (Button) findViewById(R.id.bHaAufschreiben);
 
 		// Right
-		//normal
+		// normal
 		rundeDran = (Button) findViewById(R.id.bRundeDran);
 		dran = (Button) findViewById(R.id.bDran);
 		gemeldet = (Button) findViewById(R.id.bGemeldet);
 		gemeldetDran = (Button) findViewById(R.id.bMeldDran);
-		//bewertet
+		// bewertet
 		bewertungLayout = (LinearLayout) findViewById(R.id.lLayoutRightBewertung);
 		bewertungLayout.setVisibility(View.GONE);
 		bewGut = (Button) findViewById(R.id.bAfGut);
 		bewOk = (Button) findViewById(R.id.bAfOk);
 		bewSchlecht = (Button) findViewById(R.id.bAfSchlecht);
 		bewFrage = (Button) findViewById(R.id.bAfFrage);
-		bewSpringen=(Button) findViewById(R.id.bAfSkip);
+		bewSpringen = (Button) findViewById(R.id.bAfSkip);
 		// Bottom
-	//	downLayout = (LinearLayout) findViewById(R.id.llButDown);
-		//animation bewertung
-		
+		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
+		// animation bewertung
+		leftLayout = (LinearLayout) findViewById(R.id.llLeftBoxes);
 
 	}
 
@@ -209,17 +193,16 @@ public class InClass extends Activity implements OnClickListener {
 		bewSpringen.setOnClickListener(this);
 
 		// clock
-		//clock.setOnClickListener(this);
+		// clock.setOnClickListener(this);
 		clock.setOnTouchListener(new View.OnTouchListener() {
-			
+
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
 				int action = event.getAction();
-				if (action == event.ACTION_DOWN){
+				if (action == event.ACTION_DOWN) {
 					clockClicked();
-				}
-				else if (action == event.ACTION_UP){
+				} else if (action == event.ACTION_UP) {
 					CalEndTime();
 				}
 				return true;
@@ -239,7 +222,7 @@ public class InClass extends Activity implements OnClickListener {
 		case R.id.bDran:
 			PutInSQL("3", "00");
 			ShowDownBewertung();
-			
+
 			break;
 		case R.id.bGemeldet:
 			meld++;
@@ -262,7 +245,7 @@ public class InClass extends Activity implements OnClickListener {
 			startActivity(openFertig);
 			break;
 		case R.id.bHaAufschreiben:
-		//	Toast.makeText(InClass.this, "Hi Nick", Toast.LENGTH_SHORT);
+			// Toast.makeText(InClass.this, "Hi Nick", Toast.LENGTH_SHORT);
 			Intent openCircle = new Intent(this, HaSchreibenNormal.class);
 			startActivity(openCircle);
 			break;
@@ -281,12 +264,13 @@ public class InClass extends Activity implements OnClickListener {
 			break;
 		case R.id.bAfSkip:
 			bewertungLayout.setVisibility(View.GONE);
-			Animation animRight = AnimationUtils.loadAnimation(this, R.anim.animationright);
+			Animation animRight = AnimationUtils.loadAnimation(this,
+					R.anim.animationright);
 			bewertungLayout.startAnimation(animRight);
 			break;
-		//case R.id.digClock:
-		//	clockClicked();
-		//	break;
+		// case R.id.digClock:
+		// clockClicked();
+		// break;
 		}
 	}
 
@@ -294,7 +278,7 @@ public class InClass extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		final Calendar c = Calendar.getInstance();
 		String thedate = "";
-		
+
 		switch (c.get(Calendar.DAY_OF_WEEK)) {
 		case 1:
 			thedate += "Montag";
@@ -318,11 +302,11 @@ public class InClass extends Activity implements OnClickListener {
 			thedate += "Sonntag";
 			break;
 		}
-		thedate+= "\n";
+		thedate += "\n";
 		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
-				+ Integer.toString(c.get(Calendar.MONTH))+ "."
+				+ Integer.toString(c.get(Calendar.MONTH)) + "."
 				+ Integer.toString(c.get(Calendar.YEAR));
-		timeRemaining.setText(thedate);
+		// timeRemaining.setText(thedate);
 	}
 
 	private void ShowDownBewertung() {
@@ -330,17 +314,19 @@ public class InClass extends Activity implements OnClickListener {
 		SharedPreferences getPrefs = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 		int howBewert = Integer
-				.parseInt(getPrefs.getString("bewertung", "2m "));
+				.parseInt(getPrefs.getString("bewertung", "2"));
 		// int da = getPrefs.getLong(key, defValue)
 		if (howBewert == 2)
 			AnimateBewwertungen();
-		//	bewertungLayout.setVisibility(View.VISIBLE);
+		else 
+			;
 	}
 
 	private void AnimateBewwertungen() {
 		// TODO Auto-generated method stub
 		bewertungLayout.setVisibility(View.VISIBLE);
-		Animation animLeft = AnimationUtils.loadAnimation(this, R.anim.animationleft);
+		Animation animLeft = AnimationUtils.loadAnimation(this,
+				R.anim.animationleft);
 		bewertungLayout.startAnimation(animLeft);
 	}
 
@@ -348,7 +334,7 @@ public class InClass extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		// String s = sql
 		// Get Last Row num
-		
+
 		int totalRows = SqlHandler.KEY_ROWNUM;
 		long longRow = Long.valueOf(totalRows);
 
@@ -359,11 +345,10 @@ public class InClass extends Activity implements OnClickListener {
 
 		// hide buttons
 		bewertungLayout.setVisibility(View.GONE);
-		Animation animRight = AnimationUtils.loadAnimation(this, R.anim.animationright);
+		Animation animRight = AnimationUtils.loadAnimation(this,
+				R.anim.animationright);
 		bewertungLayout.startAnimation(animRight);
 	}
-
-	
 
 	private void PutInSQL(String kind, String goodness) {
 		// TODO Auto-generated method stub
@@ -407,8 +392,8 @@ public class InClass extends Activity implements OnClickListener {
 		endHourInt = endHourInt - Integer.parseInt(nowHour);
 		endminInt = endminInt + endHourInt * 60;
 
-		timeRemaining
-				.setText((Integer.toString(endminInt) + " min\nremaining"));
+		// timeRemaining
+		// .setText((Integer.toString(endminInt) + " min\nremaining"));
 
 		remainingMin = endminInt;
 
@@ -421,26 +406,23 @@ public class InClass extends Activity implements OnClickListener {
 				.getDefaultSharedPreferences(getBaseContext());
 
 		// Setting show background Color
-		if (getPrefs.getBoolean("showRemainingColor", true)) {
-			// TODO Auto-generated method stub
-			if (remainingMin > 30)
-				timeRemaining.setBackgroundColor(Color.WHITE);
-			else if (remainingMin > 15)
-				timeRemaining.setBackgroundColor(Color.YELLOW);
-			else if (remainingMin > 5)
-				timeRemaining.setBackgroundColor(Color.rgb(0, 200, 0));
-			else if (remainingMin > 0)
-				timeRemaining.setBackgroundColor(Color.GREEN);
-			else if (remainingMin == 0)
-				timeRemaining.setBackgroundColor(Color.WHITE);
-		} else
-			timeRemaining.setBackgroundColor(Color.WHITE);
+		/*
+		 * if (getPrefs.getBoolean("showRemainingColor", true)) { // TODO
+		 * Auto-generated method stub if (remainingMin > 30)
+		 * timeRemaining.setBackgroundColor(Color.WHITE); else if (remainingMin
+		 * > 15) timeRemaining.setBackgroundColor(Color.YELLOW); else if
+		 * (remainingMin > 5) timeRemaining.setBackgroundColor(Color.rgb(0, 200,
+		 * 0)); else if (remainingMin > 0)
+		 * timeRemaining.setBackgroundColor(Color.GREEN); else if (remainingMin
+		 * == 0) timeRemaining.setBackgroundColor(Color.WHITE); } else
+		 * timeRemaining.setBackgroundColor(Color.WHITE);
+		 */
 	}
 
 	private void SomeChange() {
 		// TODO Auto-generated method stub
-		malGemeldet.setText(Integer.toString(meld) + "x\ngemeldet");
-		malDran.setText(Integer.toString(meldDran) + "x\ndavon dran");
+		// malGemeldet.setText(Integer.toString(meld) + "x\ngemeldet");
+		// malDran.setText(Integer.toString(meldDran) + "x\ndavon dran");
 	}
 
 	private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
@@ -450,4 +432,42 @@ public class InClass extends Activity implements OnClickListener {
 			batteryLevel = level;
 		}
 	};
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		if (bewertungLayout.isShown()) {
+			bewertungLayout.setVisibility(View.GONE);
+			Animation animRight = AnimationUtils.loadAnimation(this,
+					R.anim.animationright);
+			bewertungLayout.startAnimation(animRight);
+			
+			
+		} else
+			super.onBackPressed();
+	}
+
+	// ///////////////////////////////////////////////////////////////////////////////////////////////
+	// ///////////////////////////////////////////////////////////////////////////////////////////////
+	// ////////////////////////!!!!!!!!!!!!!!!!SLIDING DRAWER!!!!!!!!!!!!/////////////////////////////
+	// ///////////////////////////////////////////////////////////////////////////////////////////////
+	// ///////////////////////////////////////////////////////////////////////////////////////////////
+	    private DrawerLayout mDrawerLayout;
+	    private LinearLayout mDrawerList;
+
+	
+	
+	
+	
+	private void SetupDrawer() {
+		// TODO Auto-generated method stub
+		
+	        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+	        mDrawerList = (LinearLayout) findViewById(R.id.llLeftBoxes);
+
+	    
+	}
+
 }
+
+
