@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    
-
     <EditTextPreference
         android:key="name"
         android:summary="Gib deinen Namen ein"
@@ -16,28 +14,26 @@
         android:title="Menu Überspringen" />
 
     <PreferenceCategory android:title="In Class" />
-    
-    <ListPreference
+        
+    <SwitchPreference 
         android:title="Bewertung" 
         android:key="bewertung"
-        android:summary="Auswahl wie bzw. ob du dich bewerten kannst"
-        android:entries="@array/bewertunglist"
-        android:entryValues="@array/lValues" 
-        android:defaultValue="1"/>
-        
-
+        android:summaryOff="Du kannst deine Beiträge bewerten"
+        android:summaryOn="Du kannst deine Beiträge nicht bewerten"
+        android:defaultValue="true"/>
+       
     <SwitchPreference
         android:defaultValue="false"
         android:key="showBar"
         android:summaryOff="Zeigt keine Benachrichtungsleiste an"
         android:summaryOn="Zeigt Benachrichtungsleiste mit Uhrzeit an"
         android:title="Show Notification Bar" />
-    <SwitchPreference
+   <!--  <SwitchPreference
         android:defaultValue="true"
         android:key="showRemainingColor"
         android:summaryOff="Hintergrund der restlichen Minuten bleibt immer Weiß"
         android:summaryOn="Hinterlegt restliche Minuten mit Farben"
-        android:title="Show remaining Minutes Color" />
+        android:title="Show remaining Minutes Color" />  -->
     <SwitchPreference
         android:defaultValue="false"
         android:key="screenStayOn"
@@ -50,6 +46,15 @@
         android:summaryOff="Zeigt nie eine Batterieanzeige an"
         android:summaryOn="Zeigt den Akkustand als Warnung bei unter 20% an"
         android:title="Batterie anzeige" />
+    
+     <PreferenceCategory android:title="Hausaufgaben" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="erinnerungStd"
+        android:summaryOff="Standarteinstellung für die Erinnerung is Aus"
+        android:summaryOn="Standarteinstellung für die Erinnerung is An"
+        android:title="Erinnerung Standart" />
 
     <PreferenceCategory android:title="Debugging" />
 

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/colorFach"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/colorFach"
+            android:orientation="vertical"
+            android:weightSum="4" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#1abc9c"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="TURQUOISE"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#2ecc71"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="EMERALD"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#3498db"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="PETER RIVER"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#9b59b6"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="AMETHYST"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#34495e"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="WET ASPHALT"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#16a085"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="GREEN SEA"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#27ae60"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="NEPHRITIS"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#2980b9"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="BELIZE HOLE"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#8e44ad"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="WISTERIA"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#2c3e50"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="MIDNIGHT BLUE"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#f1c40f"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="SUN FLOWER"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#e67e22"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="CARROT"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#e74c3c"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="ALIZARIN"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#ecf0f1"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="CLOUDS"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#95a5a6"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="CONCRETE"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#f39c12"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="ORANGE"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#d35400"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="PUMPKIN"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#c0392b"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="POMEGRANATE"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#bdc3c7"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="SILVER"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/color1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#7f8c8d"
+                    android:gravity="bottom|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:text="ASBESTOS"
+                    android:textColor="#e0e0e0"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>

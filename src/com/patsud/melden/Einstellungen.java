@@ -56,7 +56,8 @@ public class Einstellungen extends PreferenceActivity {
 						.setMessage(
 								"Created and Designed by Patrick Sudhaus\nwww.patsud.com\n\n" +
 								"Great Android Tutorials:\nwww.thenewbosten.org\n\n" +
-								"")
+								"Flat UI Farben\nhttp://flatuicolors.com\n\n" +
+								" ")
 						.setCancelable(true).setPositiveButton("Ok", null);
 
 				// create dialog

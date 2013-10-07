@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,18 +27,20 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class InClass extends Activity implements OnClickListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
-	TextView clock;// , timeRemaining, malGemeldet, malDran;
+	TextView clock;
+	
 	Button bFertig, bEinstellung, bHa;
 	LinearLayout  bewertungLayout, leftLayout;
 	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen;
+	ImageView mitteBild;
 
 	WakeLock wL;
 	int batteryLevel;
@@ -64,8 +68,8 @@ public class InClass extends Activity implements OnClickListener {
 				Intent.ACTION_BATTERY_CHANGED));
 
 	}
-
-	
+ 
+	 
 
 	private void CheckSettings() {
 		// TODO Auto-generated method stub
@@ -172,6 +176,9 @@ public class InClass extends Activity implements OnClickListener {
 		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
 		// animation bewertung
 		leftLayout = (LinearLayout) findViewById(R.id.llLeftBoxes);
+		
+		//Middle Image
+		mitteBild = (ImageView) findViewById(R.id.imageView1);
 
 	}
 
@@ -247,7 +254,8 @@ public class InClass extends Activity implements OnClickListener {
 		case R.id.bHaAufschreiben:
 			// Toast.makeText(InClass.this, "Hi Nick", Toast.LENGTH_SHORT);
 			Intent openCircle = new Intent(this, HaSchreibenNormal.class);
-			startActivity(openCircle);
+			Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.activityout,R.anim.activityin).toBundle();
+			startActivity(openCircle, bndlanimation);
 			break;
 		// cases for down Buttons
 		case R.id.bAfGut:
@@ -452,8 +460,9 @@ public class InClass extends Activity implements OnClickListener {
 	// ////////////////////////!!!!!!!!!!!!!!!!SLIDING DRAWER!!!!!!!!!!!!/////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	    private DrawerLayout mDrawerLayout;
+	   private DrawerLayout mDrawerLayout;
 	    private LinearLayout mDrawerList;
+	    private ActionBarDrawerToggle mDrawerToggle;
 
 	
 	
@@ -464,6 +473,20 @@ public class InClass extends Activity implements OnClickListener {
 		
 	        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 	        mDrawerList = (LinearLayout) findViewById(R.id.llLeftBoxes);
+	        
+	        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.circlemiddle, R.string.hello_world, R.string.app_name){
+	        	public void onDrawerClosed(View drawerView) {
+	        		mitteBild.setPadding(25, 25, 200, 25);
+	        	}
+	        	public void onDrawerOpened(View drawerView) {
+	        		mitteBild.setPadding(25, 25, 25, 25);
+	        	//	Animation littleRight = AnimationUtils.loadAnimation(this,
+	    		//			R.anim.animationright);
+	    			//bewertungLayout.startAnimation(littleRight);
+
+	        	}
+	        };
+	        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 	    
 	}

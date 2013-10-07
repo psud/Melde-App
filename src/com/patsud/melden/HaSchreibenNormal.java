@@ -2,54 +2,101 @@ package com.patsud.melden;
 
 import java.util.Calendar;
 
-import android.R.bool;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 public class HaSchreibenNormal extends Activity implements OnClickListener {
 
 	Button[] faecher = new Button[20];
+	Button neuFach;
 	EditText[] aufgabe = new EditText[10];
 
 	Button abgabeDay;
-	
+	ImageView erinnerungTrue, erinnerungFalse;
+	LinearLayout erinnerungLayout;
+	TextView erinnerung;
+	private boolean erinnerungOn = true;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		ActionBar actionBar = getActionBar();
+		actionBar.setCustomView(R.layout.actionbarha);
 		setContentView(R.layout.haschreibennormal);
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		InitFacher();
 		SetFaecherColors();
-		InitAufgabe();
+		InitAufgabe();	
 		InitRest();
 		ListenersFach();
 		ListenersAufgabe();
+		GetPrefs();
 
 	}
- 
+
+	private void GetPrefs() {
+		// TODO Auto-generated method stub
+
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		// Voreinstellung Erinnerung
+		if (getPrefs.getBoolean("erinnerungStd", false)==false) {
+			erinnerungOn = false;
+			erinnerungTrue.setVisibility(View.INVISIBLE);
+			erinnerungFalse.setVisibility(View.VISIBLE);
+			erinnerungLayout.setBackgroundColor(Color.parseColor("#e74c3c"));
+			erinnerung.setText("Erinnerung Aus");
+		} else {
+			erinnerungOn = true;
+			erinnerungTrue.setVisibility(View.VISIBLE);
+			erinnerungFalse.setVisibility(View.INVISIBLE);
+			erinnerungLayout.setBackgroundColor(Color.parseColor("#27ae60"));
+			erinnerung.setText("Erinnerung An");
+		}
+	}
+
 	private void ListenersFach() {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < 20; i++) {
 			faecher[i].setOnClickListener(this);
 		}
+		final Intent openColors = new Intent(this,  FachColors.class);
+		neuFach.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(openColors);
+			}
+		});
 	}
 
 	private void SetFaecherColors() {
@@ -58,64 +105,33 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		String[] faecherName = { "Englisch", "Deutsch", "Mathe", "Geschichte",
 				"PoWi", "Religion", "Physik", "Bio", "Programmieren", "Sport" };
 
-		// 2d ArrayTest
-	/*	int[] faecherFarben = { R.drawable.backgraufach,
-				R.drawable.backrotfach, R.drawable.backblaufach,
-				R.drawable.backlilafach, R.drawable.backgelbfach,
-				R.drawable.backgraufach, R.drawable.backschwarzfach,
-				R.drawable.backgruenfach, R.drawable.backgraufach,
-				R.drawable.backgraufach };
-*/
-		String[] faecherFarben = {"#bdc3c7",
-				"#e74c3c", "#3498db",
-				"#8e44ad", "#f1c40f",
-				"#e67e22","#2c3e50",
-				"#27ae60","#34495e",
-				"#16a085" };
-		// { "grau", "red",fae "blue", "lila",
-		// "PoWi", "Religion", "Physik", "Chemie", "Bio", "Programmieren",
-		// "Sport" },};
+		String[] faecherFarben = { "#f1c40f", "#e74c3c", "#3498db", "#8e44ad",
+				"#f39c12", "#e67e22", "#34495e", "#27ae60", "#2980b9",
+				"#1abc9c" };
+
 		for (int i = 0; i < faecherName.length; i++) {
 			faecher[i].setText(faecherName[i]);
-		//[i].setBackgroundResource(faecherFarben[i]);
-			faecher[i].setBackgroundColor(Color.parseColor(faecherFarben[i
-			                                                             ]));
-			faecher[i].setPaintFlags(Paint.ANTI_ALIAS_FLAG);
+			faecher[i].setBackgroundColor(Color.parseColor(faecherFarben[i]));
+			faecher[i].setAlpha((float) 0.5);
 		}
 		for (int i = faecherName.length; i < 20; i++)
 			faecher[i].setVisibility(View.GONE);
+	
+		neuFach.setBackgroundColor(Color.parseColor("#95a5a6"));
+		neuFach.setText("Fach Hinzufügen");
 	}
+		
 
 	private void InitFacher() {
 		// TODO Auto-generated method stub
-		/*
-		 * faecher[0] = (Button) findViewById(R.id.haBFach1); faecher[1] =
-		 * (Button) findViewById(R.id.haBFach2); faecher[2] = (Button)
-		 * findViewById(R.id.haBFach3); faecher[3] = (Button)
-		 * findViewById(R.id.haBFach4); faecher[4] = (Button)
-		 * findViewById(R.id.haBFach5); faecher[5] = (Button)
-		 * findViewById(R.id.haBFach6); faecher[6] = (Button)
-		 * findViewById(R.id.haBFach7); faecher[7] = (Button)
-		 * findViewById(R.id.haBFach8); faecher[8] = (Button)
-		 * findViewById(R.id.haBFach9); faecher[9] = (Button)
-		 * findViewById(R.id.haBFach10); faecher[10] = (Button)
-		 * findViewById(R.id.haBFach11); faecher[11] = (Button)
-		 * findViewById(R.id.haBFach12); faecher[12] = (Button)
-		 * findViewById(R.id.haBFach13); faecher[13] = (Button)
-		 * findViewById(R.id.haBFach14); faecher[14] = (Button)
-		 * findViewById(R.id.haBFach15); faecher[15] = (Button)
-		 * findViewById(R.id.haBFach16); faecher[16] = (Button)
-		 * findViewById(R.id.haBFach17); faecher[17] = (Button)
-		 * findViewById(R.id.haBFach18); faecher[18] = (Button)
-		 * findViewById(R.id.haBFach19); faecher[19] = (Button)
-		 * findViewById(R.id.haBFach20);
-		 */
 
 		for (int i = 0; i < 20; i++) {
 			int resId = getResources().getIdentifier("haBFach" + (i + 1), "id",
 					"com.patsud.melden");
 			faecher[i] = (Button) findViewById(resId);
 		}
+		neuFach = (Button) findViewById(R.id.haBFachNeu);
+		
 	}
 
 	private void InitAufgabe() {
@@ -143,6 +159,54 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 				ShowDateDialog();
 			}
 		});
+
+		erinnerungTrue = (ImageView) findViewById(R.id.erinnerungTrue);
+		erinnerungFalse = (ImageView) findViewById(R.id.erinnerungFalse);
+		erinnerungLayout = (LinearLayout) findViewById(R.id.erinnerungLayout);
+		erinnerung = (TextView) findViewById(R.id.ErinnerungTv);
+		erinnerungLayout.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				ErinnerungButtonChange();
+			}
+		});
+		
+		
+	}
+
+	protected void ErinnerungButtonChange() {
+		// TODO Auto-generated method stub
+		if (erinnerungOn) {
+			erinnerungOn = false;
+			erinnerung.setText("Erinnerung Aus");
+			Animation animaway = AnimationUtils.loadAnimation(this,
+					R.anim.animationdown);
+			erinnerungTrue.startAnimation(animaway);
+			erinnerungTrue.setVisibility(View.INVISIBLE);
+			Animation animcome = AnimationUtils.loadAnimation(this,
+					R.anim.animationfromup);
+			erinnerungFalse.startAnimation(animcome);
+			erinnerungFalse.setVisibility(View.VISIBLE);
+			erinnerungLayout.setBackgroundColor(Color.parseColor("#e74c3c"));
+
+		} else {
+			erinnerungOn = true;
+			erinnerung.setText("Erinnerung An");
+			Animation animaway = AnimationUtils.loadAnimation(this,
+					R.anim.animationdown);
+			erinnerungFalse.startAnimation(animaway);
+			erinnerungTrue.startAnimation(animaway);
+			erinnerungTrue.setVisibility(View.VISIBLE);
+			Animation animcome = AnimationUtils.loadAnimation(this,
+					R.anim.animationfromup);
+			erinnerungTrue.startAnimation(animcome);
+			erinnerungFalse.setVisibility(View.INVISIBLE);
+			erinnerungLayout.setBackgroundColor(Color.parseColor("#27ae60"));
+
+		}
+
 	}
 
 	private void ListenersAufgabe() {
@@ -200,8 +264,6 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		// faecher[0].setText(Integer.toString(v.getId()));
 		int thisone = 0;
 		switch (v.getId()) {
 		case R.id.haBFach1:
@@ -213,7 +275,6 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		case R.id.haBFach3:
 			thisone = 2;
 			break;
-
 		case R.id.haBFach4:
 			thisone = 3;
 			break;
@@ -223,7 +284,6 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		case R.id.haBFach6:
 			thisone = 5;
 			break;
-
 		case R.id.haBFach7:
 			thisone = 6;
 			break;
@@ -245,8 +305,7 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		}
 
 		SetFaecherColors();
-		faecher[thisone].setPaintFlags(Paint.FAKE_BOLD_TEXT_FLAG);
-		// faecher[thisone].setPaintFlags(Paint.FAKE_BOLD_TEXT_FLAG);
+		faecher[thisone].setAlpha(1);
 
 	}
 
@@ -257,16 +316,17 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 	private int mWeekDay;
 	static final int DATE_DIALOG_ID = 1;
 	static boolean firstlauf = true;
+
 	private void ShowDateDialog() {
 		// TODO Auto-generated method stub
 
-		if (firstlauf){
-		final Calendar c = Calendar.getInstance();
-		 mYear = c.get(Calendar.YEAR);
-		 mMonth = c.get(Calendar.MONTH);
-		 mDay = c.get(Calendar.DAY_OF_MONTH);
-		 mWeekDay = c.get(Calendar.DAY_OF_WEEK);
-		 firstlauf = false;
+		if (firstlauf) {
+			final Calendar c = Calendar.getInstance();
+			mYear = c.get(Calendar.YEAR);
+			mMonth = c.get(Calendar.MONTH);
+			mDay = c.get(Calendar.DAY_OF_MONTH);
+			mWeekDay = c.get(Calendar.DAY_OF_WEEK);
+			firstlauf = false;
 		}
 		showDialog(DATE_DIALOG_ID);
 
@@ -297,27 +357,27 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 	private void updateDisplay() {
 		String weekday = GetWeekday();
 		final Calendar today = Calendar.getInstance();
-		
-			
+
 		abgabeDay.setText(new StringBuilder()
 				// Month is 0 based so add 1
-				.append("Abgabe: ")
-				.append(mDay).append(".").append(mMonth + 1).append(".")
-				.append(mYear).append(" ")
-	//			.append("\n" + weekday));
+				.append("Abgabe: ").append(mDay).append(".").append(mMonth + 1)
+				.append(".").append(mYear).append(" ")
+		// .append("\n" + weekday));
 				);
-	//	if (today.get(Calendar.DAY_OF_MONTH)==mDay&&today.get(Calendar.MONTH)==mMonth&&today.get(Calendar.YEAR)==mYear)
-	//		abgabeDay.setText("Abgabetag: Heute");
-	//	else if (today.get(Calendar.DAY_OF_MONTH)+1==mDay&&today.get(Calendar.MONTH)==mMonth&&today.get(Calendar.YEAR)==mYear)
-	//		abgabeDay.setText("Abgabetag: Morgen");
+		// if
+		// (today.get(Calendar.DAY_OF_MONTH)==mDay&&today.get(Calendar.MONTH)==mMonth&&today.get(Calendar.YEAR)==mYear)
+		// abgabeDay.setText("Abgabetag: Heute");
+		// else if
+		// (today.get(Calendar.DAY_OF_MONTH)+1==mDay&&today.get(Calendar.MONTH)==mMonth&&today.get(Calendar.YEAR)==mYear)
+		// abgabeDay.setText("Abgabetag: Morgen");
 	}
 
-	/////////??NOT FUNKTIONING
+	// ///////??NOT FUNKTIONING
 	private String GetWeekday() {
 		// TODO Auto-generated method stub
 		final Calendar c = Calendar.getInstance();
 		String thedate = "";
-		
+
 		switch (mWeekDay) {
 		case 1:
 			thedate = "Montag";
@@ -340,7 +400,7 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		case 7:
 			thedate = "Sonntag";
 			break;
-			}
+		}
 		return thedate;
 	}
 
@@ -358,5 +418,6 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 	};
 
 }
+
 
 

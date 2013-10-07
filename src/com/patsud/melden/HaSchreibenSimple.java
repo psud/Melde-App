@@ -56,7 +56,7 @@ public class HaSchreibenSimple extends Activity implements OnClickListener {
 		label.setTextSize(20);
 		label.setGravity(Gravity.CENTER_HORIZONTAL);
 		ImageView pic = new ImageView(this);
-		pic.setImageResource(R.drawable.greennormal);
+	//	pic.setImageResource(R.drawable.greennormal);
 		pic.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT));
 		pic.setAdjustViewBounds(true);
