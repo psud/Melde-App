@@ -1,3 +1,4 @@
+
 package com.patsud.melden;
 
 import java.text.SimpleDateFormat;
@@ -58,6 +59,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		Initialize();
 
+		
 		InitialiseListeners();
 
 		GetTimeChanged();
@@ -192,7 +194,7 @@ public class InClass extends Activity implements OnClickListener {
 		bEinstellung.setOnClickListener(this);
 		bHa.setOnClickListener(this);
 
-		// BottomListeners
+		// BewertungListeners
 		bewGut.setOnClickListener(this);
 		bewOk.setOnClickListener(this);
 		bewSchlecht.setOnClickListener(this);
@@ -201,7 +203,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		// clock
 		// clock.setOnClickListener(this);
-		clock.setOnTouchListener(new View.OnTouchListener() {
+		/*clock.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -214,7 +216,7 @@ public class InClass extends Activity implements OnClickListener {
 				}
 				return true;
 			}
-		});
+		});*/
 	}
 
 	@Override
@@ -223,7 +225,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.bRundeDran:
-			PutInSQL("4", "00");
+		PutInSQL("4", "00");
 			ShowDownBewertung();
 			break;
 		case R.id.bDran:
@@ -321,10 +323,8 @@ public class InClass extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		SharedPreferences getPrefs = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
-		int howBewert = Integer
-				.parseInt(getPrefs.getString("bewertung", "2"));
-		// int da = getPrefs.getLong(key, defValue)
-		if (howBewert == 2)
+
+		if (getPrefs.getBoolean("bewertung", true))
 			AnimateBewwertungen();
 		else 
 			;

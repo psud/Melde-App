@@ -1,36 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="3" >
+        android:background="#c4f3ff" >
+    
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/llBarTop"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" >
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/topBarCancel"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="CANCEL"
+            android:background="#3498db"
+            android:src="@drawable/xicon" 
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/topBarSave"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="SAVE"
+            android:background="#3498db"
+            android:src="@drawable/xicon" 
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAllHa"
+        android:layout_below="@+id/llBarTop"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingTop="15dp" >
+
+                    <TextView
+                        android:id="@+id/tvHaFach"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="5dp"
+                        android:text="FACH"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2dp"
+                        android:background="@android:color/darker_gray" />
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/scrollView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingTop="0dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingRight="0dp" >
+
+                        <Button
+                            android:id="@+id/haBFach1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Deutsch"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="fill_parent"
+                            android:background="@android:color/darker_gray" />
+
+                        <Button
+                            android:id="@+id/haBFach2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Englisch"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach4"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach5"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach6"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach7"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach8"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach9"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach10"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach11"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach12"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach13"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach14"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach15"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach16"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach17"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach18"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach19"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFach20"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/haBFachNeu"
+                            android:layout_width="fill_parent"
+                            android:layout_height="80dp"
+                            android:text="Button"
+                            android:textColor="#ffffff"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="1px"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="30dp"
+                android:paddingTop="15dp" >
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_weight="1"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
                 android:paddingTop="15dp" >
 
                 <TextView
-                    android:id="@+id/tvHaFach"
+                    android:id="@+id/tvHaAufgabe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingBottom="5dp"
-                    android:text="FACH"
+                    android:text="AUFGABE"
                     android:textSize="15dp" />
 
                 <View
@@ -40,428 +311,274 @@
             </LinearLayout>
 
             <ScrollView
-                android:id="@+id/scrollView1"
+                android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:paddingTop="0dp" >
+                android:padding="15dp" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingRight="0dp" >
+                    android:orientation="vertical" >
 
-                    <Button
-                        android:id="@+id/haBFach1"
+                    <EditText
+                        android:id="@+id/haEtAufgabe1"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Deutsch"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10" />
 
-                    <Button
-                        android:id="@+id/haBFach2"
+                    <EditText
+                        android:id="@+id/haEtAufgabe2"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Englisch"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach3"
+                    <EditText
+                        android:id="@+id/haEtAufgabe3"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach4"
+                    <EditText
+                        android:id="@+id/haEtAufgabe4"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach5"
+                    <EditText
+                        android:id="@+id/haEtAufgabe5"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach6"
+                    <EditText
+                        android:id="@+id/haEtAufgabe6"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach7"
+                    <EditText
+                        android:id="@+id/haEtAufgabe7"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach8"
+                    <EditText
+                        android:id="@+id/haEtAufgabe8"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach9"
+                    <EditText
+                        android:id="@+id/haEtAufgabe9"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/haBFach10"
+                    <EditText
+                        android:id="@+id/haEtAufgabe10"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach11"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach12"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach13"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach14"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach15"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach16"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach17"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach18"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach19"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-
-                    <Button
-                        android:id="@+id/haBFach20"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
-                     <Button
-                        android:id="@+id/haBFachNeu"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:text="Button"
-                        android:textColor="#ffffff"
-                        android:textSize="20dp" />
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:visibility="gone" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="1px"
-            android:layout_height="fill_parent"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="30dp"
-            android:paddingTop="15dp" >
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:orientation="vertical" >
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="15dp" >
-
-            <TextView
-                android:id="@+id/tvHaAufgabe"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:text="AUFGABE"
-                android:textSize="15dp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray" />
-        </LinearLayout>
-
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp" >
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/haEtAufgabe1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe6"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe7"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe8"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe9"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-
-                <EditText
-                    android:id="@+id/haEtAufgabe10"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:visibility="gone" />
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="15dp" >
-
-            <TextView
-                android:id="@+id/tvHaAufgabe"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:text="REST"
-                android:textSize="15dp" />
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingTop="15dp" >
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray" />
-
-            <ScrollView
-                android:id="@+id/scrollView2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvHaAufgabe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="0dp" >
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:text="REST"
+                    android:textSize="15dp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dp"
+                    android:background="@android:color/darker_gray" />
+
+                <ScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/erinnerungLayout"
                         android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:weightSum="4" >
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="0dp" >
 
-                        <FrameLayout
-                            android:id="@+id/content_frame"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="3" >
-
-                            <ImageView
-                                android:id="@+id/erinnerungTrue"
-                                android:layout_width="fill_parent"
-                                android:layout_height="match_parent"
-                                 android:gravity="center"
-                                android:src="@drawable/iconcheck"
-                                android:visibility="invisible" />
-
-                            <ImageView
-                                android:id="@+id/erinnerungFalse"
-                                android:layout_width="fill_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:src="@drawable/xicon" />
-                        </FrameLayout>
-
-                    
-                            <TextView
-                            android:id="@+id/ErinnerungTv"
+                        <LinearLayout
+                            android:id="@+id/erinnerungLayout"
                             android:layout_width="fill_parent"
                             android:layout_height="80dp"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:text="Erinnerung"
-                            android:paddingLeft="20dp"
-                            android:textColor="#ffffff"
-                            android:textSize="20dp" />
+                            android:orientation="horizontal"
+                            android:weightSum="4" >
 
-                    <!--      <LinearLayout
+                            <FrameLayout
+                                android:id="@+id/content_frame"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="3" >
+
+                                <ImageView
+                                    android:id="@+id/erinnerungTrue"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:src="@drawable/iconcheck"
+                                    android:visibility="invisible" />
+
+                                <ImageView
+                                    android:id="@+id/erinnerungFalse"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:src="@drawable/xicon" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/ErinnerungTv"
+                                android:layout_width="fill_parent"
+                                android:layout_height="80dp"
+                                android:layout_weight="1"
+                                android:gravity="left|center_vertical"
+                                android:paddingLeft="20dp"
+                                android:text="Erinnerung"
+                                android:textColor="#ffffff"
+                                android:textSize="20dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            android:layout_weight="1.5"
-                            android:orientation="horizontal" >
-                        </LinearLayout>-->
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="0dp" >
+
+                            <Button
+                                android:id="@+id/haBAbgabe"
+                                android:layout_width="fill_parent"
+                                android:layout_height="80dp"
+                                android:background="#3498db"
+                                android:text="Due Date"
+                                android:textColor="#ffffff" />
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2" >
+
+                                <Button
+                                    android:id="@+id/haBAbMontag"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_weight="1"
+                                    android:background="#308ECC"
+                                    android:text="Montag"
+                                    android:textColor="#ffffff" />
+
+                                <Button
+                                    android:id="@+id/haBAbDienstag"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_weight="1"
+                                    android:background="#308ECC"
+                                    android:text="Dienstag"
+                                    android:textColor="#ffffff" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2" >
+
+                                <Button
+                                    android:id="@+id/haBAbMittwoch"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_weight="1"
+                                    android:background="#308ECC"
+                                    android:text="Mittwoch"
+                                    android:textColor="#ffffff" />
+
+                                <Button
+                                    android:id="@+id/haBAbDonnerstag"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_weight="1"
+                                    android:background="#308ECC"
+                                    android:text="Donnerstag"
+                                    android:textColor="#ffffff" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="2" >
+
+                                <Button
+                                    android:id="@+id/haBAbFreitag"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_weight="1"
+                                    android:background="#308ECC"
+                                    android:text="Freitag"
+                                    android:textColor="#ffffff" />
+
+                                <Button
+                                    android:id="@+id/haBAbWochenende"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="80dp"
+                                    android:layout_weight="1"
+                                    android:background="#308ECC"
+                                    android:text="Sonntag"
+                                    android:textColor="#ffffff" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
 
-                    <Button
-                        android:id="@+id/haBAbgabe"
-                        android:layout_width="fill_parent"
-                        android:layout_height="80dp"
-                        android:background="#3498db"
-                        android:text="Due Date"
-                        android:textColor="#ffffff" />
-                </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="1px"
-            android:layout_height="fill_parent"
-            android:layout_alignParentLeft="true"
-            android:paddingBottom="30dp"
-            android:paddingTop="15dp" >
-
-            <View
+            <LinearLayout
                 android:layout_width="1px"
                 android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="0dp"
+                android:paddingTop="15dp" >
 
-</LinearLayout>
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
-
+</RelativeLayout>
