@@ -6,36 +6,6 @@
     
 
     <LinearLayout
-        android:id="@+id/llBarTop"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:weightSum="2" >
-
-        <Button
-            android:id="@+id/topBarCancel"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="CANCEL"
-            android:background="#3498db"
-            android:src="@drawable/xicon" 
-            android:textColor="#ffffff"
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/topBarSave"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="SAVE"
-            android:background="#3498db"
-            android:src="@drawable/xicon" 
-            android:textColor="#ffffff"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/llAllHa"
         android:layout_below="@+id/llBarTop"
         android:layout_width="fill_parent"

@@ -32,6 +32,7 @@
         <activity
             android:name="com.patsud.melden.Einstellungen"
             android:label="Einstellungen"
+            android:theme="@android:style/Theme.Holo.Light"
             android:screenOrientation="sensorLandscape" >
         </activity>
         //Fertig
@@ -62,6 +63,12 @@
          //FachColors
         <activity
             android:name="com.patsud.melden.FachColors"
+            android:label="Ferig"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+         //TestCircle
+        <activity
+            android:name="com.patsud.melden.TestCircle"
             android:label="Ferig"
             android:screenOrientation="sensorLandscape" >
         </activity>

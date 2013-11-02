@@ -18,6 +18,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -47,10 +48,12 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		FullScreenSetting();
 		setContentView(R.layout.haschreibennormal);
 		this.getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 
 		InitFacher();
 		SetFaecherColors();
@@ -61,6 +64,20 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		ListenersAufgabe();
 		GetPrefs();
 
+	}
+
+	
+
+	private void FullScreenSetting() {
+		// TODO Auto-generated method stub
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		// FULL SCREEN
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if (getPrefs.getBoolean("showBar", true) == false)
+			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+					WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	}
 
 	private void DatumInit() {
@@ -80,7 +97,7 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		abgabeDo.setOnClickListener(this);
 		abgabeFr.setOnClickListener(this);
 		abgabeWe.setOnClickListener(this);
-		
+
 		setAllDatesOff();
 
 		abgabeDay.setOnClickListener(new View.OnClickListener() {
@@ -91,8 +108,7 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 				ShowDateDialog();
 			}
 		});
-		
-		
+
 	}
 
 	private void GetPrefs() {
@@ -118,9 +134,9 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 
 		// FULL SCREEN
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//if (getPrefs.getBoolean("showBar", true) == false)
-		//	getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		//			WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		// if (getPrefs.getBoolean("showBar", true) == false)
+		// getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+		// WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	}
 
 	private void ListenersFach() {
@@ -151,9 +167,9 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 
 		for (int i = 0; i < faecherName.length; i++) {
 			faecher[i].setText(faecherName[i]);
-			if (i%2 == 0)
+			if (i % 2 == 0)
 				faecher[i].setBackgroundColor(Color.parseColor("#3498db"));
-			//faecher[i].setBackgroundColor(Color.parseColor(faecherFarben[i]));
+			// faecher[i].setBackgroundColor(Color.parseColor(faecherFarben[i]));
 			else
 				faecher[i].setBackgroundColor(Color.parseColor("#2980b9"));
 			faecher[i].setAlpha((float) 0.5);
@@ -245,17 +261,18 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < 9; i++) {
 			aufgabe[i].addTextChangedListener(new CustomTextWatcher(i));
-			aufgabe[i].setImeActionLabel("PAT", KeyEvent.KEYCODE_ENTER);
-			aufgabe[i].setOnEditorActionListener(onEnterListener);
+		//	aufgabe[i].setImeActionLabel("PAT", KeyEvent.KEYCODE_ENTER);
+		//	aufgabe[i].setOnEditorActionListener(onEnterListener);
 
 		}
+		
 
 	}
 
 	int bla = 0;
 	// Listener for Enter Pressed
 	// ////////////?NOT WORKING//////////
-	OnEditorActionListener onEnterListener = new OnEditorActionListener() {
+/*	OnEditorActionListener onEnterListener = new OnEditorActionListener() {
 		@Override
 		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 			boolean handled = false;
@@ -268,7 +285,7 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 			return handled;
 		}
 	};
-
+*/
 	// Class
 	private class CustomTextWatcher implements TextWatcher {
 		private int one;
@@ -379,26 +396,24 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 
 	private void calDay(int dd) {
 		// TODO Auto-generated method stub
-		
+
 		final Calendar c = Calendar.getInstance();
 		int mYear = c.get(Calendar.YEAR);
 		int mMonth = c.get(Calendar.MONTH);
 		int mDay = c.get(Calendar.DAY_OF_MONTH);
 		int mWeekDay = c.get(Calendar.DAY_OF_WEEK);
-		
-		
+
 		int dayToday = mWeekDay;
-		if (dd < dayToday+1)
+		if (dd < dayToday + 1)
 			dd += 7;
 		int plusDays = dd - dayToday;
-		//abgabeDay.setText(Integer.toString(plusDays));
-		
+		// abgabeDay.setText(Integer.toString(plusDays));
+
 		abgabeDay.setText(new StringBuilder()
-		// Month is 0 based so add 1
-		.append("Abgabe: ").append(mDay+plusDays).append(".").append(mMonth + 1)
-		.append(".").append(mYear).append(" ")
-		);
-		
+				// Month is 0 based so add 1
+				.append("Abgabe: ").append(mDay + plusDays).append(".")
+				.append(mMonth + 1).append(".").append(mYear).append(" "));
+
 	}
 
 	private void setAllDatesOff() {
@@ -438,8 +453,8 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		switch (id) {
 
 		case DATE_DIALOG_ID:
-			return new DatePickerDialog(this, mDateSetListener, mYearDia, mMonthDia,
-					mDayDia);
+			return new DatePickerDialog(this, mDateSetListener, mYearDia,
+					mMonthDia, mDayDia);
 		}
 		return null;
 	}
@@ -448,20 +463,21 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		switch (id) {
 
 		case DATE_DIALOG_ID:
-			((DatePickerDialog) dialog).updateDate(mYearDia, mMonthDia, mDayDia);
+			((DatePickerDialog) dialog)
+					.updateDate(mYearDia, mMonthDia, mDayDia);
 
 			break;
 		}
 	}
 
 	private void updateDisplay() {
-		
+
 		final Calendar today = Calendar.getInstance();
 
 		abgabeDay.setText(new StringBuilder()
 				// Month is 0 based so add 1
-				.append("Abgabe: ").append(mDayDia).append(".").append(mMonthDia + 1)
-				.append(".").append(mYearDia).append(" ")
+				.append("Abgabe: ").append(mDayDia).append(".")
+				.append(mMonthDia + 1).append(".").append(mYearDia).append(" ")
 		// .append("\n" + weekday));
 				);
 		// if
@@ -473,7 +489,6 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 	}
 
 	// ///////??NOT FUNKTIONING
-	
 
 	private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 
@@ -487,18 +502,17 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		}
 
 	};
-	
-	
-	///back button pressed
+
+	// /back button pressed
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		Intent bactoClass = new Intent(this, InClass.class);
-		Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.homeworkdismiss,R.anim.slidelefttoright).toBundle();
+		Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
+				getApplicationContext(), R.anim.homeworkdismiss,
+				R.anim.slidelefttoright).toBundle();
 		startActivity(bactoClass, bndlanimation);
-			
-			
-		} 
 
+	}
 
 }

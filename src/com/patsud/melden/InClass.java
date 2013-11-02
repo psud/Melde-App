@@ -1,4 +1,3 @@
-
 package com.patsud.melden;
 
 import java.text.SimpleDateFormat;
@@ -16,8 +15,6 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -27,24 +24,27 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 public class InClass extends Activity implements OnClickListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
 	TextView clock;
-	
+
 	Button bFertig, bEinstellung, bHa;
-	LinearLayout  bewertungLayout, leftLayout;
+	LinearLayout bewertungLayout, leftLayout;
 	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen;
 	ImageView mitteBild;
 
 	WakeLock wL;
 	int batteryLevel;
+
+	PercentView percentage;
 
 	int meldDran, meld, nDran, rundDran;
 
@@ -59,19 +59,18 @@ public class InClass extends Activity implements OnClickListener {
 
 		Initialize();
 
-		
 		InitialiseListeners();
+
+		AnimateCircle();
 
 		GetTimeChanged();
 
-		SetupDrawer();
+		// SetupDrawer();
 
 		registerReceiver(mBatInfoReceiver, new IntentFilter(
 				Intent.ACTION_BATTERY_CHANGED));
 
 	}
- 
-	 
 
 	private void CheckSettings() {
 		// TODO Auto-generated method stub
@@ -119,32 +118,7 @@ public class InClass extends Activity implements OnClickListener {
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-				/*
-				 * if (batteryLevel < 21 && getPrefs.getBoolean("showBattery",
-				 * true)) { // if ( getPrefs.getBoolean("showBattery", true)){
-				 * showWhat++; if (showWhat % 4 == 0 || showWhat % 4 == 1) {
-				 * CalEndTime(); timeRemaining.setBackgroundColor(Color.WHITE);
-				 * } else { timeRemaining.setText("Battery Level: " +
-				 * Integer.toString(batteryLevel) + "%"); if (batteryLevel < 5)
-				 * timeRemaining.setBackgroundColor(Color.RED); else if
-				 * (batteryLevel < 15)
-				 * timeRemaining.setBackgroundColor(Color.YELLOW); else if
-				 * (batteryLevel < 20)
-				 * timeRemaining.setBackgroundColor(Color.LTGRAY); }
-				 * 
-				 * } else if (getPrefs.getBoolean("showBatteryDebug", true)) {
-				 * showWhat++; if (showWhat % 4 == 0 || showWhat % 4 == 1) {
-				 * timeRemaining.setBackgroundColor(Color.WHITE); CalEndTime();
-				 * } else { timeRemaining.setText("Battery Level: " +
-				 * Integer.toString(batteryLevel) + "%"); if (batteryLevel < 5)
-				 * timeRemaining.setBackgroundColor(Color.RED); else if
-				 * (batteryLevel < 15)
-				 * timeRemaining.setBackgroundColor(Color.YELLOW); else if
-				 * (batteryLevel < 101)
-				 * timeRemaining.setBackgroundColor(Color.LTGRAY); } }
-				 * 
-				 * else CalEndTime();
-				 */
+				UpdatePie();
 			}
 		});
 	}
@@ -178,9 +152,9 @@ public class InClass extends Activity implements OnClickListener {
 		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
 		// animation bewertung
 		leftLayout = (LinearLayout) findViewById(R.id.llLeftBoxes);
-		
-		//Middle Image
-		mitteBild = (ImageView) findViewById(R.id.imageView1);
+
+		// Middle Image
+		percentage = (PercentView) findViewById(R.id.percentview);
 
 	}
 
@@ -201,23 +175,20 @@ public class InClass extends Activity implements OnClickListener {
 		bewFrage.setOnClickListener(this);
 		bewSpringen.setOnClickListener(this);
 
-		// clock
-		// clock.setOnClickListener(this);
-		/*clock.setOnTouchListener(new View.OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				int action = event.getAction();
-				if (action == event.ACTION_DOWN) {
-					clockClicked();
-				} else if (action == event.ACTION_UP) {
-					CalEndTime();
-				}
-				return true;
-			}
-		});*/
+		// final PercentView setThingy = new PercentView(this);
+		clock.setOnClickListener(this);
+		/*
+		 * clock.setOnClickListener(new View.OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub testInt +=10; rundeDran.setText(Float.toString(testInt));
+		 * setThingy.setPercentage(50);
+		 * 
+		 * } });
+		 */
 	}
+
+	float testInt = 0;
 
 	@Override
 	public void onClick(View v) {
@@ -225,18 +196,20 @@ public class InClass extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.bRundeDran:
-		PutInSQL("4", "00");
+			PutInSQL("4", "00");
 			ShowDownBewertung();
+			percentage.setDot(3);
 			break;
 		case R.id.bDran:
 			PutInSQL("3", "00");
 			ShowDownBewertung();
-
+			percentage.setDot(2);
 			break;
 		case R.id.bGemeldet:
 			meld++;
 			SomeChange();
 			PutInSQL("2", "00");
+			percentage.setDot(1);
 			break;
 		case R.id.bMeldDran:
 			meldDran++;
@@ -244,6 +217,7 @@ public class InClass extends Activity implements OnClickListener {
 			SomeChange();
 			PutInSQL("1", "00");
 			ShowDownBewertung();
+			percentage.setDot(0);
 			break;
 		case R.id.bEinstellungen:
 			Intent openPrefs = new Intent(this, Einstellungen.class);
@@ -256,7 +230,9 @@ public class InClass extends Activity implements OnClickListener {
 		case R.id.bHaAufschreiben:
 			// Toast.makeText(InClass.this, "Hi Nick", Toast.LENGTH_SHORT);
 			Intent openCircle = new Intent(this, HaSchreibenNormal.class);
-			Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.activityout,R.anim.activityin).toBundle();
+			Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
+					getApplicationContext(), R.anim.activityout,
+					R.anim.activityin).toBundle();
 			startActivity(openCircle, bndlanimation);
 			break;
 		// cases for down Buttons
@@ -278,13 +254,18 @@ public class InClass extends Activity implements OnClickListener {
 					R.anim.animationright);
 			bewertungLayout.startAnimation(animRight);
 			break;
-		// case R.id.digClock:
-		// clockClicked();
-		// break;
+		case R.id.digClock:
+			Toast.makeText(getApplicationContext(), clockClicked(),
+					Toast.LENGTH_LONG).show();
+			Intent openTest = new Intent(this, TestCircle.class);
+			startActivity(openTest);
+			break;
 		}
 	}
 
-	private void clockClicked() {
+	float testbnla = 0;
+
+	private String clockClicked() {
 		// TODO Auto-generated method stub
 		final Calendar c = Calendar.getInstance();
 		String thedate = "";
@@ -312,11 +293,11 @@ public class InClass extends Activity implements OnClickListener {
 			thedate += "Sonntag";
 			break;
 		}
-		thedate += "\n";
+		thedate += " den ";
 		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
 				+ Integer.toString(c.get(Calendar.MONTH)) + "."
 				+ Integer.toString(c.get(Calendar.YEAR));
-		// timeRemaining.setText(thedate);
+		return thedate;
 	}
 
 	private void ShowDownBewertung() {
@@ -326,7 +307,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		if (getPrefs.getBoolean("bewertung", true))
 			AnimateBewwertungen();
-		else 
+		else
 			;
 	}
 
@@ -337,6 +318,13 @@ public class InClass extends Activity implements OnClickListener {
 				R.anim.animationleft);
 		bewertungLayout.startAnimation(animLeft);
 	}
+
+	private void AnimateCircle() {
+		// TODO Auto-generated method stub
+		Animation animBig = AnimationUtils.loadAnimation(this,
+				R.anim.animationscalebig);
+		percentage.startAnimation(animBig);
+	} 
 
 	private void AddGoodness(int goodness) {
 		// TODO Auto-generated method stub
@@ -378,6 +366,47 @@ public class InClass extends Activity implements OnClickListener {
 	}
 
 	int remainingMin;
+
+	protected void UpdatePie() {
+		// TODO Auto-generated method stub
+
+		float percentage = CalPercentage();
+
+		this.percentage.setPercentage(percentage);
+	}
+
+	private float CalPercentage() {
+		// TODO Auto-generated method stub
+		float pers = 0;
+
+		Calendar c = Calendar.getInstance();
+		int seconds = c.get(Calendar.SECOND);
+
+		int startTotalMin = c.get(Calendar.HOUR_OF_DAY) * 60; // 22 *60 + 35;
+		startTotalMin = startTotalMin * 60;
+
+		int nowTotalMin = (Integer.parseInt(clock.getText().toString()
+				.substring(0, 2)) * 60 + Integer.parseInt(clock.getText()
+				.toString().substring(3, 5)))
+				* 60 + seconds;
+
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		// Get Endtime
+		String endtime = getPrefs.getString("endtime", "12:00");
+		// int endTotalMin = Integer.parseInt(endtime.toString().substring(0,
+		// 2))*60
+		// + Integer.parseInt(endtime.toString().substring(3, 5)) ;
+		int endTotalMin = (c.get(Calendar.HOUR_OF_DAY) + 1) * 60;
+		// int endTotalMin = 21*60 +30;
+		endTotalMin = endTotalMin * 60;
+
+		float MinuteTime = endTotalMin - startTotalMin;
+
+		pers = ((nowTotalMin - startTotalMin) / MinuteTime) * 100;
+		return pers;
+	}
 
 	private void CalEndTime() {
 
@@ -449,48 +478,41 @@ public class InClass extends Activity implements OnClickListener {
 			Animation animRight = AnimationUtils.loadAnimation(this,
 					R.anim.animationright);
 			bewertungLayout.startAnimation(animRight);
-			
-			
+
 		} else
 			super.onBackPressed();
 	}
 
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	// ////////////////////////!!!!!!!!!!!!!!!!SLIDING DRAWER!!!!!!!!!!!!/////////////////////////////
+	// ////////////////////////!!!!!!!!!!!!!!!!SLIDING
+	// DRAWER!!!!!!!!!!!!/////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	   private DrawerLayout mDrawerLayout;
-	    private LinearLayout mDrawerList;
-	    private ActionBarDrawerToggle mDrawerToggle;
-
-	
-	
-	
-	
-	private void SetupDrawer() {
-		// TODO Auto-generated method stub
-		
-	        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-	        mDrawerList = (LinearLayout) findViewById(R.id.llLeftBoxes);
-	        
-	        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.circlemiddle, R.string.hello_world, R.string.app_name){
-	        	public void onDrawerClosed(View drawerView) {
-	        		mitteBild.setPadding(25, 25, 200, 25);
-	        	}
-	        	public void onDrawerOpened(View drawerView) {
-	        		mitteBild.setPadding(25, 25, 25, 25);
-	        	//	Animation littleRight = AnimationUtils.loadAnimation(this,
-	    		//			R.anim.animationright);
-	    			//bewertungLayout.startAnimation(littleRight);
-
-	        	}
-	        };
-	        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-	    
-	}
-
+	/*
+	 * private DrawerLayout mDrawerLayout; private LinearLayout mDrawerList;
+	 * private ActionBarDrawerToggle mDrawerToggle;
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * private void SetupDrawer() { // TODO Auto-generated method stub
+	 * 
+	 * mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+	 * mDrawerList = (LinearLayout) findViewById(R.id.llLeftBoxes);
+	 * 
+	 * mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+	 * R.drawable.circlemiddle, R.string.hello_world, R.string.app_name){ public
+	 * void onDrawerClosed(View drawerView) { mitteBild.setPadding(25, 25, 200,
+	 * 25); } public void onDrawerOpened(View drawerView) {
+	 * mitteBild.setPadding(25, 25, 25, 25); // Animation littleRight =
+	 * AnimationUtils.loadAnimation(this, // R.anim.animationright);
+	 * //bewertungLayout.startAnimation(littleRight);
+	 * 
+	 * } }; mDrawerLayout.setDrawerListener(mDrawerToggle);
+	 * 
+	 * 
+	 * }
+	 */
 }
-
-

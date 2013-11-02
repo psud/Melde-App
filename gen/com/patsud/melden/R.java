@@ -12,18 +12,46 @@ public final class R {
         public static final int activityin=0x7f040000;
         public static final int activityout=0x7f040001;
         public static final int animationdown=0x7f040002;
-        public static final int animationfromup=0x7f040003;
-        public static final int animationleft=0x7f040004;
-        public static final int animationright=0x7f040005;
-        public static final int homeworkdismiss=0x7f040006;
-        public static final int littlerightcircle=0x7f040007;
-        public static final int slidelefttoright=0x7f040008;
+        public static final int animationfade=0x7f040003;
+        public static final int animationfromup=0x7f040004;
+        public static final int animationleft=0x7f040005;
+        public static final int animationright=0x7f040006;
+        public static final int animationscalebig=0x7f040007;
+        public static final int homeworkdismiss=0x7f040008;
+        public static final int littlerightcircle=0x7f040009;
+        public static final int slidelefttoright=0x7f04000a;
     }
     public static final class array {
         public static final int bewertunglist=0x7f060000;
         public static final int lValues=0x7f060001;
     }
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int circleColor=0x7f010002;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int circleLabel=0x7f010003;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int labelColor=0x7f010004;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -99,112 +127,115 @@ containing a value of this type.
         public static final int xicon=0x7f020029;
     }
     public static final class id {
-        public static final int ErinnerungTv=0x7f070033;
-        public static final int LinearLayout1=0x7f070004;
-        public static final int RelativeLayout1=0x7f07003e;
-        public static final int action_settings=0x7f07005c;
-        public static final int bAfFrage=0x7f070047;
-        public static final int bAfGut=0x7f07004a;
-        public static final int bAfOk=0x7f070049;
-        public static final int bAfSchlecht=0x7f070048;
-        public static final int bAfSkip=0x7f070046;
-        public static final int bDran=0x7f070042;
-        public static final int bEinstellungen=0x7f070051;
-        public static final int bEmailSQL=0x7f070008;
-        public static final int bFertig=0x7f070050;
-        public static final int bGemeldet=0x7f070043;
-        public static final int bHaAufschreiben=0x7f070052;
-        public static final int bMeldDran=0x7f070044;
-        public static final int bRundeDran=0x7f070041;
-        public static final int bottomleft=0x7f070058;
-        public static final int bottomright=0x7f07005a;
-        public static final int button1=0x7f07003b;
-        public static final int button2=0x7f070053;
-        public static final int buttonSave=0x7f070002;
-        public static final int color1=0x7f070005;
-        public static final int colorFach=0x7f070003;
-        public static final int content_frame=0x7f070030;
-        public static final int digClock=0x7f07004f;
-        public static final int digClock2=0x7f07004d;
-        public static final int drawer_layout=0x7f07003d;
-        public static final int erinnerungFalse=0x7f070032;
-        public static final int erinnerungLayout=0x7f07002f;
-        public static final int erinnerungTrue=0x7f070031;
-        public static final int etReturn=0x7f07003c;
-        public static final int frameLayout=0x7f07003f;
-        public static final int haBAbDienstag=0x7f070036;
-        public static final int haBAbDonnerstag=0x7f070038;
-        public static final int haBAbFreitag=0x7f070039;
-        public static final int haBAbMittwoch=0x7f070037;
-        public static final int haBAbMontag=0x7f070035;
-        public static final int haBAbWochenende=0x7f07003a;
-        public static final int haBAbgabe=0x7f070034;
-        public static final int haBFach1=0x7f07000e;
-        public static final int haBFach10=0x7f070017;
-        public static final int haBFach11=0x7f070018;
-        public static final int haBFach12=0x7f070019;
-        public static final int haBFach13=0x7f07001a;
-        public static final int haBFach14=0x7f07001b;
-        public static final int haBFach15=0x7f07001c;
-        public static final int haBFach16=0x7f07001d;
-        public static final int haBFach17=0x7f07001e;
-        public static final int haBFach18=0x7f07001f;
-        public static final int haBFach19=0x7f070020;
-        public static final int haBFach2=0x7f07000f;
-        public static final int haBFach20=0x7f070021;
-        public static final int haBFach3=0x7f070010;
-        public static final int haBFach4=0x7f070011;
-        public static final int haBFach5=0x7f070012;
-        public static final int haBFach6=0x7f070013;
-        public static final int haBFach7=0x7f070014;
-        public static final int haBFach8=0x7f070015;
-        public static final int haBFach9=0x7f070016;
-        public static final int haBFachNeu=0x7f070022;
-        public static final int haEtAufgabe1=0x7f070025;
-        public static final int haEtAufgabe10=0x7f07002e;
-        public static final int haEtAufgabe2=0x7f070026;
-        public static final int haEtAufgabe3=0x7f070027;
-        public static final int haEtAufgabe4=0x7f070028;
-        public static final int haEtAufgabe5=0x7f070029;
-        public static final int haEtAufgabe6=0x7f07002a;
-        public static final int haEtAufgabe7=0x7f07002b;
-        public static final int haEtAufgabe8=0x7f07002c;
-        public static final int haEtAufgabe9=0x7f07002d;
-        public static final int imageView1=0x7f07004b;
-        public static final int lLayoutRightBewertung=0x7f070045;
+        public static final int ErinnerungTv=0x7f070035;
+        public static final int LinearLayout1=0x7f070007;
+        public static final int RelativeLayout1=0x7f07003f;
+        public static final int action_cancel=0x7f07005b;
+        public static final int action_save=0x7f07005c;
+        public static final int action_settings=0x7f07005d;
+        public static final int bAfFrage=0x7f070048;
+        public static final int bAfGut=0x7f07004b;
+        public static final int bAfOk=0x7f07004a;
+        public static final int bAfSchlecht=0x7f070049;
+        public static final int bAfSkip=0x7f070047;
+        public static final int bDran=0x7f070043;
+        public static final int bEinstellungen=0x7f070050;
+        public static final int bEmailSQL=0x7f07000c;
+        public static final int bFertig=0x7f07004f;
+        public static final int bGemeldet=0x7f070044;
+        public static final int bHaAufschreiben=0x7f070051;
+        public static final int bMeldDran=0x7f070045;
+        public static final int bRundeDran=0x7f070042;
+        public static final int bottomleft=0x7f070057;
+        public static final int bottomright=0x7f070059;
+        public static final int button1=0x7f07003d;
+        public static final int button2=0x7f070052;
+        public static final int buttonCircle=0x7f070003;
+        public static final int color1=0x7f070008;
+        public static final int colorFach=0x7f070006;
+        public static final int content_frame=0x7f070032;
+        public static final int custView=0x7f070005;
+        public static final int digClock=0x7f07004e;
+        public static final int erinnerungFalse=0x7f070034;
+        public static final int erinnerungLayout=0x7f070031;
+        public static final int erinnerungTrue=0x7f070033;
+        public static final int etReturn=0x7f07003e;
+        public static final int frameLayout=0x7f070040;
+        public static final int haBAbDienstag=0x7f070038;
+        public static final int haBAbDonnerstag=0x7f07003a;
+        public static final int haBAbFreitag=0x7f07003b;
+        public static final int haBAbMittwoch=0x7f070039;
+        public static final int haBAbMontag=0x7f070037;
+        public static final int haBAbWochenende=0x7f07003c;
+        public static final int haBAbgabe=0x7f070036;
+        public static final int haBFach1=0x7f070010;
+        public static final int haBFach10=0x7f070019;
+        public static final int haBFach11=0x7f07001a;
+        public static final int haBFach12=0x7f07001b;
+        public static final int haBFach13=0x7f07001c;
+        public static final int haBFach14=0x7f07001d;
+        public static final int haBFach15=0x7f07001e;
+        public static final int haBFach16=0x7f07001f;
+        public static final int haBFach17=0x7f070020;
+        public static final int haBFach18=0x7f070021;
+        public static final int haBFach19=0x7f070022;
+        public static final int haBFach2=0x7f070011;
+        public static final int haBFach20=0x7f070023;
+        public static final int haBFach3=0x7f070012;
+        public static final int haBFach4=0x7f070013;
+        public static final int haBFach5=0x7f070014;
+        public static final int haBFach6=0x7f070015;
+        public static final int haBFach7=0x7f070016;
+        public static final int haBFach8=0x7f070017;
+        public static final int haBFach9=0x7f070018;
+        public static final int haBFachNeu=0x7f070024;
+        public static final int haEtAufgabe1=0x7f070027;
+        public static final int haEtAufgabe10=0x7f070030;
+        public static final int haEtAufgabe2=0x7f070028;
+        public static final int haEtAufgabe3=0x7f070029;
+        public static final int haEtAufgabe4=0x7f07002a;
+        public static final int haEtAufgabe5=0x7f07002b;
+        public static final int haEtAufgabe6=0x7f07002c;
+        public static final int haEtAufgabe7=0x7f07002d;
+        public static final int haEtAufgabe8=0x7f07002e;
+        public static final int haEtAufgabe9=0x7f07002f;
+        public static final int lLayoutRightBewertung=0x7f070046;
         public static final int left=0x7f070000;
-        public static final int llAllHa=0x7f07000c;
-        public static final int llBarTop=0x7f070009;
-        public static final int llClock=0x7f07004c;
-        public static final int llLeftBoxes=0x7f07004e;
-        public static final int llayoutRightNormal=0x7f070040;
-        public static final int myimage1=0x7f070055;
-        public static final int myimage2=0x7f070057;
-        public static final int myimage3=0x7f070059;
-        public static final int myimage4=0x7f07005b;
+        public static final int llAllHa=0x7f07000d;
+        public static final int llBarTop=0x7f07000e;
+        public static final int llLeftBoxes=0x7f07004d;
+        public static final int llTest=0x7f07000b;
+        public static final int llayoutRightNormal=0x7f070041;
+        public static final int myimage1=0x7f070054;
+        public static final int myimage2=0x7f070056;
+        public static final int myimage3=0x7f070058;
+        public static final int myimage4=0x7f07005a;
+        public static final int percentview=0x7f07004c;
         public static final int right=0x7f070001;
-        public static final int scrollView1=0x7f070006;
-        public static final int scrollView2=0x7f070024;
-        public static final int textView1=0x7f070007;
-        public static final int topBarCancel=0x7f07000a;
-        public static final int topBarSave=0x7f07000b;
-        public static final int topleft=0x7f070054;
-        public static final int topright=0x7f070056;
-        public static final int tvHaAufgabe=0x7f070023;
-        public static final int tvHaFach=0x7f07000d;
+        public static final int scrollView1=0x7f070009;
+        public static final int scrollView2=0x7f070026;
+        public static final int text=0x7f070004;
+        public static final int textView1=0x7f07000a;
+        public static final int toast_layout_root=0x7f070002;
+        public static final int topleft=0x7f070053;
+        public static final int topright=0x7f070055;
+        public static final int tvHaAufgabe=0x7f070025;
+        public static final int tvHaFach=0x7f07000f;
     }
     public static final class layout {
         public static final int actionbarha=0x7f030000;
-        public static final int fachcolors=0x7f030001;
-        public static final int fertig=0x7f030002;
-        public static final int haschreibennormal=0x7f030003;
-        public static final int haschreibensimple=0x7f030004;
-        public static final int inclass=0x7f030005;
-        public static final int menu=0x7f030006;
-        public static final int testview=0x7f030007;
+        public static final int circlelayout=0x7f030001;
+        public static final int fachcolors=0x7f030002;
+        public static final int fertig=0x7f030003;
+        public static final int haschreibennormal=0x7f030004;
+        public static final int haschreibensimple=0x7f030005;
+        public static final int inclass=0x7f030006;
+        public static final int menu=0x7f030007;
+        public static final int testview=0x7f030008;
     }
     public static final class menu {
-        public static final int menu=0x7f0b0000;
+        public static final int actionbarhomework=0x7f0b0000;
+        public static final int menu=0x7f0b0001;
     }
     public static final class string {
         public static final int action_settings=0x7f090001;
@@ -249,15 +280,66 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircleView_circleColor com.patsud.melden:circleColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleView_circleLabel com.patsud.melden:circleLabel}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircleView_labelColor com.patsud.melden:labelColor}</code></td><td></td></tr>
            <tr><td><code>{@link #CircleView_labelPosition com.patsud.melden:labelPosition}</code></td><td></td></tr>
            <tr><td><code>{@link #CircleView_showText com.patsud.melden:showText}</code></td><td></td></tr>
            </table>
+           @see #CircleView_circleColor
+           @see #CircleView_circleLabel
+           @see #CircleView_labelColor
            @see #CircleView_labelPosition
            @see #CircleView_showText
          */
         public static final int[] CircleView = {
-            0x7f010000, 0x7f010001
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
         };
+        /**
+          <p>This symbol is the offset where the {@link com.patsud.melden.R.attr#circleColor}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:circleColor
+        */
+        public static final int CircleView_circleColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.patsud.melden.R.attr#circleLabel}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:circleLabel
+        */
+        public static final int CircleView_circleLabel = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.patsud.melden.R.attr#labelColor}
+          attribute's value can be found in the {@link #CircleView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:labelColor
+        */
+        public static final int CircleView_labelColor = 4;
         /**
           <p>This symbol is the offset where the {@link com.patsud.melden.R.attr#labelPosition}
           attribute's value can be found in the {@link #CircleView} array.

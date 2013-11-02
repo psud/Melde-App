@@ -15,6 +15,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 //import org.bostonandroid.timepreference.TimePreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,6 +32,10 @@ public class Einstellungen extends PreferenceActivity {
 
 		SharedPreferences getPrefs = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
+		
+		if (getPrefs.getBoolean("showBar", true) == false)
+			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+					WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		final EditTextPreference namePref = (EditTextPreference) findPreference("name");
 		String name = getPrefs.getString("name", "Batman");
@@ -58,7 +63,7 @@ public class Einstellungen extends PreferenceActivity {
 								"Great Android Tutorials:\nwww.thenewbosten.org\n\n" +
 								"Flat UI Farben\nhttp://flatuicolors.com\n\n" +
 								" ")
-						.setCancelable(true).setPositiveButton("Ok", null);
+						.setCancelable(true).setPositiveButton("Okay", null);
 
 				// create dialog
 				AlertDialog alertDialog = aboutDialog.create();
