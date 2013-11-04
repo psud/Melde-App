@@ -72,15 +72,35 @@
                 android:orientation="vertical"
                 android:weightSum="5 " >
 
+                
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="2 " >
+                
+                    
                 <Button
                     android:id="@+id/bAfSkip"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#2980b9"
-                    android:text="Überspringen"
+                    android:text="Skip"
                     android:textColor="#ffffff"
                     android:textSize="18.5dp" />
+                
+                <Button
+                    android:id="@+id/bAfLosch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#3498db"
+                    android:text="Löschen"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/bAfFrage"

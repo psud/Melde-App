@@ -3,6 +3,8 @@ package com.patsud.melden;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -12,19 +14,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +40,7 @@ public class InClass extends Activity implements OnClickListener {
 
 	Button bFertig, bEinstellung, bHa;
 	LinearLayout bewertungLayout, leftLayout;
-	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen;
+	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen, bewLosch;
 	ImageView mitteBild;
 
 	WakeLock wL;
@@ -148,6 +150,7 @@ public class InClass extends Activity implements OnClickListener {
 		bewSchlecht = (Button) findViewById(R.id.bAfSchlecht);
 		bewFrage = (Button) findViewById(R.id.bAfFrage);
 		bewSpringen = (Button) findViewById(R.id.bAfSkip);
+		bewLosch = (Button) findViewById(R.id.bAfLosch);
 		// Bottom
 		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
 		// animation bewertung
@@ -174,18 +177,10 @@ public class InClass extends Activity implements OnClickListener {
 		bewSchlecht.setOnClickListener(this);
 		bewFrage.setOnClickListener(this);
 		bewSpringen.setOnClickListener(this);
+		bewLosch.setOnClickListener(this);
 
-		// final PercentView setThingy = new PercentView(this);
 		clock.setOnClickListener(this);
-		/*
-		 * clock.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { // TODO Auto-generated method
-		 * stub testInt +=10; rundeDran.setText(Float.toString(testInt));
-		 * setThingy.setPercentage(50);
-		 * 
-		 * } });
-		 */
+		
 	}
 
 	float testInt = 0;
@@ -249,16 +244,17 @@ public class InClass extends Activity implements OnClickListener {
 			AddGoodness(4);
 			break;
 		case R.id.bAfSkip:
-			bewertungLayout.setVisibility(View.GONE);
-			Animation animRight = AnimationUtils.loadAnimation(this,
-					R.anim.animationright);
-			bewertungLayout.startAnimation(animRight);
+			CloseBewertung();
+			CancelAutoMovement();
+			break;
+		case R.id.bAfLosch:
+			percentage.DeleteLast();
+			CloseBewertung();
+			CancelAutoMovement();
 			break;
 		case R.id.digClock:
 			Toast.makeText(getApplicationContext(), clockClicked(),
 					Toast.LENGTH_LONG).show();
-			Intent openTest = new Intent(this, TestCircle.class);
-			startActivity(openTest);
 			break;
 		}
 	}
@@ -311,12 +307,65 @@ public class InClass extends Activity implements OnClickListener {
 			;
 	}
 
+	//TimerTask hideTask;
+	//final Handler handler = new Handler();
+	//Timer t = new Timer() ;
+	boolean moveBewertung = true;
+	CountDownTimer waitTimer;
 	private void AnimateBewwertungen() {
 		// TODO Auto-generated method stub
+		moveBewertung = true;
 		bewertungLayout.setVisibility(View.VISIBLE);
 		Animation animLeft = AnimationUtils.loadAnimation(this,
 				R.anim.animationleft);
 		bewertungLayout.startAnimation(animLeft);
+
+		
+		waitTimer = new CountDownTimer(3000, 500) {
+			
+			@Override
+			public void onTick(long arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onFinish() {
+				// TODO Auto-generated method stub
+				CloseBewertung();
+			}
+		}.start();
+		
+		
+		// make 10 seceond timer
+		/*
+		 * new Thread(new Runnable(){
+		 * 
+		 * @Override public void run(){
+		 * 
+		 * while(true){ try{ Thread.sleep(1000); sleepHandler.post(new
+		 * Runnable(){
+		 * 
+		 * @Override public void run(){ CloseBewertung();
+		 * 
+		 * } }); }catch (Exception e){
+		 * 
+		 * } } } }).start();
+		 */
+	/*	hideTask = new TimerTask() {
+			public void run() {
+				handler.post(new Runnable() {
+					public void run() {
+						//if (moveBewertung){
+						CloseBewertung();
+						//}
+					}
+				});
+			}
+
+		};
+		t.schedule(hideTask, 3000);
+		}*/
 	}
 
 	private void AnimateCircle() {
@@ -324,12 +373,15 @@ public class InClass extends Activity implements OnClickListener {
 		Animation animBig = AnimationUtils.loadAnimation(this,
 				R.anim.animationscalebig);
 		percentage.startAnimation(animBig);
-	} 
+	}
 
 	private void AddGoodness(int goodness) {
 		// TODO Auto-generated method stub
 		// String s = sql
 		// Get Last Row num
+
+		CancelAutoMovement();
+		percentage.setGoodness(goodness - 1);
 
 		int totalRows = SqlHandler.KEY_ROWNUM;
 		long longRow = Long.valueOf(totalRows);
@@ -339,6 +391,21 @@ public class InClass extends Activity implements OnClickListener {
 		handler.updateEntry(goodness);
 		handler.close();
 
+		// hide buttons
+		CloseBewertung();
+		moveBewertung = false;
+	}
+
+	private void CancelAutoMovement() {
+		// TODO Auto-generated method stub
+		if (waitTimer!= null){
+			waitTimer.cancel();
+			waitTimer = null;
+		}
+	}
+
+	private void CloseBewertung() {
+		// TODO Auto-generated method stub
 		// hide buttons
 		bewertungLayout.setVisibility(View.GONE);
 		Animation animRight = AnimationUtils.loadAnimation(this,

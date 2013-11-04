@@ -21,6 +21,13 @@
         android:summaryOff="Du kannst deine Beiträge bewerten"
         android:summaryOn="Du kannst deine Beiträge nicht bewerten"
         android:defaultValue="true"/>
+    
+     <SwitchPreference 
+        android:title="Bewertung im Kreis" 
+        android:key="bewertungKreis"
+        android:summaryOff="Die Bewertung zeigt sich nicht im Kreis"
+        android:summaryOn="Die Bewertung erscheint im Kreis als Umrandung auf"
+        android:defaultValue="true"/>
        
     <SwitchPreference
         android:defaultValue="false"
