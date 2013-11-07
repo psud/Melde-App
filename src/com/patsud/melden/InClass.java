@@ -39,7 +39,7 @@ public class InClass extends Activity implements OnClickListener {
 	TextView clock;
 
 	Button bFertig, bEinstellung, bHa;
-	LinearLayout bewertungLayout, leftLayout;
+	LinearLayout bewertungLayout, leftLayout, rightLayout;
 	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen, bewLosch;
 	ImageView mitteBild;
 
@@ -138,6 +138,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		// Right
 		// normal
+		rightLayout = (LinearLayout) findViewById(R.id.llayoutRightNormal);
 		rundeDran = (Button) findViewById(R.id.bRundeDran);
 		dran = (Button) findViewById(R.id.bDran);
 		gemeldet = (Button) findViewById(R.id.bGemeldet);
@@ -268,30 +269,30 @@ public class InClass extends Activity implements OnClickListener {
 
 		switch (c.get(Calendar.DAY_OF_WEEK)) {
 		case 1:
-			thedate += "Montag";
+			thedate += "Sonntag";
 			break;
 		case 2:
-			thedate += "Dienstag";
+			thedate += "Montag";
 			break;
 		case 3:
-			thedate += "Mittwoch";
+			thedate += "Dienstag";
 			break;
 		case 4:
-			thedate += "Donnerstag";
+			thedate += "Mittwoch";
 			break;
 		case 5:
-			thedate += "Freitag";
+			thedate += "Donnerstag";
 			break;
 		case 6:
-			thedate += "Samstag";
+			thedate += "Freitag";
 			break;
 		case 7:
-			thedate += "Sonntag";
+			thedate += "Samstag";
 			break;
 		}
 		thedate += " den ";
 		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
-				+ Integer.toString(c.get(Calendar.MONTH)) + "."
+				+ Integer.toString(c.get(Calendar.MONTH)+1) + "."
 				+ Integer.toString(c.get(Calendar.YEAR));
 		return thedate;
 	}
@@ -307,9 +308,6 @@ public class InClass extends Activity implements OnClickListener {
 			;
 	}
 
-	//TimerTask hideTask;
-	//final Handler handler = new Handler();
-	//Timer t = new Timer() ;
 	boolean moveBewertung = true;
 	CountDownTimer waitTimer;
 	private void AnimateBewwertungen() {
@@ -321,51 +319,16 @@ public class InClass extends Activity implements OnClickListener {
 		bewertungLayout.startAnimation(animLeft);
 
 		
-		waitTimer = new CountDownTimer(3000, 500) {
-			
+		waitTimer = new CountDownTimer(10000, 500) {
 			@Override
-			public void onTick(long arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+			public void onTick(long arg0){}
+		
 			@Override
 			public void onFinish() {
 				// TODO Auto-generated method stub
 				CloseBewertung();
 			}
 		}.start();
-		
-		
-		// make 10 seceond timer
-		/*
-		 * new Thread(new Runnable(){
-		 * 
-		 * @Override public void run(){
-		 * 
-		 * while(true){ try{ Thread.sleep(1000); sleepHandler.post(new
-		 * Runnable(){
-		 * 
-		 * @Override public void run(){ CloseBewertung();
-		 * 
-		 * } }); }catch (Exception e){
-		 * 
-		 * } } } }).start();
-		 */
-	/*	hideTask = new TimerTask() {
-			public void run() {
-				handler.post(new Runnable() {
-					public void run() {
-						//if (moveBewertung){
-						CloseBewertung();
-						//}
-					}
-				});
-			}
-
-		};
-		t.schedule(hideTask, 3000);
-		}*/
 	}
 
 	private void AnimateCircle() {

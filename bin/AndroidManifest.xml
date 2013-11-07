@@ -12,8 +12,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name" 
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.patsud.melden.Menu"
@@ -66,10 +66,10 @@
             android:label="Ferig"
             android:screenOrientation="sensorLandscape" >
         </activity>
-         //TestCircle
+         //PreferenceDesign
         <activity
-            android:name="com.patsud.melden.TestCircle"
-            android:label="Ferig"
+            android:name="com.patsud.melden.PerferencesDesign"
+            android:label="Preferences"
             android:screenOrientation="sensorLandscape" >
         </activity>
     </application>
