@@ -11,8 +11,7 @@
         android:key="skipMenu"
         android:summaryOff="App startet immer beim Menu"
         android:summaryOn="Während der Schulzeit geht startet die App automatisch mit dem Meldetracker"
-        android:title="Menu Überspringen" 
-        android:widgetLayout="@layout/preferencedesign"/>
+        android:title="Menu Überspringen" />
 
     <PreferenceCategory android:title="In Class" />
         

@@ -50,7 +50,7 @@
         </activity>
         //HASchreibenSimple
         <activity
-            android:name="com.patsud.melden.HaSchreibenSimple"
+            android:name="com.patsud.melden.TestCircle"
             android:label="Ferig"
             android:screenOrientation="sensorLandscape" >
         </activity>
@@ -70,6 +70,12 @@
         <activity
             android:name="com.patsud.melden.PerferencesDesign"
             android:label="Preferences"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+         //Ha View
+        <activity
+            android:name="com.patsud.melden.HaView"
+            android:label="Hausdaufgaben"
             android:screenOrientation="sensorLandscape" >
         </activity>
     </application>
