@@ -21,6 +21,7 @@ import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -49,6 +50,8 @@ public class InClass extends Activity implements OnClickListener {
 	PercentView percentage;
 
 	int meldDran, meld, nDran, rundDran;
+	
+	int startTime, endTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +65,12 @@ public class InClass extends Activity implements OnClickListener {
 		Initialize();
 
 		InitialiseListeners();
+		
+		GetStartFinishTime();
 
 		AnimateCircle();
 
 		GetTimeChanged();
-
-		// SetupDrawer();
 
 		registerReceiver(mBatInfoReceiver, new IntentFilter(
 				Intent.ACTION_BATTERY_CHANGED));
@@ -94,8 +97,6 @@ public class InClass extends Activity implements OnClickListener {
 
 	}
 
-	int showWhat = 0;
-
 	private void GetTimeChanged() {
 		// TODO Auto-generated method stub
 		clock.addTextChangedListener(new TextWatcher() {
@@ -105,17 +106,11 @@ public class InClass extends Activity implements OnClickListener {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				// TODO Auto-generated method stub
-
-			}
+					int count) {}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-
-			}
+					int after) {}
 
 			@Override
 			public void afterTextChanged(Editable s) {
@@ -184,8 +179,6 @@ public class InClass extends Activity implements OnClickListener {
 		
 	}
 
-	float testInt = 0;
-
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -224,7 +217,6 @@ public class InClass extends Activity implements OnClickListener {
 			startActivity(openFertig);
 			break;
 		case R.id.bHaAufschreiben:
-			// Toast.makeText(InClass.this, "Hi Nick", Toast.LENGTH_SHORT);
 			Intent openCircle = new Intent(this, HaSchreibenNormal.class);
 			Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
 					getApplicationContext(), R.anim.activityout,
@@ -260,41 +252,46 @@ public class InClass extends Activity implements OnClickListener {
 		}
 	}
 
-	float testbnla = 0;
-
 	private String clockClicked() {
 		// TODO Auto-generated method stub
 		final Calendar c = Calendar.getInstance();
 		String thedate = "";
-
-		switch (c.get(Calendar.DAY_OF_WEEK)) {
-		case 1:
-			thedate += "Sonntag";
-			break;
-		case 2:
-			thedate += "Montag";
-			break;
-		case 3:
-			thedate += "Dienstag";
-			break;
-		case 4:
-			thedate += "Mittwoch";
-			break;
-		case 5:
-			thedate += "Donnerstag";
-			break;
-		case 6:
-			thedate += "Freitag";
-			break;
-		case 7:
-			thedate += "Samstag";
-			break;
-		}
+		thedate = WeekDayText(c.get(Calendar.DAY_OF_WEEK)-1);
+		
 		thedate += " den ";
 		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
 				+ Integer.toString(c.get(Calendar.MONTH)+1) + "."
 				+ Integer.toString(c.get(Calendar.YEAR));
 		return thedate;
+	}
+	
+	private String WeekDayText(int weekInt) {
+		// TODO Auto-generated method stub
+		String weekDay = null;
+		switch (weekInt) {
+		case 1:
+			weekDay = "Montag";
+			break;
+		case 2:
+			weekDay = "Dienstag";
+			break;
+		case 3:
+			weekDay = "Mittwoch";
+			break;
+		case 4:
+			weekDay = "Donnerstag";
+			break;
+		case 5:
+			weekDay = "Freitag";
+			break;
+		case 6:
+			weekDay = "Samstag";
+			break;
+		case 7:
+			weekDay = "Sonntag";
+			break;
+		}
+		return weekDay;
 	}
 
 	private void ShowDownBewertung() {
@@ -304,12 +301,11 @@ public class InClass extends Activity implements OnClickListener {
 
 		if (getPrefs.getBoolean("bewertung", true))
 			AnimateBewwertungen();
-		else
-			;
 	}
 
 	boolean moveBewertung = true;
 	CountDownTimer waitTimer;
+	
 	private void AnimateBewwertungen() {
 		// TODO Auto-generated method stub
 		moveBewertung = true;
@@ -405,6 +401,13 @@ public class InClass extends Activity implements OnClickListener {
 		this.percentage.setPercentage(percentage);
 	}
 
+	private void GetStartFinishTime() {
+		// TODO Auto-generated method stub
+		TimeKeeper time = new TimeKeeper();
+		startTime = time.TimeStart();
+		endTime = time.TimeEnd();
+	}
+	
 	private float CalPercentage() {
 		// TODO Auto-generated method stub
 		float pers = 0;
@@ -412,29 +415,17 @@ public class InClass extends Activity implements OnClickListener {
 		Calendar c = Calendar.getInstance();
 		int seconds = c.get(Calendar.SECOND);
 
-		int startTotalMin = c.get(Calendar.HOUR_OF_DAY) * 60; // 22 *60 + 35;
-		startTotalMin = startTotalMin * 60;
+		TimeKeeper time = new TimeKeeper();
 
 		int nowTotalMin = (Integer.parseInt(clock.getText().toString()
 				.substring(0, 2)) * 60 + Integer.parseInt(clock.getText()
 				.toString().substring(3, 5)))
 				* 60 + seconds;
 
-		SharedPreferences getPrefs = PreferenceManager
-				.getDefaultSharedPreferences(getBaseContext());
 
-		// Get Endtime
-		String endtime = getPrefs.getString("endtime", "12:00");
-		// int endTotalMin = Integer.parseInt(endtime.toString().substring(0,
-		// 2))*60
-		// + Integer.parseInt(endtime.toString().substring(3, 5)) ;
-		int endTotalMin = (c.get(Calendar.HOUR_OF_DAY) + 1) * 60;
-		// int endTotalMin = 21*60 +30;
-		endTotalMin = endTotalMin * 60;
+		float MinuteTime = endTime - startTime;
 
-		float MinuteTime = endTotalMin - startTotalMin;
-
-		pers = ((nowTotalMin - startTotalMin) / MinuteTime) * 100;
+		pers = ((nowTotalMin - startTime) / MinuteTime) * 100;
 		return pers;
 	}
 
@@ -458,10 +449,7 @@ public class InClass extends Activity implements OnClickListener {
 		endminInt = endminInt - Integer.parseInt(nowMin);
 		endHourInt = endHourInt - Integer.parseInt(nowHour);
 		endminInt = endminInt + endHourInt * 60;
-
-		// timeRemaining
-		// .setText((Integer.toString(endminInt) + " min\nremaining"));
-
+		
 		remainingMin = endminInt;
 
 		RemainingColor();

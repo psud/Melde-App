@@ -15,12 +15,12 @@ public class Menu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
-		final Intent startActivity = new Intent(this, HaView.class);
+		final Intent startActivity = new Intent(this, InClass.class);
 		final Intent b1Activity = new Intent(this, InClass.class);
 		final Intent b2Activity = new Intent(this, HaSchreibenNormal.class);
 		final Intent b3Activity = new Intent(this, TestCircle.class);
 		final Intent b4Activity = new Intent(this, HaView.class);
-		//startActivity(startActivity);
+		startActivity(startActivity);
 
 		inclass = (Button) findViewById(R.id.button1);
 		homework = (Button) findViewById(R.id.button2);

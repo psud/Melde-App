@@ -26,7 +26,7 @@ public class HomeworkBox extends LinearLayout{
         initView(context);
     }
 
-    TextView fach;
+    TextView fach ,tv;
     private void initView(Context context) {
      /*   LinearLayout box = null;
         LayoutInflater inflater = (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -42,19 +42,31 @@ public class HomeworkBox extends LinearLayout{
             inflater.inflate(R.layout.thebox, this);
         }
         */
-        
+    //	 LinearLayout layout = (LinearLayout) findViewById(R.layout.thebox);
+    	 
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view=layoutInflater.inflate(R.layout.thebox,this);
         
-          fach = (TextView) findViewById(R.id.boxTvFach);
-       //  fach.setText("englisch");
+       
         
+       //   fach = (TextView) findViewById(R.id.boxTvFach);
+       //  fach.setText("englisch");
+      //    LinearLayout bla = (LinearLayout) findViewById(R.id.rlAssignement);
+        //   tv = new TextView(this);
+          
+        //  tv.setText("Added tv");
+      //    layout.addView(view);
+          
+    	
+          
          
     }
     
     public void createBox(String fachName, String aufgaben[], boolean gemacht[]){
     //	LinearLayout box = new LinearLayout(this);
     	fach.setText(fachName);
+    	
+    	
     	
     	
     }

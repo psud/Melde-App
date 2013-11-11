@@ -504,15 +504,16 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 	};
 
 	// /back button pressed
-	@Override
-	public void onBackPressed() {
+	//@Override
+	//public void onBackPressed() {
 		// TODO Auto-generated method stub
-		Intent bactoClass = new Intent(this, InClass.class);
-		Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
-				getApplicationContext(), R.anim.homeworkdismiss,
-				R.anim.slidelefttoright).toBundle();
-		startActivity(bactoClass, bndlanimation);
+	//	Intent bactoClass = new Intent(this, InClass.class);
+	//	Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
+	//			getApplicationContext(), R.anim.homeworkdismiss,
+	//			R.anim.slidelefttoright).toBundle();
+	//	startActivity(bactoClass, bndlanimation);
+		
 
-	}
+	//}
 
 }
