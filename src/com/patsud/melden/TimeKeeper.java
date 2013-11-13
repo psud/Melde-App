@@ -45,7 +45,7 @@ public class TimeKeeper {
 					&& x.before(TimeToDate("09:30:00").getTime())) {
 				startTime = "08:00";
 				endTime = "09:30";
-			} else if (x.after(TimeToDate("09:40:00").getTime())
+			} else if (x.after(TimeToDate("09:30:00").getTime())
 					&& x.before(TimeToDate("11:15:00").getTime())) {
 				startTime = "09:45";
 				endTime = "11:15";
@@ -65,6 +65,8 @@ public class TimeKeeper {
 			//}
 			else {
 				DebugStartEnd();
+			//	startTime = "21:45";
+			//endTime = "22:20";
 			}
 		//	break;
 		//}
@@ -117,7 +119,7 @@ public class TimeKeeper {
 	
 	private void DebugStartEnd() {
 		// TODO Auto-generated method stub
-		Log.d("MeldeMessage", "Time in Debug mode");
+		//Log.d("MeldeMessage", "Time in Debug mode");
 		Calendar c = Calendar.getInstance();
 		String hour = Integer.toString(c.get(Calendar.HOUR_OF_DAY));
 		if (hour.length() == 1)
@@ -127,6 +129,14 @@ public class TimeKeeper {
 		if (hourPlus.length() == 1)
 			hourPlus = "0" + hourPlus;
 		endTime = hourPlus + ":00";
+	}
+
+	public int TimeSecond() {
+		// TODO Auto-generated method stub
+		int endTimee =MakeInSec(endTime);
+		int startTimee = MakeInSec(startTime);
+		int MinuteTime = endTimee - startTimee;
+		return MinuteTime;
 	}
 
 

@@ -156,4 +156,8 @@ public class PercentView extends View {
 		dotsNum--;
 		invalidate();
 	}
+	public void ResetCircle(){
+		dotsNum = 0;
+		invalidate();
+	}
 }

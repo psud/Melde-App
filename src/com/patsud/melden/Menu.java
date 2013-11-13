@@ -18,7 +18,7 @@ public class Menu extends Activity {
 		final Intent startActivity = new Intent(this, InClass.class);
 		final Intent b1Activity = new Intent(this, InClass.class);
 		final Intent b2Activity = new Intent(this, HaSchreibenNormal.class);
-		final Intent b3Activity = new Intent(this, TestCircle.class);
+		final Intent b3Activity = new Intent(this, FachColors.class);
 		final Intent b4Activity = new Intent(this, HaView.class);
 		startActivity(startActivity);
 

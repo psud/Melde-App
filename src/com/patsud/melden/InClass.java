@@ -49,13 +49,13 @@ public class InClass extends Activity implements OnClickListener {
 	ImageView mitteBild;
 
 	WakeLock wL;
-	int batteryLevel;
+	private int batteryLevel;
 
 	PercentView percentage;
 
-	int meldDran, meld, nDran, rundDran;
-	
-	int startTime, endTime;
+	private int meldDran, meld, nDran, rundDran;
+
+	private int startTime, endTime, secondTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class InClass extends Activity implements OnClickListener {
 		Initialize();
 
 		InitialiseListeners();
-		
+
 		GetStartFinishTime();
 
 		AnimateCircle();
@@ -110,11 +110,13 @@ public class InClass extends Activity implements OnClickListener {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {}
+					int count) {
+			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {}
+					int after) {
+			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
@@ -184,7 +186,9 @@ public class InClass extends Activity implements OnClickListener {
 		bewLosch.setOnClickListener(this);
 
 		clock.setOnClickListener(this);
-		
+		notifCross.setOnClickListener(this);
+		notifCheck.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -246,24 +250,37 @@ public class InClass extends Activity implements OnClickListener {
 			break;
 		case R.id.bAfSkip:
 			CloseBewertung();
-			CancelAutoMovement();
+			CancelAutoMovementBewertung();
 			break;
 		case R.id.bAfLosch:
 			percentage.DeleteLast();
 			CloseBewertung();
-			CancelAutoMovement();
+			CancelAutoMovementBewertung();
 			break;
 		case R.id.digClock:
-			ShowNotifBox(clockClicked(), false, true);
+			ShowNotifBox(clockClicked(), "date", false, true, false);
+			break;
+		case R.id.notifButtonFalse:
+			DissapearNotifBox();
+			CancelAutoMovementNotif();
+			break;
+		case R.id.notifButtonCheck:
+			ProcessTrueNotif();
+			Log.d("Debug", "Got pressed drirketly");
 			break;
 		}
 	}
 
-	private void ShowNotifBox(String text, boolean showCheck, boolean autoAway) {
+	private CountDownTimer waitTimerNotif;
+	private String notifType = null;
+
+	private void ShowNotifBox(String text, String type, boolean showCheck,
+			boolean autoAway, boolean longl) {
 		// TODO Auto-generated method stub
-		
+
 		notifText.setText(text);
-		if(showCheck)
+		notifType = type;
+		if (showCheck)
 			notifCheck.setVisibility(View.VISIBLE);
 		else
 			notifCheck.setVisibility(View.GONE);
@@ -271,12 +288,17 @@ public class InClass extends Activity implements OnClickListener {
 		Animation animUp = AnimationUtils.loadAnimation(this,
 				R.anim.animdowntotop);
 		notifBoxL.startAnimation(animUp);
-		
-		if (autoAway){
-			waitTimer = new CountDownTimer(5000, 500) {
+		int waitTime;
+		if (longl)
+			waitTime = 10000;
+		else
+			waitTime = 3000;
+		if (autoAway) {
+			waitTimerNotif = new CountDownTimer(waitTime, 500) {
 				@Override
-				public void onTick(long arg0){}
-			
+				public void onTick(long arg0) {
+				}
+
 				@Override
 				public void onFinish() {
 					// TODO Auto-generated method stub
@@ -288,26 +310,34 @@ public class InClass extends Activity implements OnClickListener {
 
 	protected void DissapearNotifBox() {
 		// TODO Auto-generated method stub
-		
-		Animation animUp = AnimationUtils.loadAnimation(this,
+
+		Animation animDown = AnimationUtils.loadAnimation(this,
 				R.anim.animtoptodown);
-		notifBoxL.startAnimation(animUp);
+		notifBoxL.startAnimation(animDown);
 		notifBoxL.setVisibility(View.GONE);
+	}
+
+	private void CancelAutoMovementNotif() {
+		// TODO Auto-generated method stub
+		if (waitTimerNotif != null) {
+			waitTimerNotif.cancel();
+			waitTimerNotif = null;
+		}
 	}
 
 	private String clockClicked() {
 		// TODO Auto-generated method stub
 		final Calendar c = Calendar.getInstance();
 		String thedate = "";
-		thedate = WeekDayText(c.get(Calendar.DAY_OF_WEEK)-1);
-		
+		thedate = WeekDayText(c.get(Calendar.DAY_OF_WEEK) - 1);
+
 		thedate += " den ";
 		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
-				+ Integer.toString(c.get(Calendar.MONTH)+1) + "."
+				+ Integer.toString(c.get(Calendar.MONTH) + 1) + "."
 				+ Integer.toString(c.get(Calendar.YEAR));
 		return thedate;
 	}
-	
+
 	private String WeekDayText(int weekInt) {
 		// TODO Auto-generated method stub
 		String weekDay = null;
@@ -346,22 +376,20 @@ public class InClass extends Activity implements OnClickListener {
 			AnimateBewwertungen();
 	}
 
-	boolean moveBewertung = true;
-	CountDownTimer waitTimer;
-	
+	private CountDownTimer waitTimer;
+
 	private void AnimateBewwertungen() {
 		// TODO Auto-generated method stub
-		moveBewertung = true;
 		bewertungLayout.setVisibility(View.VISIBLE);
 		Animation animLeft = AnimationUtils.loadAnimation(this,
 				R.anim.animationleft);
 		bewertungLayout.startAnimation(animLeft);
 
-		
 		waitTimer = new CountDownTimer(10000, 500) {
 			@Override
-			public void onTick(long arg0){}
-		
+			public void onTick(long arg0) {
+			}
+
 			@Override
 			public void onFinish() {
 				// TODO Auto-generated method stub
@@ -382,7 +410,7 @@ public class InClass extends Activity implements OnClickListener {
 		// String s = sql
 		// Get Last Row num
 
-		CancelAutoMovement();
+		CancelAutoMovementBewertung();
 		percentage.setGoodness(goodness - 1);
 
 		int totalRows = SqlHandler.KEY_ROWNUM;
@@ -395,12 +423,11 @@ public class InClass extends Activity implements OnClickListener {
 
 		// hide buttons
 		CloseBewertung();
-		moveBewertung = false;
 	}
 
-	private void CancelAutoMovement() {
+	private void CancelAutoMovementBewertung() {
 		// TODO Auto-generated method stub
-		if (waitTimer!= null){
+		if (waitTimer != null) {
 			waitTimer.cancel();
 			waitTimer = null;
 		}
@@ -434,7 +461,7 @@ public class InClass extends Activity implements OnClickListener {
 		}
 	}
 
-	int remainingMin;
+	private int remainingMin;
 
 	protected void UpdatePie() {
 		// TODO Auto-generated method stub
@@ -449,8 +476,11 @@ public class InClass extends Activity implements OnClickListener {
 		TimeKeeper time = new TimeKeeper();
 		startTime = time.TimeStart();
 		endTime = time.TimeEnd();
+		secondTime = time.TimeSecond();
 	}
-	
+
+	private boolean showNextHourNotif = false;
+
 	private float CalPercentage() {
 		// TODO Auto-generated method stub
 		float pers = 0;
@@ -458,17 +488,29 @@ public class InClass extends Activity implements OnClickListener {
 		Calendar c = Calendar.getInstance();
 		int seconds = c.get(Calendar.SECOND);
 
-		TimeKeeper time = new TimeKeeper();
-
-		int nowTotalMin = (Integer.parseInt(clock.getText().toString()
+		float nowTotalMin = (Integer.parseInt(clock.getText().toString()
 				.substring(0, 2)) * 60 + Integer.parseInt(clock.getText()
 				.toString().substring(3, 5)))
 				* 60 + seconds;
 
+		 if (nowTotalMin + 1000 == endTime){
+			 ShowNotifBox("Nur noch 1000 Sekunden\nNoch einmal Melden!", "melden", false, true,true);
+		 }
 
-		float MinuteTime = endTime - startTime;
+		Log.d("Debug",
+				"Now: " + Float.toString(nowTotalMin) + " --- Start: "
+						+ Integer.toString(endTime) + " --- End: "
+						+ Integer.toString(startTime) + " --- Diff: "
+						+ Float.toString(endTime - nowTotalMin) + " --- secondTime: "
+						+ Integer.toString(secondTime));
+		if (endTime < nowTotalMin && showNextHourNotif == false) {
+			ShowNotifBox("Neue Stunde Anfangen?", "neuestunde", true, false, false);
+			Log.d("Debug", "GOT IT DONE");
+			showNextHourNotif = true;
+		}
 
-		pers = ((nowTotalMin - startTime) / MinuteTime) * 100;
+		pers = ((nowTotalMin - startTime) / secondTime) * 100;
+		Log.d("Debug", "ProzentKreis: "+ Float.toString(pers));
 		return pers;
 	}
 
@@ -492,10 +534,19 @@ public class InClass extends Activity implements OnClickListener {
 		endminInt = endminInt - Integer.parseInt(nowMin);
 		endHourInt = endHourInt - Integer.parseInt(nowHour);
 		endminInt = endminInt + endHourInt * 60;
-		
+
 		remainingMin = endminInt;
 
 		RemainingColor();
+	}
+
+	private void ProcessTrueNotif() {
+		// TODO Auto-generated method stub
+		if (notifType.equalsIgnoreCase("neuestunde")) {
+			percentage.ResetCircle();
+			GetStartFinishTime();
+		}
+
 	}
 
 	private void RemainingColor() {
@@ -544,5 +595,4 @@ public class InClass extends Activity implements OnClickListener {
 			super.onBackPressed();
 	}
 
- 
 }
