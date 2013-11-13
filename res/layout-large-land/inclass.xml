@@ -72,34 +72,32 @@
                 android:orientation="vertical"
                 android:weightSum="5 " >
 
-                
                 <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:weightSum="2 " >
-                
-                    
-                <Button
-                    android:id="@+id/bAfSkip"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#2980b9"
-                    android:text="Skip"
-                    android:textColor="#ffffff"
-                    android:textSize="18.5dp" />
-                
-                <Button
-                    android:id="@+id/bAfLosch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#3498db"
-                    android:text="Löschen"
-                    android:textColor="#ffffff"
-                    android:textSize="18.5dp" />
+                    android:orientation="horizontal"
+                    android:weightSum="2 " >
+
+                    <Button
+                        android:id="@+id/bAfSkip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#2980b9"
+                        android:text="Skip"
+                        android:textColor="#ffffff"
+                        android:textSize="18.5dp" />
+
+                    <Button
+                        android:id="@+id/bAfLosch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#3498db"
+                        android:text="Löschen"
+                        android:textColor="#ffffff"
+                        android:textSize="18.5dp" />
                 </LinearLayout>
 
                 <Button
@@ -147,9 +145,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" >
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
 
             <com.patsud.melden.PercentView
                 android:id="@+id/percentview"
@@ -160,6 +158,43 @@
                 android:paddingRight="10dp"
                 android:paddingTop="10dp" />
         </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/notifLayout"
+        android:layout_width="500dp"
+        android:layout_height="75dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/notifboxblue"
+        android:paddingRight="10dp" 
+        android:paddingLeft="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/notifText"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="10dp"
+            android:text="Test"
+            android:textColor="#ffffff"
+            android:textSize="18.5dp" 
+            android:gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/notifButtonFalse"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bottomcrossbutton" />
+
+        <Button
+            android:id="@+id/notifButtonCheck"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_toLeftOf="@id/notifButtonFalse"
+            android:background="@drawable/bottomcheck" />
     </RelativeLayout>
 
     <LinearLayout

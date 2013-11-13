@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -31,13 +32,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class InClass extends Activity implements OnClickListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
-	TextView clock;
+	TextView clock, notifText;
+	Button notifCheck, notifCross;
+	RelativeLayout notifBoxL;
 
 	Button bFertig, bEinstellung, bHa;
 	LinearLayout bewertungLayout, leftLayout, rightLayout;
@@ -147,7 +151,11 @@ public class InClass extends Activity implements OnClickListener {
 		bewFrage = (Button) findViewById(R.id.bAfFrage);
 		bewSpringen = (Button) findViewById(R.id.bAfSkip);
 		bewLosch = (Button) findViewById(R.id.bAfLosch);
-		// Bottom
+		// Bottom Notification
+		notifText = (TextView) findViewById(R.id.notifText);
+		notifCheck = (Button) findViewById(R.id.notifButtonCheck);
+		notifCross = (Button) findViewById(R.id.notifButtonFalse);
+		notifBoxL = (RelativeLayout) findViewById(R.id.notifLayout);
 		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
 		// animation bewertung
 		leftLayout = (LinearLayout) findViewById(R.id.llLeftBoxes);
@@ -246,10 +254,45 @@ public class InClass extends Activity implements OnClickListener {
 			CancelAutoMovement();
 			break;
 		case R.id.digClock:
-			Toast.makeText(getApplicationContext(), clockClicked(),
-					Toast.LENGTH_LONG).show();
+			ShowNotifBox(clockClicked(), false, true);
 			break;
 		}
+	}
+
+	private void ShowNotifBox(String text, boolean showCheck, boolean autoAway) {
+		// TODO Auto-generated method stub
+		
+		notifText.setText(text);
+		if(showCheck)
+			notifCheck.setVisibility(View.VISIBLE);
+		else
+			notifCheck.setVisibility(View.GONE);
+		notifBoxL.setVisibility(View.VISIBLE);
+		Animation animUp = AnimationUtils.loadAnimation(this,
+				R.anim.animdowntotop);
+		notifBoxL.startAnimation(animUp);
+		
+		if (autoAway){
+			waitTimer = new CountDownTimer(5000, 500) {
+				@Override
+				public void onTick(long arg0){}
+			
+				@Override
+				public void onFinish() {
+					// TODO Auto-generated method stub
+					DissapearNotifBox();
+				}
+			}.start();
+		}
+	}
+
+	protected void DissapearNotifBox() {
+		// TODO Auto-generated method stub
+		
+		Animation animUp = AnimationUtils.loadAnimation(this,
+				R.anim.animtoptodown);
+		notifBoxL.startAnimation(animUp);
+		notifBoxL.setVisibility(View.GONE);
 	}
 
 	private String clockClicked() {
@@ -501,36 +544,5 @@ public class InClass extends Activity implements OnClickListener {
 			super.onBackPressed();
 	}
 
-	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	// ////////////////////////!!!!!!!!!!!!!!!!SLIDING
-	// DRAWER!!!!!!!!!!!!/////////////////////////////
-	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	// ///////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * private DrawerLayout mDrawerLayout; private LinearLayout mDrawerList;
-	 * private ActionBarDrawerToggle mDrawerToggle;
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * private void SetupDrawer() { // TODO Auto-generated method stub
-	 * 
-	 * mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-	 * mDrawerList = (LinearLayout) findViewById(R.id.llLeftBoxes);
-	 * 
-	 * mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-	 * R.drawable.circlemiddle, R.string.hello_world, R.string.app_name){ public
-	 * void onDrawerClosed(View drawerView) { mitteBild.setPadding(25, 25, 200,
-	 * 25); } public void onDrawerOpened(View drawerView) {
-	 * mitteBild.setPadding(25, 25, 25, 25); // Animation littleRight =
-	 * AnimationUtils.loadAnimation(this, // R.anim.animationright);
-	 * //bewertungLayout.startAnimation(littleRight);
-	 * 
-	 * } }; mDrawerLayout.setDrawerListener(mDrawerToggle);
-	 * 
-	 * 
-	 * }
-	 */
+ 
 }
