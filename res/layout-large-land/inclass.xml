@@ -166,35 +166,35 @@
         android:layout_height="75dp"
         android:layout_gravity="bottom|center_horizontal"
         android:background="@drawable/notifboxblue"
-        android:paddingRight="10dp" 
         android:paddingLeft="20dp"
-        android:visibility="gone">
+        android:paddingRight="10dp"
+        android:visibility="gone" >
 
         <TextView
             android:id="@+id/notifText"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:gravity="center_vertical"
             android:padding="10dp"
             android:text="Test"
             android:textColor="#ffffff"
-            android:textSize="18.5dp" 
-            android:gravity="center_vertical"/>
+            android:textSize="18.5dp" />
 
         <Button
             android:id="@+id/notifButtonFalse"
             android:layout_width="70dp"
             android:layout_height="fill_parent"
-            android:gravity="center"
             android:layout_alignParentRight="true"
-            android:background="@drawable/bottomcrossbutton" />
+            android:background="@drawable/bottomcrossbutton"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/notifButtonCheck"
             android:layout_width="70dp"
             android:layout_height="fill_parent"
-            android:gravity="center"
             android:layout_toLeftOf="@id/notifButtonFalse"
-            android:background="@drawable/bottomcheck" />
+            android:background="@drawable/bottomcheck"
+            android:gravity="center" />
     </RelativeLayout>
 
     <LinearLayout
@@ -223,9 +223,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/fertigbutton"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            android:textSize="18.5dp" />
+            android:clickable="true"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/bEinstellungen"
@@ -233,9 +232,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/settingsbutton"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            android:textSize="18.5dp" />
+            android:gravity="center" />
 
         <Button
             android:id="@+id/bHaAufschreiben"
@@ -243,10 +240,85 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/haschreibbutton"
-            android:gravity="center"
-            android:text=""
-            android:textColor="#ffffff"
-            android:textSize="18.5dp" />
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLeftInfo"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginLeft="185dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:weightSum="4" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/infoClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFAF3D"
+                android:text="Zeigt Uhrzeit an\nClick zeigt Datum und restliche Minuten an"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/infoFertig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFAF3D"
+                android:text="Click geht zur Stunden Zusammenfassung"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/infoSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#FFAF3D"
+                android:text="Click geht zu den Einstellungen"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/infoHaSchreiben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#FFAF3D"
+                android:text="Click geht zu Hausaufgaben aufschreiben"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

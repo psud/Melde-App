@@ -21,7 +21,8 @@ public final class R {
         public static final int animtoptodown=0x7f040009;
         public static final int homeworkdismiss=0x7f04000a;
         public static final int littlerightcircle=0x7f04000b;
-        public static final int slidelefttoright=0x7f04000c;
+        public static final int slideawaytoleft=0x7f04000c;
+        public static final int slidelefttoright=0x7f04000d;
     }
     public static final class array {
         public static final int bewertunglist=0x7f060000;
@@ -144,9 +145,9 @@ containing a value of this type.
         public static final int ErinnerungTv=0x7f070035;
         public static final int LinearLayout1=0x7f070007;
         public static final int RelativeLayout1=0x7f070046;
-        public static final int action_cancel=0x7f070065;
-        public static final int action_save=0x7f070066;
-        public static final int action_settings=0x7f070067;
+        public static final int action_cancel=0x7f07006a;
+        public static final int action_save=0x7f07006b;
+        public static final int action_settings=0x7f07006c;
         public static final int bAfFrage=0x7f070050;
         public static final int bAfGut=0x7f070053;
         public static final int bAfLosch=0x7f07004f;
@@ -161,11 +162,11 @@ containing a value of this type.
         public static final int bHaAufschreiben=0x7f07005d;
         public static final int bMeldDran=0x7f07004c;
         public static final int bRundeDran=0x7f070049;
-        public static final int boxTvFach=0x7f070063;
+        public static final int boxTvFach=0x7f070068;
         public static final int button1=0x7f07003d;
-        public static final int button2=0x7f07005e;
-        public static final int button3=0x7f07005f;
-        public static final int button4=0x7f070060;
+        public static final int button2=0x7f070063;
+        public static final int button3=0x7f070064;
+        public static final int button4=0x7f070065;
         public static final int buttonCircle=0x7f070003;
         public static final int checkBox1=0x7f070042;
         public static final int color1=0x7f070008;
@@ -217,7 +218,11 @@ containing a value of this type.
         public static final int haEtAufgabe8=0x7f07002e;
         public static final int haEtAufgabe9=0x7f07002f;
         public static final int homeworkBox1=0x7f070044;
-        public static final int homeworkBoxTest=0x7f070062;
+        public static final int homeworkBoxTest=0x7f070067;
+        public static final int infoClock=0x7f07005f;
+        public static final int infoFertig=0x7f070060;
+        public static final int infoHaSchreiben=0x7f070062;
+        public static final int infoSetting=0x7f070061;
         public static final int lLayoutRightBewertung=0x7f07004d;
         public static final int left=0x7f070000;
         public static final int llAllHa=0x7f07000d;
@@ -226,6 +231,7 @@ containing a value of this type.
         public static final int llExampleHaDisplay2=0x7f070043;
         public static final int llLeftBoxes=0x7f070059;
         public static final int llLeftFaecher=0x7f07003e;
+        public static final int llLeftInfo=0x7f07005e;
         public static final int llLine=0x7f07003f;
         public static final int llTest=0x7f07000b;
         public static final int llayoutRightNormal=0x7f070048;
@@ -235,10 +241,10 @@ containing a value of this type.
         public static final int notifText=0x7f070056;
         public static final int percentview=0x7f070054;
         public static final int right=0x7f070001;
-        public static final int rlAssignement=0x7f070064;
+        public static final int rlAssignement=0x7f070069;
         public static final int scrollView1=0x7f070009;
         public static final int scrollView2=0x7f070026;
-        public static final int testButton=0x7f070061;
+        public static final int testButton=0x7f070066;
         public static final int text=0x7f070004;
         public static final int textView1=0x7f07000a;
         public static final int toast_layout_root=0x7f070002;

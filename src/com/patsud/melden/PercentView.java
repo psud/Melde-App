@@ -85,18 +85,20 @@ public class PercentView extends View {
 
 				if (getPrefs.getBoolean("bewertungKreis", true)) {
 					if (!colorGoodness[i].equalsIgnoreCase("#ffffff")) {
+						if (colorCode[i].equalsIgnoreCase(colorGoodness[i])){
 						circlePaint.setAntiAlias(true);
 						circlePaint.setColor(Color.parseColor("#ffffff"));
 						circlePaint.setStyle(Paint.Style.STROKE);
-						circlePaint.setStrokeWidth(3);
+						circlePaint.setStrokeWidth(4);
 						// circlePaint.setStyle(Paint.Style.STROKE);
 						canvas.drawCircle(dotX, dotY, 32, circlePaint);
+						}
 
 						circlePaint.setAntiAlias(true);
 						circlePaint
 								.setColor(Color.parseColor(colorGoodness[i]));
 						circlePaint.setStyle(Paint.Style.STROKE);
-						circlePaint.setStrokeWidth(6);
+						circlePaint.setStrokeWidth(8);
 						// circlePaint.setStyle(Paint.Style.STROKE);
 						canvas.drawCircle(dotX, dotY, 35, circlePaint);
 					}

@@ -23,8 +23,10 @@ import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -36,7 +38,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class InClass extends Activity implements OnClickListener {
+public class InClass extends Activity implements OnClickListener,
+		OnTouchListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
 	TextView clock, notifText;
@@ -44,7 +47,7 @@ public class InClass extends Activity implements OnClickListener {
 	RelativeLayout notifBoxL;
 
 	Button bFertig, bEinstellung, bHa;
-	LinearLayout bewertungLayout, leftLayout, rightLayout;
+	LinearLayout bewertungLayout, leftLayout, rightLayout, leftInfoLayout;
 	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen, bewLosch;
 	ImageView mitteBild;
 
@@ -56,6 +59,7 @@ public class InClass extends Activity implements OnClickListener {
 	private int meldDran, meld, nDran, rundDran;
 
 	private int startTime, endTime, secondTime;
+	private String userName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +102,10 @@ public class InClass extends Activity implements OnClickListener {
 			wL = pM.newWakeLock(PowerManager.FULL_WAKE_LOCK, "WakeLock");
 			wL.acquire();
 		}
+		// Get User Name
+		userName = getPrefs.getString("name", "Batman");
+		userName = userName.substring(0, 1).toUpperCase()
+				+ userName.substring(1);
 
 	}
 
@@ -161,6 +169,7 @@ public class InClass extends Activity implements OnClickListener {
 		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
 		// animation bewertung
 		leftLayout = (LinearLayout) findViewById(R.id.llLeftBoxes);
+		leftInfoLayout = (LinearLayout) findViewById(R.id.llLeftInfo);
 
 		// Middle Image
 		percentage = (PercentView) findViewById(R.id.percentview);
@@ -188,6 +197,14 @@ public class InClass extends Activity implements OnClickListener {
 		clock.setOnClickListener(this);
 		notifCross.setOnClickListener(this);
 		notifCheck.setOnClickListener(this);
+
+		/*
+		 * bFertig.setOnLongClickListener(new View.OnLongClickListener() {
+		 * 
+		 * @Override public boolean onLongClick(View v) { // TODO Auto-generated
+		 * method stub ShowNotifBox("Fertig", "fertig", false, false,false);
+		 * return false; } });
+		 */bFertig.setOnTouchListener(this);
 
 	}
 
@@ -258,6 +275,7 @@ public class InClass extends Activity implements OnClickListener {
 			CancelAutoMovementBewertung();
 			break;
 		case R.id.digClock:
+
 			ShowNotifBox(clockClicked(), "date", false, true, false);
 			break;
 		case R.id.notifButtonFalse:
@@ -269,6 +287,61 @@ public class InClass extends Activity implements OnClickListener {
 			Log.d("Debug", "Got pressed drirketly");
 			break;
 		}
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+
+		switch (v.getId()) {
+		// the button. I set bFertig.setOnTouchListener(this); in onCreate
+		case R.id.bFertig:
+			//Log.d("Debug", "Pressed Down");
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				// everything works up to here
+				//Log.d("Debug", "PRESSED");
+				final Animation animRight = AnimationUtils.loadAnimation(this,
+						R.anim.slidelefttoright);
+				waitTimerNotif = new CountDownTimer(500, 500) {
+					@Override
+					public void onTick(long arg0) {
+					}
+
+					@Override
+					public void onFinish() {
+						// TODO Auto-generated method stub
+						// here im checking if the button still is pressed
+						if (bFertig.isPressed()) {
+							// It never goes into here
+							leftInfoLayout.setVisibility(View.VISIBLE);
+							leftInfoLayout.startAnimation(animRight);
+							// ShowNotifBox("Fertig", "fertig", false, false,
+							// false);
+							Log.d("Debug", "HELD LONG");
+						}
+					}
+				}.start();
+			}
+			if (event.getAction() == MotionEvent.ACTION_UP) {
+				// DissapearNotifBox();
+				leftInfoLayout.setVisibility(View.GONE);
+				Animation animLeft = AnimationUtils.loadAnimation(this,
+						R.anim.slideawaytoleft);
+				leftInfoLayout.setAnimation(animLeft);
+				Log.d("Debug", "MotionEvent.ACTION_UP");
+			}
+			if (event.getAction() == MotionEvent.ACTION_MOVE) {
+				Log.d("Debug", "eventY: "+Integer.toString((int) event.getY())+" - vYBot: "+Integer.toString(v.getBottom()/2));
+				if ( event.getX() > v.getRight()
+						|| event.getY() < 0|| event.getY() > v.getBottom()/2
+						){
+					Log.d("Debug", "ACTION_MOVE AWATY");
+				}
+
+			}
+			break;
+		}
+		return false;
 	}
 
 	private CountDownTimer waitTimerNotif;
@@ -292,7 +365,7 @@ public class InClass extends Activity implements OnClickListener {
 		if (longl)
 			waitTime = 10000;
 		else
-			waitTime = 3000;
+			waitTime = 4000;
 		if (autoAway) {
 			waitTimerNotif = new CountDownTimer(waitTime, 500) {
 				@Override
@@ -310,11 +383,12 @@ public class InClass extends Activity implements OnClickListener {
 
 	protected void DissapearNotifBox() {
 		// TODO Auto-generated method stub
-
-		Animation animDown = AnimationUtils.loadAnimation(this,
-				R.anim.animtoptodown);
-		notifBoxL.startAnimation(animDown);
-		notifBoxL.setVisibility(View.GONE);
+		if (notifBoxL.isShown()) {
+			Animation animDown = AnimationUtils.loadAnimation(this,
+					R.anim.animtoptodown);
+			notifBoxL.startAnimation(animDown);
+			notifBoxL.setVisibility(View.GONE);
+		}
 	}
 
 	private void CancelAutoMovementNotif() {
@@ -335,6 +409,15 @@ public class InClass extends Activity implements OnClickListener {
 		thedate += Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "."
 				+ Integer.toString(c.get(Calendar.MONTH) + 1) + "."
 				+ Integer.toString(c.get(Calendar.YEAR));
+
+		int nowSec = (Integer.parseInt(clock.getText().toString()
+				.substring(0, 2)) * 60 + Integer.parseInt(clock.getText()
+				.toString().substring(3, 5))) * 60;
+		int remainingSec = endTime - nowSec;
+		remainingSec = remainingSec / 60;
+		thedate += "\nNoch " + Integer.toString(remainingSec)
+				+ " Minuten bis zum Ende";
+
 		return thedate;
 	}
 
@@ -493,24 +576,34 @@ public class InClass extends Activity implements OnClickListener {
 				.toString().substring(3, 5)))
 				* 60 + seconds;
 
-		 if (nowTotalMin + 1000 == endTime){
-			 ShowNotifBox("Nur noch 1000 Sekunden\nNoch einmal Melden!", "melden", false, true,true);
-		 }
+		if (nowTotalMin == endTime - 1005) {
+
+			ShowNotifBox(
+					"Nur noch " + Integer.toString(endTime - (int) nowTotalMin)
+							+ " Sekunden\nLos! Einmal Melden schaffst du noch "
+							+ userName, "melden", false, true, true);
+		} else if (nowTotalMin > endTime - 1005 && nowTotalMin < endTime - 995) {
+			notifText.setText("Nur noch "
+					+ Integer.toString(endTime - (int) nowTotalMin)
+					+ " Sekunden\nLos! Einmal Melden schaffst du noch "
+					+ userName);
+		}
 
 		Log.d("Debug",
 				"Now: " + Float.toString(nowTotalMin) + " --- Start: "
 						+ Integer.toString(endTime) + " --- End: "
 						+ Integer.toString(startTime) + " --- Diff: "
-						+ Float.toString(endTime - nowTotalMin) + " --- secondTime: "
-						+ Integer.toString(secondTime));
+						+ Float.toString(endTime - nowTotalMin)
+						+ " --- secondTime: " + Integer.toString(secondTime));
 		if (endTime < nowTotalMin && showNextHourNotif == false) {
-			ShowNotifBox("Neue Stunde Anfangen?", "neuestunde", true, false, false);
+			ShowNotifBox("Neue Stunde Anfangen?", "neuestunde", true, false,
+					false);
 			Log.d("Debug", "GOT IT DONE");
 			showNextHourNotif = true;
 		}
 
 		pers = ((nowTotalMin - startTime) / secondTime) * 100;
-		Log.d("Debug", "ProzentKreis: "+ Float.toString(pers));
+		// Log.d("Debug", "ProzentKreis: " + Float.toString(pers));
 		return pers;
 	}
 
@@ -585,13 +678,19 @@ public class InClass extends Activity implements OnClickListener {
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
+		boolean doneSth = false;
 		if (bewertungLayout.isShown()) {
 			bewertungLayout.setVisibility(View.GONE);
 			Animation animRight = AnimationUtils.loadAnimation(this,
 					R.anim.animationright);
 			bewertungLayout.startAnimation(animRight);
-
-		} else
+			doneSth = true;
+		}
+		if (notifBoxL.isShown()) {
+			DissapearNotifBox();
+			doneSth = true;
+		}
+		if (!doneSth)
 			super.onBackPressed();
 	}
 
