@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c4f3ff"
+    android:orientation="horizontal"
+    android:weightSum="3" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="#3498DB"
+        android:paddingBottom="80dp"
+        android:paddingTop="80dp" >
+
+        <TextView
+            android:id="@+id/bName1Name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Patrick"
+            android:textColor="#ffffff"
+            android:textSize="35dp" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bName1Name"
+            android:gravity="center"
+            android:text="zum ändern tippen"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" >
+
+            <Button
+                android:id="@+id/bName1Bereit"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/buttonblue"
+                android:text="Bereit"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="#2980b9"
+        android:orientation="vertical"
+        android:paddingTop="80dp" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="VS"
+            android:textColor="#ffffff"
+            android:textSize="40dp" />
+
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:src="@drawable/swordcross" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="#3498DB"
+        android:orientation="vertical"
+        android:paddingBottom="80dp"
+        android:paddingTop="80dp" >
+
+        <TextView
+            android:id="@+id/bName2Name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Anynomys"
+            android:textColor="#ffffff"
+            android:textSize="35dp" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bName2Name"
+            android:gravity="center"
+            android:text="zum ändern tippen"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" >
+
+            <Button
+                android:id="@+id/bName2Bereit"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/buttonblue"
+                android:text="Bereit"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

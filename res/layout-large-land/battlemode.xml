@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c4f3ff" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="185dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true" >
+
+            <LinearLayout
+                android:id="@+id/battle2Layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:weightSum="4 " >
+
+                <Button
+                    android:id="@+id/battle2Runde"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#34495e"
+                    android:text="Runde Dran"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle2NurDran"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#e74c3c"
+                    android:text="nur Dran"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle2Gemeldet"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#f1c40f"
+                    android:text="Gemeldet"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle2GemeldetDran"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#27ae60"
+                    android:text="Gemeldet + Dran"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/battle2LBewertung"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:weightSum="5 " >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2 " >
+
+                    <Button
+                        android:id="@+id/battle2BewSkip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#2980b9"
+                        android:text="Skip"
+                        android:textColor="#ffffff"
+                        android:textSize="18.5dp" />
+
+                    <Button
+                        android:id="@+id/battle2BewLosch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#3498db"
+                        android:text="Löschen"
+                        android:textColor="#ffffff"
+                        android:textSize="18.5dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/battle2BewFrage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#34495e"
+                    android:text="Frage"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle2BewSchlecht"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#e74c3c"
+                    android:text="Schlecht"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle2BewOk"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#f1c40f"
+                    android:text="Okay"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle2BewGut"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#27ae60"
+                    android:text="Gut"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+            </LinearLayout>
+        </FrameLayout>
+        
+       <FrameLayout
+            android:layout_width="185dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true" >
+
+            <LinearLayout
+                android:id="@+id/battle1Layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:weightSum="4 " >
+
+                <Button
+                    android:id="@+id/battle1Runde"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#34495e"
+                    android:text="Runde Dran"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle1NurDran"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#e74c3c"
+                    android:text="nur Dran"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle1Gemeldet"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#f1c40f"
+                    android:text="Gemeldet"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle1GemeldetDran"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#27ae60"
+                    android:text="Gemeldet + Dran"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/battle1LBewertung"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:weightSum="5 " >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="2 " >
+
+                    <Button
+                        android:id="@+id/battle1BewSkip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#2980b9"
+                        android:text="Skip"
+                        android:textColor="#ffffff"
+                        android:textSize="18.5dp" />
+
+                    <Button
+                        android:id="@+id/battle1BewLosch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#3498db"
+                        android:text="Löschen"
+                        android:textColor="#ffffff"
+                        android:textSize="18.5dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/battle1BewFrage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#34495e"
+                    android:text="Frage"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle1BewSchlecht"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#e74c3c"
+                    android:text="Schlecht"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle1BewOk"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#f1c40f"
+                    android:text="Okay"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+
+                <Button
+                    android:id="@+id/battle1BewGut"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#27ae60"
+                    android:text="Gut"
+                    android:textColor="#ffffff"
+                    android:textSize="18.5dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+
+            <com.patsud.melden.PercentView
+                android:id="@+id/percentview"
+                android:layout_width="520dp"
+                android:layout_height="520dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+        
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/notifLayout"
+        android:layout_width="500dp"
+        android:layout_height="75dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@drawable/notifboxblue"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/notifText"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Test"
+            android:textColor="#ffffff"
+            android:textSize="18.5dp" />
+
+        <Button
+            android:id="@+id/notifButtonFalse"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bottomcrossbutton"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/notifButtonCheck"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/notifButtonFalse"
+            android:background="@drawable/bottomcheck"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    
+</FrameLayout>

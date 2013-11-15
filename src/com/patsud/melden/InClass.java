@@ -38,8 +38,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class InClass extends Activity implements OnClickListener,
-		OnTouchListener {
+public class InClass extends Activity implements OnClickListener {
 
 	Button rundeDran, dran, gemeldet, gemeldetDran;
 	TextView clock, notifText;
@@ -47,7 +46,7 @@ public class InClass extends Activity implements OnClickListener,
 	RelativeLayout notifBoxL;
 
 	Button bFertig, bEinstellung, bHa;
-	LinearLayout bewertungLayout, leftLayout, rightLayout, leftInfoLayout;
+	LinearLayout bewertungLayout, leftLayout, rightLayout;
 	Button bewGut, bewOk, bewSchlecht, bewFrage, bewSpringen, bewLosch;
 	ImageView mitteBild;
 
@@ -102,6 +101,10 @@ public class InClass extends Activity implements OnClickListener,
 			wL = pM.newWakeLock(PowerManager.FULL_WAKE_LOCK, "WakeLock");
 			wL.acquire();
 		}
+		
+		View rootView = getWindow().getDecorView();
+		rootView.setSystemUiVisibility(View.STATUS_BAR_HIDDEN); //
+		
 		// Get User Name
 		userName = getPrefs.getString("name", "Batman");
 		userName = userName.substring(0, 1).toUpperCase()
@@ -169,7 +172,7 @@ public class InClass extends Activity implements OnClickListener,
 		// downLayout = (LinearLayout) findViewById(R.id.llButDown);
 		// animation bewertung
 		leftLayout = (LinearLayout) findViewById(R.id.llLeftBoxes);
-		leftInfoLayout = (LinearLayout) findViewById(R.id.llLeftInfo);
+		//leftInfoLayout = (LinearLayout) findViewById(R.id.llLeftInfo);
 
 		// Middle Image
 		percentage = (PercentView) findViewById(R.id.percentview);
@@ -204,7 +207,7 @@ public class InClass extends Activity implements OnClickListener,
 		 * @Override public boolean onLongClick(View v) { // TODO Auto-generated
 		 * method stub ShowNotifBox("Fertig", "fertig", false, false,false);
 		 * return false; } });
-		 */bFertig.setOnTouchListener(this);
+		 *///leftLayout.setOnTouchListener(this);
 
 	}
 
@@ -289,19 +292,21 @@ public class InClass extends Activity implements OnClickListener,
 		}
 	}
 
-	@Override
+/*	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
-
+		Log.d("Debug", "GOES IN");
 		switch (v.getId()) {
 		// the button. I set bFertig.setOnTouchListener(this); in onCreate
-		case R.id.bFertig:
+		
+		case R.id.llLeftBoxes:
 			//Log.d("Debug", "Pressed Down");
+			
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				// everything works up to here
 				//Log.d("Debug", "PRESSED");
-				final Animation animRight = AnimationUtils.loadAnimation(this,
-						R.anim.slidelefttoright);
+		//		final Animation animRight = AnimationUtils.loadAnimation(this,
+			//			R.anim.slidelefttoright);
 				waitTimerNotif = new CountDownTimer(500, 500) {
 					@Override
 					public void onTick(long arg0) {
@@ -313,10 +318,11 @@ public class InClass extends Activity implements OnClickListener,
 						// here im checking if the button still is pressed
 						if (bFertig.isPressed()) {
 							// It never goes into here
-							leftInfoLayout.setVisibility(View.VISIBLE);
-							leftInfoLayout.startAnimation(animRight);
-							// ShowNotifBox("Fertig", "fertig", false, false,
-							// false);
+							//leftInfoLayout.setVisibility(View.VISIBLE);
+							//leftInfoLayout.startAnimation(animRight);
+							 ShowNotifBox("Fertig", "fertig", false, false,
+							 false);
+							
 							Log.d("Debug", "HELD LONG");
 						}
 					}
@@ -324,25 +330,26 @@ public class InClass extends Activity implements OnClickListener,
 			}
 			if (event.getAction() == MotionEvent.ACTION_UP) {
 				// DissapearNotifBox();
-				leftInfoLayout.setVisibility(View.GONE);
-				Animation animLeft = AnimationUtils.loadAnimation(this,
-						R.anim.slideawaytoleft);
-				leftInfoLayout.setAnimation(animLeft);
-				Log.d("Debug", "MotionEvent.ACTION_UP");
+			//	leftInfoLayout.setVisibility(View.GONE);
+			//	Animation animLeft = AnimationUtils.loadAnimation(this,
+			//			R.anim.slideawaytoleft);
+			//	leftInfoLayout.setAnimation(animLeft);
+			//	Log.d("Debug", "MotionEvent.ACTION_UP");
 			}
 			if (event.getAction() == MotionEvent.ACTION_MOVE) {
 				Log.d("Debug", "eventY: "+Integer.toString((int) event.getY())+" - vYBot: "+Integer.toString(v.getBottom()/2));
-				if ( event.getX() > v.getRight()
-						|| event.getY() < 0|| event.getY() > v.getBottom()/2
-						){
+			//	if ( event.getX() > v.getRight()
+				//		|| event.getY() < 0|| event.getY() > v.getBottom()/2
+				//		){
 					Log.d("Debug", "ACTION_MOVE AWATY");
-				}
+					DissapearNotifBox();
+				//}
 
 			}
 			break;
 		}
 		return false;
-	}
+	}*/
 
 	private CountDownTimer waitTimerNotif;
 	private String notifType = null;
@@ -692,6 +699,14 @@ public class InClass extends Activity implements OnClickListener,
 		}
 		if (!doneSth)
 			super.onBackPressed();
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		View rootView = getWindow().getDecorView();
+		rootView.setSystemUiVisibility(View.STATUS_BAR_HIDDEN);
+		super.onResume();
 	}
 
 }

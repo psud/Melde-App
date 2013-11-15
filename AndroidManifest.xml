@@ -78,6 +78,16 @@
             android:label="Hausdaufgaben"
             android:screenOrientation="sensorLandscape" >
         </activity>
+        //Battle Mode
+        <activity
+            android:name="com.patsud.melden.BattleMode"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+        //Battle Start
+        <activity
+            android:name="com.patsud.melden.BattleStart"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
     </application>
 
 </manifest>
