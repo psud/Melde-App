@@ -132,7 +132,7 @@ public class InClass extends Activity implements OnClickListener {
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-				UpdatePie();
+				UpdateCircle();
 			}
 		});
 	}
@@ -553,7 +553,7 @@ public class InClass extends Activity implements OnClickListener {
 
 	private int remainingMin;
 
-	protected void UpdatePie() {
+	protected void UpdateCircle() {
 		// TODO Auto-generated method stub
 
 		float percentage = CalPercentage();
@@ -562,7 +562,6 @@ public class InClass extends Activity implements OnClickListener {
 	}
 
 	private void GetStartFinishTime() {
-		// TODO Auto-generated method stub
 		TimeKeeper time = new TimeKeeper();
 		startTime = time.TimeStart();
 		endTime = time.TimeEnd();

@@ -148,9 +148,9 @@ containing a value of this type.
         public static final int ErinnerungTv=0x7f070058;
         public static final int LinearLayout1=0x7f07002b;
         public static final int RelativeLayout1=0x7f070006;
-        public static final int action_cancel=0x7f070082;
-        public static final int action_save=0x7f070083;
-        public static final int action_settings=0x7f070084;
+        public static final int action_cancel=0x7f070083;
+        public static final int action_save=0x7f070084;
+        public static final int action_settings=0x7f070085;
         public static final int bAfFrage=0x7f070072;
         public static final int bAfGut=0x7f070075;
         public static final int bAfLosch=0x7f070071;
@@ -158,11 +158,11 @@ containing a value of this type.
         public static final int bAfSchlecht=0x7f070073;
         public static final int bAfSkip=0x7f070070;
         public static final int bDran=0x7f07006c;
-        public static final int bEinstellungen=0x7f070079;
+        public static final int bEinstellungen=0x7f07007a;
         public static final int bEmailSQL=0x7f070030;
-        public static final int bFertig=0x7f070078;
+        public static final int bFertig=0x7f070079;
         public static final int bGemeldet=0x7f07006d;
-        public static final int bHaAufschreiben=0x7f07007a;
+        public static final int bHaAufschreiben=0x7f07007b;
         public static final int bMeldDran=0x7f07006e;
         public static final int bName1Bereit=0x7f070025;
         public static final int bName1Name=0x7f070024;
@@ -193,18 +193,19 @@ containing a value of this type.
         public static final int battle2Layout=0x7f070007;
         public static final int battle2NurDran=0x7f070009;
         public static final int battle2Runde=0x7f070008;
-        public static final int boxTvFach=0x7f070080;
+        public static final int battleCircle=0x7f07001f;
+        public static final int boxTvFach=0x7f070081;
         public static final int button1=0x7f070060;
-        public static final int button2=0x7f07007b;
-        public static final int button3=0x7f07007c;
-        public static final int button4=0x7f07007d;
+        public static final int button2=0x7f07007c;
+        public static final int button3=0x7f07007d;
+        public static final int button4=0x7f07007e;
         public static final int buttonCircle=0x7f070003;
         public static final int checkBox1=0x7f070065;
         public static final int color1=0x7f07002c;
         public static final int colorFach=0x7f07002a;
         public static final int content_frame=0x7f070005;
         public static final int custView=0x7f070029;
-        public static final int digClock=0x7f070077;
+        public static final int digClock=0x7f070078;
         public static final int erinnerungFalse=0x7f070057;
         public static final int erinnerungLayout=0x7f070055;
         public static final int erinnerungTrue=0x7f070056;
@@ -249,7 +250,7 @@ containing a value of this type.
         public static final int haEtAufgabe8=0x7f070052;
         public static final int haEtAufgabe9=0x7f070053;
         public static final int homeworkBox1=0x7f070067;
-        public static final int homeworkBoxTest=0x7f07007f;
+        public static final int homeworkBoxTest=0x7f070080;
         public static final int imageView1=0x7f070026;
         public static final int lLayoutRightBewertung=0x7f07006f;
         public static final int left=0x7f070000;
@@ -257,7 +258,7 @@ containing a value of this type.
         public static final int llBarTop=0x7f070032;
         public static final int llExampleHaDisplay=0x7f070063;
         public static final int llExampleHaDisplay2=0x7f070066;
-        public static final int llLeftBoxes=0x7f070076;
+        public static final int llLeftBoxes=0x7f070077;
         public static final int llLeftFaecher=0x7f070061;
         public static final int llLine=0x7f070062;
         public static final int llTest=0x7f07002f;
@@ -266,12 +267,12 @@ containing a value of this type.
         public static final int notifButtonFalse=0x7f070022;
         public static final int notifLayout=0x7f070020;
         public static final int notifText=0x7f070021;
-        public static final int percentview=0x7f07001f;
+        public static final int percentview=0x7f070076;
         public static final int right=0x7f070001;
-        public static final int rlAssignement=0x7f070081;
+        public static final int rlAssignement=0x7f070082;
         public static final int scrollView1=0x7f07002d;
         public static final int scrollView2=0x7f07004a;
-        public static final int testButton=0x7f07007e;
+        public static final int testButton=0x7f07007f;
         public static final int text=0x7f070004;
         public static final int textView1=0x7f07002e;
         public static final int toast_layout_root=0x7f070002;
@@ -370,7 +371,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:circleColor
+          @attr name com.patsud.melden:circleColor
         */
         public static final int CircleView_circleColor = 2;
         /**
@@ -384,7 +385,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:circleLabel
+          @attr name com.patsud.melden:circleLabel
         */
         public static final int CircleView_circleLabel = 3;
         /**
@@ -399,7 +400,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:labelColor
+          @attr name com.patsud.melden:labelColor
         */
         public static final int CircleView_labelColor = 4;
         /**
@@ -416,7 +417,7 @@ containing a value of this type.
 <tr><td><code>left</code></td><td>0</td><td></td></tr>
 <tr><td><code>right</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:labelPosition
+          @attr name com.patsud.melden:labelPosition
         */
         public static final int CircleView_labelPosition = 1;
         /**
@@ -430,7 +431,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:showText
+          @attr name com.patsud.melden:showText
         */
         public static final int CircleView_showText = 0;
     };

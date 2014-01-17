@@ -1,13 +1,22 @@
 package com.patsud.melden;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class BattleStart extends Activity {
+
+
+
+	private SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,18 +27,33 @@ public class BattleStart extends Activity {
 
 		setContentView(R.layout.battlestart);
 
+		Intent i = new Intent(this, BattleMode.class);
+		startActivity(i);
+
 	}
 
 	private void CheckSettings() {
 		// TODO Auto-generated method stub
-		SharedPreferences getPrefs = PreferenceManager
-				.getDefaultSharedPreferences(getBaseContext());
+		prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-		// FULL SCREEN
+		// Hide Action Bar
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		if (getPrefs.getBoolean("showBar", true) == false)
+		// Hide Notification Bar
+		boolean showBar = prefs.getBoolean("showBar", true);
+		if (!showBar)
 			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		// Keep Screen On
+		boolean screenStayOn = prefs.getBoolean("screenStayOn", false);
+		if (screenStayOn) {
+			PowerManager pM = (PowerManager) getSystemService(Context.POWER_SERVICE);
+			WakeLock wL;
+			// WindowManager wM =
+			// WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+			wL = pM.newWakeLock(PowerManager.FULL_WAKE_LOCK, "WakeLock");
+			wL.acquire();
+		}
 	}
 
 }
