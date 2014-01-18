@@ -4,10 +4,14 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.patsud.melden.time.CircleTime;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
@@ -64,26 +68,39 @@ public class BattleMode extends Activity implements OnClickListener {
 		AnimateCircle();
 
 		InitUpdateCircle();
+		
+	//	UpdateCircle();
 
 		// registerReceiver(mBatInfoReceiver, new IntentFilter(
 		// Intent.ACTION_BATTERY_CHANGED));
 
 	}
 
+	float pers = 0;
 	private void InitUpdateCircle() {
 		// TODO Auto-generated method stub
+		
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				UpdateCircle();
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+							UpdateCircle();
+					}
+				});
 			}
 		}, 0, 1000);// Update text every second
 	}
 
 	protected void UpdateCircle() {
 		// TODO Auto-generated method stub
-
+		CircleTime cT = new CircleTime();
+		pers =  cT.CalPercentage(startTime, endTime);
+		this.circle.setPercentage(pers);
 	}
 
 	private void AnimateCircle() {
@@ -108,8 +125,7 @@ public class BattleMode extends Activity implements OnClickListener {
 		// Hide Notification Bar
 		boolean showBar = prefs.getBoolean("showBar", true);
 		if (!showBar)
-			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+			hideSystemUI();
 
 		// Keep Screen On
 		boolean screenStayOn = prefs.getBoolean("screenStayOn", false);
@@ -122,7 +138,81 @@ public class BattleMode extends Activity implements OnClickListener {
 			wL.acquire();
 		}
 	}
+	
+	
 
+	
+
+	@Override
+	public void onClick(View v) {
+		Log.d("click", v.toString());
+		switch(v.getId()){
+		//Player 1 main
+		case R.id.battle1Runde:
+			circle.setDot(3,0);
+			ShowDownBewertung();
+			break;
+		case R.id.battle1NurDran:
+			circle.setDot(2,0);
+			ShowDownBewertung();
+			break;
+		case R.id.battle1Gemeldet:
+			circle.setDot(1,0);
+			ShowDownBewertung();
+			break;
+		case R.id.battle1GemeldetDran:
+			circle.setDot(0,0);
+			ShowDownBewertung();
+			break;
+			
+			//Player 2 main
+		case R.id.battle2Runde:
+			circle.setDot(3,1);
+			ShowDownBewertung();
+			break;
+		case R.id.battle2NurDran:
+			circle.setDot(2,1);
+			ShowDownBewertung();
+			break;
+		case R.id.battle2Gemeldet:
+			circle.setDot(1,1);
+			ShowDownBewertung();
+			break;
+		case R.id.battle2GemeldetDran:
+			circle.setDot(0,1);
+			ShowDownBewertung();
+			break;
+		}
+	}
+	
+	private void ShowDownBewertung() {
+		// TODO Auto-generated method stub
+		SharedPreferences getPrefs = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		if (getPrefs.getBoolean("bewertung", true))
+			AnimateBewertungen();
+	}
+	
+	private void AnimateBewertungen() {
+//		bewertungLayout.setVisibility(View.VISIBLE);
+//		Animation animLeft = AnimationUtils.loadAnimation(this,
+//				R.anim.animationleft);
+//		bewertungLayout.startAnimation(animLeft);
+//
+//		waitTimer = new CountDownTimer(10000, 500) {
+//			@Override
+//			public void onTick(long arg0) {
+//			}
+//
+//			@Override
+//			public void onFinish() {
+//				// TODO Auto-generated method stub
+//				CloseBewertung();
+//			}
+//		}.start();
+	}
+	
 	private void Initialize() {
 		// Main Buttons Player 1
 		p1Runde = (Button) findViewById(R.id.battle1Runde);
@@ -162,12 +252,7 @@ public class BattleMode extends Activity implements OnClickListener {
 
 		// Circle
 		circle = (PercentView) findViewById(R.id.battleCircle);
-	}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
+		circle.setTwoPlayer(true);
 	}
 
 	private void InitialiseListeners() {
@@ -199,5 +284,24 @@ public class BattleMode extends Activity implements OnClickListener {
 		p2Delete.setOnClickListener(this);
 		p2Skip.setOnClickListener(this);
 	}
+	
+	// This snippet hides the system bars.
+		private void hideSystemUI() {
+			final View mDecorView = getWindow().getDecorView();
+			
+			if (Build.VERSION.SDK_INT >=18){
+		    mDecorView.setSystemUiVisibility(
+		            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+		            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+		            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+		            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+		            | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+		            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+			}
+			else{
+				getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+						WindowManager.LayoutParams.FLAG_FULLSCREEN);
+			}
+		}
 
 }

@@ -37,21 +37,33 @@ public class PercentView extends View {
 		bgpaint.setColor(Color.parseColor("#2980b9"));
 		bgpaint.setAntiAlias(true);
 		bgpaint.setStyle(Paint.Style.FILL);
+		p2Stroke = new Paint();
+		p2Stroke.setColor(Color.parseColor("#ffffff"));
+		p2Stroke.setAntiAlias(true);
+		p2Stroke.setStyle(Paint.Style.STROKE);
+		p2Stroke.setStrokeWidth(5);
 		rect = new RectF();
 		circlePaint = new Paint();
 
 	}
 
-	Paint paint;
-	Paint bgpaint;
-	RectF rect;
-	float percentage = 5;
-	Paint circlePaint;
-	float[] dots = new float[1000];
-	int dotsNum = -1;
-	String[] colorCode = new String[1000];
-	String[] colorGoodness = new String[1000];
-	int pxCut = 75;
+	private Paint paint;
+	private Paint bgpaint;
+	private Paint p2Stroke;
+	private RectF rect;
+	private float percentage = 5;
+	private Paint circlePaint;
+	private float[][] dots = new float[2][1000];
+	private int dotsNum[] = { -1, -1 };
+	private String[][] colorCode = new String[2][1000];
+	private String[][] colorGoodness = new String[2][1000];
+	private int pxCut = 75;
+	private int smallCircle = 200;
+	private boolean twoPlayer = false;
+
+	public void setTwoPlayer(boolean twoPlayerIn) {
+		this.twoPlayer = twoPlayerIn;
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -64,18 +76,22 @@ public class PercentView extends View {
 		rect.set(left, top, left + width, top + width);
 		canvas.drawArc(rect, -90, 360, true, bgpaint);
 		canvas.drawArc(rect, -90, (float) (3.6 * percentage), true, paint);
+		if (twoPlayer) {
+			canvas.drawCircle(this.getWidth() / 2, this.getHeight() / 2,
+					((this.getWidth() - pxCut) - smallCircle) / 2, p2Stroke);
+		}
 
 		if (percentage != 0) {
 
-			for (int i = 0; i <= dotsNum; i++) {
+			for (int i = 0; i <= dotsNum[0]; i++) {
 				circlePaint.setAntiAlias(true);
-				circlePaint.setColor(Color.parseColor(colorCode[i]));
+				circlePaint.setColor(Color.parseColor(colorCode[0][i]));
 				circlePaint.setStyle(Paint.Style.FILL);
 				// calculation for dots as coordinates
 				float dotX = (float) (this.getWidth() / 2 + (this.getWidth() - pxCut)
-						/ 2 * Math.cos((dots[i] * 3.6 - 90) * Math.PI / 180));
+						/ 2 * Math.cos((dots[0][i] * 3.6 - 90) * Math.PI / 180));
 				float dotY = (float) (this.getHeight() / 2 + (this.getWidth() - pxCut)
-						/ 2 * Math.sin((dots[i] * 3.6 - 90) * Math.PI / 180));
+						/ 2 * Math.sin((dots[0][i] * 3.6 - 90) * Math.PI / 180));
 				canvas.drawCircle(dotX, dotY, 35, circlePaint);
 
 				// For outer Stroke color
@@ -84,23 +100,67 @@ public class PercentView extends View {
 						.getDefaultSharedPreferences(getContext());
 
 				if (getPrefs.getBoolean("bewertungKreis", true)) {
-					if (!colorGoodness[i].equalsIgnoreCase("#ffffff")) {
-						if (colorCode[i].equalsIgnoreCase(colorGoodness[i])){
-						circlePaint.setAntiAlias(true);
-						circlePaint.setColor(Color.parseColor("#ffffff"));
-						circlePaint.setStyle(Paint.Style.STROKE);
-						circlePaint.setStrokeWidth(4);
-						// circlePaint.setStyle(Paint.Style.STROKE);
-						canvas.drawCircle(dotX, dotY, 32, circlePaint);
+					if (!colorGoodness[0][i].equalsIgnoreCase("#ffffff")) {
+						if (colorCode[0][i]
+								.equalsIgnoreCase(colorGoodness[0][i])) {
+							circlePaint.setAntiAlias(true);
+							circlePaint.setColor(Color.parseColor("#ffffff"));
+							circlePaint.setStyle(Paint.Style.STROKE);
+							circlePaint.setStrokeWidth(4);
+							canvas.drawCircle(dotX, dotY, 32, circlePaint);
 						}
-
 						circlePaint.setAntiAlias(true);
-						circlePaint
-								.setColor(Color.parseColor(colorGoodness[i]));
+						circlePaint.setColor(Color
+								.parseColor(colorGoodness[0][i]));
 						circlePaint.setStyle(Paint.Style.STROKE);
 						circlePaint.setStrokeWidth(8);
-						// circlePaint.setStyle(Paint.Style.STROKE);
 						canvas.drawCircle(dotX, dotY, 35, circlePaint);
+					}
+				}
+			}
+			if (twoPlayer) {
+
+				for (int i = 0; i <= dotsNum[1]; i++) {
+					circlePaint.setAntiAlias(true);
+					circlePaint.setColor(Color.parseColor(colorCode[1][i]));
+					circlePaint.setStyle(Paint.Style.FILL);
+					// calculation for dots as coordinates
+					float dotX = (float) (this.getWidth() / 2 + (this
+							.getWidth() - pxCut - smallCircle)
+							/ 2
+							* Math.cos((dots[1][i] * 3.6 - 90) * Math.PI / 180));
+					float dotY = (float) (this.getHeight() / 2 + (this
+							.getWidth() - pxCut - smallCircle)
+							/ 2
+							* Math.sin((dots[1][i] * 3.6 - 90) * Math.PI / 180));
+					canvas.drawCircle(dotX, dotY, 35, circlePaint);
+
+					// For outer Stroke color
+					// check Settings
+					SharedPreferences getPrefs = PreferenceManager
+							.getDefaultSharedPreferences(getContext());
+
+					if (getPrefs.getBoolean("bewertungKreis", true)) {
+						if (!colorGoodness[1][i].equalsIgnoreCase("#ffffff")) {
+							if (colorCode[1][i]
+									.equalsIgnoreCase(colorGoodness[1][i])) {
+								circlePaint.setAntiAlias(true);
+								circlePaint.setColor(Color
+										.parseColor("#ffffff"));
+								circlePaint.setStyle(Paint.Style.STROKE);
+								circlePaint.setStrokeWidth(4);
+								// circlePaint.setStyle(Paint.Style.STROKE);
+								canvas.drawCircle(dotX, dotY, 32, circlePaint);
+							}
+
+							circlePaint.setAntiAlias(true);
+							circlePaint.setColor(Color
+									.parseColor(colorGoodness[1][i]));
+							circlePaint.setStyle(Paint.Style.STROKE);
+							circlePaint.setStrokeWidth(8);
+							// circlePaint.setStyle(Paint.Style.STROKE);
+							canvas.drawCircle(dotX, dotY, 35, circlePaint);
+						}
 					}
 				}
 			}
@@ -112,54 +172,56 @@ public class PercentView extends View {
 		invalidate();
 	}
 
-	public void setDot(int type) {
-		dotsNum++;
+	public void setDot(int type, int playerNum) {
+		dotsNum[playerNum]++;
 
 		switch (type) {
 		case 0:
-			colorCode[dotsNum] = "#27ae60";
+			colorCode[playerNum][dotsNum[playerNum]] = "#27ae60";
 			break;
 		case 1:
-			colorCode[dotsNum] = "#f1c40f";
+			colorCode[playerNum][dotsNum[playerNum]] = "#f1c40f";
 			break;
 		case 2:
-			colorCode[dotsNum] = "#e74c3c";
+			colorCode[playerNum][dotsNum[playerNum]] = "#e74c3c";
 			break;
 		case 3:
-			colorCode[dotsNum] = "#34495e";
+			colorCode[playerNum][dotsNum[playerNum]] = "#34495e";
 			break;
-			 
-		}
-		colorGoodness[dotsNum] = "#ffffff";
 
-		dots[dotsNum] = percentage;
+		}
+		colorGoodness[playerNum][dotsNum[playerNum]] = "#ffffff";
+
+		dots[playerNum][dotsNum[playerNum]] = percentage;
 		invalidate();
 	}
 
-	public void setGoodness(int type) {
+	public void setGoodness(int type, int playerNum) {
 		switch (type) {
 		case 0:
-			colorGoodness[dotsNum] = "#27ae60";
+			colorGoodness[playerNum][dotsNum[playerNum]] = "#27ae60";
 			break;
 		case 1:
-			colorGoodness[dotsNum] = "#f1c40f";
+			colorGoodness[playerNum][dotsNum[playerNum]] = "#f1c40f";
 			break;
 		case 2:
-			colorGoodness[dotsNum] = "#e74c3c";
+			colorGoodness[playerNum][dotsNum[playerNum]] = "#e74c3c";
 			break;
 		case 3:
-			colorGoodness[dotsNum] = "#34495e";
+			colorGoodness[playerNum][dotsNum[playerNum]] = "#34495e";
 			break;
 		}
 		invalidate();
 	}
-	
-	public void DeleteLast(){
-		dotsNum--;
+
+	public void DeleteLast(int playerNum) {
+		dotsNum[playerNum]--;
 		invalidate();
 	}
-	public void ResetCircle(){
-		dotsNum = 0;
+
+	public void ResetCircle() {
+		dotsNum[0] = 0;
+		dotsNum[1] = 0;
 		invalidate();
 	}
 }

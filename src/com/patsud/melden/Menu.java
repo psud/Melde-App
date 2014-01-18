@@ -20,7 +20,7 @@ public class Menu extends Activity {
 		final Intent b2Activity = new Intent(this, HaSchreibenNormal.class);
 		final Intent b3Activity = new Intent(this, BattleStart.class);
 		final Intent b4Activity = new Intent(this, HaView.class);
-		//startActivity(startActivity);
+		startActivity(startActivity);
 
 		inclass = (Button) findViewById(R.id.button1);
 		homework = (Button) findViewById(R.id.button2);

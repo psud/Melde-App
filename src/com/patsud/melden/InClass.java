@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.patsud.melden.time.CircleTime;
+
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
@@ -219,18 +221,18 @@ public class InClass extends Activity implements OnClickListener {
 		case R.id.bRundeDran:
 			PutInSQL("4", "00");
 			ShowDownBewertung();
-			percentage.setDot(3);
+			percentage.setDot(3,0);
 			break;
 		case R.id.bDran:
 			PutInSQL("3", "00");
 			ShowDownBewertung();
-			percentage.setDot(2);
+			percentage.setDot(2,0);
 			break;
 		case R.id.bGemeldet:
 			meld++;
 			SomeChange();
 			PutInSQL("2", "00");
-			percentage.setDot(1);
+			percentage.setDot(1,0);
 			break;
 		case R.id.bMeldDran:
 			meldDran++;
@@ -238,7 +240,7 @@ public class InClass extends Activity implements OnClickListener {
 			SomeChange();
 			PutInSQL("1", "00");
 			ShowDownBewertung();
-			percentage.setDot(0);
+			percentage.setDot(0,0);
 			break;
 		case R.id.bEinstellungen:
 			Intent openPrefs = new Intent(this, Einstellungen.class);
@@ -273,7 +275,7 @@ public class InClass extends Activity implements OnClickListener {
 			CancelAutoMovementBewertung();
 			break;
 		case R.id.bAfLosch:
-			percentage.DeleteLast();
+			percentage.DeleteLast(0);
 			CloseBewertung();
 			CancelAutoMovementBewertung();
 			break;
@@ -463,12 +465,12 @@ public class InClass extends Activity implements OnClickListener {
 				.getDefaultSharedPreferences(getBaseContext());
 
 		if (getPrefs.getBoolean("bewertung", true))
-			AnimateBewwertungen();
+			AnimateBewertungen();
 	}
 
 	private CountDownTimer waitTimer;
 
-	private void AnimateBewwertungen() {
+	private void AnimateBewertungen() {
 		// TODO Auto-generated method stub
 		bewertungLayout.setVisibility(View.VISIBLE);
 		Animation animLeft = AnimationUtils.loadAnimation(this,
@@ -501,7 +503,7 @@ public class InClass extends Activity implements OnClickListener {
 		// Get Last Row num
 
 		CancelAutoMovementBewertung();
-		percentage.setGoodness(goodness - 1);
+		percentage.setGoodness(goodness - 1, 0);
 
 		int totalRows = SqlHandler.KEY_ROWNUM;
 		long longRow = Long.valueOf(totalRows);
@@ -572,44 +574,46 @@ public class InClass extends Activity implements OnClickListener {
 
 	private float CalPercentage() {
 		// TODO Auto-generated method stub
-		float pers = 0;
-
+		CircleTime circleTime = new CircleTime();
+		float pers;
+		pers = circleTime.CalPercentage(startTime, endTime);
+		Log.d("cricle","ProzentKreisKlasse: "+ String.valueOf(pers));
 		Calendar c = Calendar.getInstance();
 		int seconds = c.get(Calendar.SECOND);
-
-		float nowTotalMin = (Integer.parseInt(clock.getText().toString()
-				.substring(0, 2)) * 60 + Integer.parseInt(clock.getText()
-				.toString().substring(3, 5)))
-				* 60 + seconds;
-
-		if (nowTotalMin == endTime - 1005) {
-
-			ShowNotifBox(
-					"Nur noch " + Integer.toString(endTime - (int) nowTotalMin)
-							+ " Sekunden\nLos! Einmal Melden schaffst du noch "
-							+ userName, "melden", false, true, true);
-		} else if (nowTotalMin > endTime - 1005 && nowTotalMin < endTime - 995) {
-			notifText.setText("Nur noch "
-					+ Integer.toString(endTime - (int) nowTotalMin)
-					+ " Sekunden\nLos! Einmal Melden schaffst du noch "
-					+ userName);
-		}
-
-		Log.d("Debug",
-				"Now: " + Float.toString(nowTotalMin) + " --- Start: "
-						+ Integer.toString(endTime) + " --- End: "
-						+ Integer.toString(startTime) + " --- Diff: "
-						+ Float.toString(endTime - nowTotalMin)
-						+ " --- secondTime: " + Integer.toString(secondTime));
-		if (endTime < nowTotalMin && showNextHourNotif == false) {
-			ShowNotifBox("Neue Stunde Anfangen?", "neuestunde", true, false,
-					false);
-			Log.d("Debug", "GOT IT DONE");
-			showNextHourNotif = true;
-		}
-
-		pers = ((nowTotalMin - startTime) / secondTime) * 100;
-		// Log.d("Debug", "ProzentKreis: " + Float.toString(pers));
+//
+//		float nowTotalMin = (Integer.parseInt(clock.getText().toString()
+//				.substring(0, 2)) * 60 + Integer.parseInt(clock.getText()
+//				.toString().substring(3, 5)))
+//				* 60 + seconds;
+//
+//		if (nowTotalMin == endTime - 1005) {
+//
+//			ShowNotifBox(
+//					"Nur noch " + Integer.toString(endTime - (int) nowTotalMin)
+//							+ " Sekunden\nLos! Einmal Melden schaffst du noch "
+//							+ userName, "melden", false, true, true);
+//		} else if (nowTotalMin > endTime - 1005 && nowTotalMin < endTime - 995) {
+//			notifText.setText("Nur noch "
+//					+ Integer.toString(endTime - (int) nowTotalMin)
+//					+ " Sekunden\nLos! Einmal Melden schaffst du noch "
+//					+ userName);
+//		}
+//
+//		Log.d("Debug",
+//				"Now: " + Float.toString(nowTotalMin) + " --- Start: "
+//						+ Integer.toString(startTime) + " --- End: "
+//						+ Integer.toString(endTime) + " --- Diff: "
+//						+ Float.toString(endTime - nowTotalMin)
+//						+ " --- secondTime: " + Integer.toString(secondTime));
+//		if (endTime < nowTotalMin && showNextHourNotif == false) {
+//			ShowNotifBox("Neue Stunde Anfangen?", "neuestunde", true, false,
+//					false);
+//			Log.d("Debug", "GOT IT DONE");
+//			showNextHourNotif = true;
+//		}
+//
+	//	pers = ((nowTotalMin - startTime) / secondTime) * 100;
+//		 Log.d("Debug", "ProzentKreisInClass: " + Float.toString(pers));
 		return pers;
 	}
 
