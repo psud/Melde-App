@@ -3,7 +3,7 @@
     android:id="@+id/content_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c4f3ff" >
+    android:background="@color/background" >
 
     <RelativeLayout
         android:id="@+id/RelativeLayout1"
@@ -29,9 +29,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#34495e"
-                    android:text="Runde Dran"
-                    android:textColor="#ffffff"
+                    android:background="@color/dark"
+                    android:text="@string/rundDran"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
 
                 <Button
@@ -39,9 +39,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#e74c3c"
-                    android:text="nur Dran"
-                    android:textColor="#ffffff"
+                    android:background="@color/red"
+                    android:text="@string/nuDran"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
 
                 <Button
@@ -49,9 +49,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#f1c40f"
-                    android:text="Gemeldet"
-                    android:textColor="#ffffff"
+                    android:background="@color/yellow"
+                    android:text="@string/gemeldet"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
 
                 <Button
@@ -59,9 +59,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#27ae60"
-                    android:text="Gemeldet + Dran"
-                    android:textColor="#ffffff"
+                    android:background="@color/green"
+                    android:text="@string/gemeltetDran"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
             </LinearLayout>
 
@@ -84,8 +84,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#2980b9"
-                        android:text="Skip"
+                        android:background="@color/main_dark"
+                        android:text="@string/skip"
                         android:textColor="#ffffff"
                         android:textSize="18.5dp" />
 
@@ -94,9 +94,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#3498db"
-                        android:text="Löschen"
-                        android:textColor="#ffffff"
+                        android:background="@color/main"
+                        android:text="@string/delete"
+                        android:textColor="@color/white"
                         android:textSize="18.5dp" />
                 </LinearLayout>
 
@@ -105,9 +105,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#34495e"
-                    android:text="Frage"
-                    android:textColor="#ffffff"
+                    android:background="@color/dark"
+                    android:text="@string/frage"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
 
                 <Button
@@ -115,9 +115,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#e74c3c"
-                    android:text="Schlecht"
-                    android:textColor="#ffffff"
+                    android:background="@color/red"
+                    android:text="@string/schlecht"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
 
                 <Button
@@ -125,9 +125,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#f1c40f"
-                    android:text="Okay"
-                    android:textColor="#ffffff"
+                    android:background="@color/yellow"
+                    android:text="@string/okay"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
 
                 <Button
@@ -135,9 +135,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#27ae60"
-                    android:text="Gut"
-                    android:textColor="#ffffff"
+                    android:background="@color/green"
+                    android:text="@string/gut"
+                    android:textColor="@color/white"
                     android:textSize="18.5dp" />
             </LinearLayout>
         </FrameLayout>
@@ -149,7 +149,7 @@
             android:layout_centerVertical="true"
             android:orientation="vertical" >
 
-            <com.patsud.melden.PercentView
+            <com.patsud.melden.customview.PercentView
                 android:id="@+id/percentview"
                 android:layout_width="520dp"
                 android:layout_height="520dp"
@@ -177,7 +177,7 @@
             android:gravity="center_vertical"
             android:padding="10dp"
             android:text="Test"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="18.5dp" />
 
         <Button
@@ -212,10 +212,10 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:background="#2980b9"
+            android:background="@color/main_dark"
             android:gravity="center"
             android:text="12:00"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="45dp" />
 
         <Button

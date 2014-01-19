@@ -144,15 +144,15 @@ public class HaSchreibenNormal extends Activity implements OnClickListener {
 		for (int i = 0; i < 20; i++) {
 			faecher[i].setOnClickListener(this);
 		}
-		final Intent openColors = new Intent(this, FachColors.class);
-		neuFach.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				startActivity(openColors);
-			}
-		});
+//		final Intent openColors = new Intent(this, FachColors.class);
+//		neuFach.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				startActivity(openColors);
+//			}
+//		});
 	}
 
 	private void SetFaecherColors() {

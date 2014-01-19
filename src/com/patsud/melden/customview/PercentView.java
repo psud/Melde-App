@@ -1,55 +1,68 @@
-package com.patsud.melden;
+package com.patsud.melden.customview;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.graphics.RectF;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.Window;
+
+import com.patsud.melden.R;
 
 public class PercentView extends View {
+	
+	Context c;
 
 	public PercentView(Context context) {
 		super(context);
+		this.c = context;
 		init();
 	}
 
 	public PercentView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		this.c = context;
 		init();
 	}
 
 	public PercentView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		this.c = context;
 		init();
 	}
 
 	private void init() {
 		paint = new Paint();
-		paint.setColor(Color.parseColor("#3498db"));
+		paint.setColor(Color.parseColor(c.getString(R.color.main)));
 		paint.setAntiAlias(true);
 		paint.setStyle(Paint.Style.FILL);
 		bgpaint = new Paint();
-		bgpaint.setColor(Color.parseColor("#2980b9"));
+		bgpaint.setColor(Color.parseColor(c.getString(R.color.main_dark)));
 		bgpaint.setAntiAlias(true);
 		bgpaint.setStyle(Paint.Style.FILL);
 		p2Stroke = new Paint();
-		p2Stroke.setColor(Color.parseColor("#ffffff"));
+		p2Stroke.setColor(Color.parseColor(c.getString(R.color.background)));
 		p2Stroke.setAntiAlias(true);
 		p2Stroke.setStyle(Paint.Style.STROKE);
-		p2Stroke.setStrokeWidth(5);
+		p2Stroke.setStrokeWidth(1);
 		rect = new RectF();
 		circlePaint = new Paint();
+		pText = new Paint();
+		pText.setColor(Color.parseColor(c.getString(R.color.white)));
+		pText.setTextSize(65);
+		pText.setAntiAlias(true);
+		pText.setTextAlign(Align.CENTER);
 
 	}
 
 	private Paint paint;
 	private Paint bgpaint;
 	private Paint p2Stroke;
+	private Paint pText;
 	private RectF rect;
 	private float percentage = 5;
 	private Paint circlePaint;
@@ -119,6 +132,14 @@ public class PercentView extends View {
 				}
 			}
 			if (twoPlayer) {
+				
+				int pointP1 = dotsNum[0]+1;
+				int pointP2 = dotsNum[1]+1;
+				String pointP1Str = String.valueOf(pointP1);
+				String pointP2Str = String.valueOf(pointP2);
+				String score;
+				score = pointP1Str + " : "+pointP2Str;
+				canvas.drawText(score, this.getWidth()/2, this.getHeight()/2, pText);
 
 				for (int i = 0; i <= dotsNum[1]; i++) {
 					circlePaint.setAntiAlias(true);

@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.patsud.melden.customview.PercentView;
 import com.patsud.melden.time.CircleTime;
+import com.patsud.melden.time.TimeKeeper;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -15,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -53,6 +56,7 @@ public class InClass extends Activity implements OnClickListener {
 	ImageView mitteBild;
 
 	WakeLock wL;
+	private SharedPreferences prefs;
 	private int batteryLevel;
 
 	PercentView percentage;
@@ -88,27 +92,23 @@ public class InClass extends Activity implements OnClickListener {
 
 	private void CheckSettings() {
 		// TODO Auto-generated method stub
-		SharedPreferences getPrefs = PreferenceManager
+		 prefs = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 
 		// FULL SCREEN
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		if (getPrefs.getBoolean("showBar", true) == false)
-			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		if (prefs.getBoolean("fullscreen", false) == false)
+			hideSystemUI();
 
 		// Keep Screen On
-		if (getPrefs.getBoolean("screenStayOn", false)) {
+		if (prefs.getBoolean("screenStayOn", false)) {
 			PowerManager pM = (PowerManager) getSystemService(Context.POWER_SERVICE);
 			wL = pM.newWakeLock(PowerManager.FULL_WAKE_LOCK, "WakeLock");
 			wL.acquire();
 		}
 		
-		View rootView = getWindow().getDecorView();
-		rootView.setSystemUiVisibility(View.STATUS_BAR_HIDDEN); //
-		
 		// Get User Name
-		userName = getPrefs.getString("name", "Batman");
+		userName = prefs.getString("name", "Batman");
 		userName = userName.substring(0, 1).toUpperCase()
 				+ userName.substring(1);
 
@@ -203,20 +203,11 @@ public class InClass extends Activity implements OnClickListener {
 		notifCross.setOnClickListener(this);
 		notifCheck.setOnClickListener(this);
 
-		/*
-		 * bFertig.setOnLongClickListener(new View.OnLongClickListener() {
-		 * 
-		 * @Override public boolean onLongClick(View v) { // TODO Auto-generated
-		 * method stub ShowNotifBox("Fertig", "fertig", false, false,false);
-		 * return false; } });
-		 *///leftLayout.setOnTouchListener(this);
 
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
 		switch (v.getId()) {
 		case R.id.bRundeDran:
 			PutInSQL("4", "00");
@@ -651,6 +642,25 @@ public class InClass extends Activity implements OnClickListener {
 		}
 
 	}
+	
+	// This snippet hides the system bars.
+			private void hideSystemUI() {
+				final View mDecorView = getWindow().getDecorView();
+				
+				if (Build.VERSION.SDK_INT >=18){
+			    mDecorView.setSystemUiVisibility(
+			            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+			            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+			            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+			            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+			            | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+			            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+				}
+				else{
+					getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+							WindowManager.LayoutParams.FLAG_FULLSCREEN);
+				}
+			}
 
 	private void RemainingColor() {
 
@@ -685,6 +695,7 @@ public class InClass extends Activity implements OnClickListener {
 		}
 	};
 
+
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
@@ -707,8 +718,12 @@ public class InClass extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
-		View rootView = getWindow().getDecorView();
-		rootView.setSystemUiVisibility(View.STATUS_BAR_HIDDEN);
+//		View rootView = getWindow().getDecorView();
+//		rootView.setSystemUiVisibility(View.STATUS_BAR_HIDDEN);.
+		// FULL SCREEN
+//				requestWindowFeature(Window.FEATURE_NO_TITLE);
+//				if (prefs.getBoolean("fullscreen", false) == false)
+//					hideSystemUI();
 		super.onResume();
 	}
 

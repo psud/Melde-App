@@ -1,11 +1,12 @@
 package com.patsud.melden;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.view.View;
 import android.widget.Button;
-import android.app.Activity;
-import android.content.Intent;
 
 public class Menu extends Activity {
 
@@ -15,6 +16,7 @@ public class Menu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
+		MuteDevice();
 		final Intent startActivity = new Intent(this, BattleStart.class);
 		final Intent b1Activity = new Intent(this, InClass.class);
 		final Intent b2Activity = new Intent(this, HaSchreibenNormal.class);
@@ -60,6 +62,15 @@ public class Menu extends Activity {
 			}
 		});
 
+	}
+
+	private void MuteDevice() {
+		// TODO Auto-generated method stub
+		if (true){
+			AudioManager audioManager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
+			audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+			
+		}
 	}
 
 }

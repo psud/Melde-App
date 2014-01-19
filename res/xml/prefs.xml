@@ -3,58 +3,56 @@
 
     <EditTextPreference
         android:key="name"
-        android:summary="Gib deinen Namen ein"
-        android:title="Dein Name:" />
-    
-     <SwitchPreference
-        android:defaultValue="false"
-        android:key="skipMenu"
-        android:summaryOff="App startet immer beim Menu"
-        android:summaryOn="Während der Schulzeit geht startet die App automatisch mit dem Meldetracker"
-        android:title="Menu Überspringen" />
+        android:summary="@string/name_summary"
+        android:title="@string/name_title" />
 
-    <PreferenceCategory android:title="In Class" />
-        
-    <SwitchPreference 
-        android:title="Bewertung" 
+    <SwitchPreference
+        android:defaultValue="@bool/skipm_default"
+        android:key="skipMenu"
+        android:summaryOff="@string/skipm_summary_off"
+        android:summaryOn="@string/skipm_summary_on"
+        android:title="@string/skipm_title" />
+
+    <PreferenceCategory android:title="@string/main_activity" />
+
+    <SwitchPreference
+        android:defaultValue="@bool/bew_default"
         android:key="bewertung"
-        android:summaryOff="Du kannst deine Beiträge bewerten"
-        android:summaryOn="Du kannst deine Beiträge nicht bewerten"
-        android:defaultValue="true"/>
-    
-     <SwitchPreference 
-        android:title="Bewertung im Kreis" 
+        android:summaryOff="@string/bew_summary_off"
+        android:summaryOn="@string/bew_summary_on"
+        android:title="@string/bew_title" />
+    <SwitchPreference
+        android:defaultValue="@bool/bewkreis_default"
         android:key="bewertungKreis"
-        android:summaryOff="Die Bewertung zeigt sich nicht im Kreis"
-        android:summaryOn="Die Bewertung erscheint im Kreis als Umrandung auf"
-        android:defaultValue="true"/>
-       
+        android:summaryOff="@string/bewkreis_summary_off"
+        android:summaryOn="@string/bewkreis_summary_on"
+        android:title="@string/bewkreis_title" />
     <SwitchPreference
-        android:defaultValue="false"
-        android:key="showBar"
-        android:summaryOff="Zeigt keine Benachrichtungsleiste an"
-        android:summaryOn="Zeigt Benachrichtungsleiste mit Uhrzeit an"
-        android:title="Show Notification Bar" />
-   <!--  <SwitchPreference
-        android:defaultValue="true"
-        android:key="showRemainingColor"
-        android:summaryOff="Hintergrund der restlichen Minuten bleibt immer Weiß"
-        android:summaryOn="Hinterlegt restliche Minuten mit Farben"
-        android:title="Show remaining Minutes Color" />  -->
+        android:defaultValue="@bool/fullscreen_default"
+        android:key="fullscreen"
+        android:summaryOff="@string/fullscreen_summary_off"
+        android:summaryOn="@string/fullscreen_summary_on"
+        android:title="@string/fullscreen_title" />
     <SwitchPreference
-        android:defaultValue="false"
+        android:defaultValue="@bool/screenon_default"
         android:key="screenStayOn"
-        android:summaryOff="Der Bildschirm schaltet sich nach einer bestimmten Zeit aus"
-        android:summaryOn="Der Bildschirm schaltet sich nicht automatisch aus"
-        android:title="Screen anlassen" />
+        android:summaryOff="@string/screenon_summary_off"
+        android:summaryOn="@string/screenon_summary_on"
+        android:title="@string/screenon_title" />
     <SwitchPreference
         android:defaultValue="true"
         android:key="showBattery"
         android:summaryOff="Zeigt nie eine Batterieanzeige an"
         android:summaryOn="Zeigt den Akkustand als Warnung bei unter 20% an"
         android:title="Batterie anzeige" />
-    
-     <PreferenceCategory android:title="Hausaufgaben" />
+    <SwitchPreference
+        android:defaultValue="@bool/mute_default"
+        android:key="mute"
+        android:summaryOff="@string/mute_summary_off"
+        android:summaryOn="@string/mute_summary_on"
+        android:title="@string/mute_title" />
+
+    <PreferenceCategory android:title="@string/homework" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -76,7 +74,6 @@
         android:summaryOn="Zeigt den Akkustand immer an"
         android:title="Batterie immer anzeige" />
 
-
     <PreferenceCategory android:title="About" />
 
     <PreferenceScreen
@@ -84,5 +81,3 @@
         android:title="About" />
 
 </PreferenceScreen>
-
-

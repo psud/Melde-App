@@ -1,4 +1,4 @@
-package com.patsud.melden;
+package com.patsud.melden.time;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

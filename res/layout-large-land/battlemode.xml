@@ -280,7 +280,7 @@
             android:layout_centerVertical="true"
             android:orientation="vertical" >
 
-            <com.patsud.melden.PercentView
+            <com.patsud.melden.customview.PercentView
                 android:id="@+id/battleCircle"
                 android:layout_width="520dp"
                 android:layout_height="520dp"

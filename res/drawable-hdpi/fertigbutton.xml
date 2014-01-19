@@ -5,7 +5,7 @@
          <layer-list>
              <item >
        			 <shape>
-            			<solid android:color="#4da4df" />
+            			<solid android:color="@color/pressed" />
         		</shape>
     		</item>
    			 <item
@@ -24,7 +24,7 @@
         <layer-list >
              <item >
        			 <shape>
-            			<solid android:color="#3498db" />
+            			<solid android:color="@color/main" />
         		</shape>
     		</item>
    			 <item

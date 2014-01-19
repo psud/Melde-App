@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.patsud.melden.customview.PercentView;
 import com.patsud.melden.time.CircleTime;
+import com.patsud.melden.time.TimeKeeper;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,8 +35,8 @@ public class BattleMode extends Activity implements OnClickListener {
 	private Button p1Runde, p1Dran, p1Gem, p1GemDran;
 	private Button p2Runde, p2Dran, p2Gem, p2GemDran;
 	// Bewertung button both sides
-	private Button p1Gut, p1Okay, p1Schlecht, p1Frage, p1Skip, p1Delete;
-	private Button p2Gut, p2Okay, p2Schlecht, p2Frage, p2Skip, p2Delete;
+//	private Button p1Gut, p1Okay, p1Schlecht, p1Frage, p1Skip, p1Delete;
+//	private Button p2Gut, p2Okay, p2Schlecht, p2Frage, p2Skip, p2Delete;
 	// Layout Bewertungsn
 	private LinearLayout p1Layout, p1Bewertung;
 	private LinearLayout p2Layout, p2Bewertung;
@@ -75,25 +77,38 @@ public class BattleMode extends Activity implements OnClickListener {
 		// Intent.ACTION_BATTERY_CHANGED));
 
 	}
+	
 
+	
 	float pers = 0;
+	private Timer timer;
 	private void InitUpdateCircle() {
-		// TODO Auto-generated method stub
-		
-		Timer timer = new Timer();
+		 timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				runOnUiThread(new Runnable() {
-					
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 							UpdateCircle();
 					}
 				});
 			}
 		}, 0, 1000);// Update text every second
+	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		timer.cancel();
+	
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	InitUpdateCircle();
 	}
 
 	protected void UpdateCircle() {
@@ -123,8 +138,8 @@ public class BattleMode extends Activity implements OnClickListener {
 		// Hide Action Bar
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Hide Notification Bar
-		boolean showBar = prefs.getBoolean("showBar", true);
-		if (!showBar)
+		boolean fullscreen = prefs.getBoolean("fullscreen", true);
+		if (!fullscreen)
 			hideSystemUI();
 
 		// Keep Screen On
@@ -207,7 +222,6 @@ public class BattleMode extends Activity implements OnClickListener {
 //
 //			@Override
 //			public void onFinish() {
-//				// TODO Auto-generated method stub
 //				CloseBewertung();
 //			}
 //		}.start();
@@ -227,20 +241,20 @@ public class BattleMode extends Activity implements OnClickListener {
 		p2GemDran = (Button) findViewById(R.id.battle2GemeldetDran);
 
 		// Bewertung Player 1
-		p1Gut = (Button) findViewById(R.id.battle1BewGut);
-		p1Okay = (Button) findViewById(R.id.battle1BewOk);
-		p1Schlecht = (Button) findViewById(R.id.battle1BewSchlecht);
-		p1Frage = (Button) findViewById(R.id.battle1BewFrage);
-		p1Delete = (Button) findViewById(R.id.battle1BewLosch);
-		p1Skip = (Button) findViewById(R.id.battle1BewSkip);
-
-		// Bewertung Player 2
-		p2Gut = (Button) findViewById(R.id.battle2BewGut);
-		p2Okay = (Button) findViewById(R.id.battle2BewOk);
-		p2Schlecht = (Button) findViewById(R.id.battle2BewSchlecht);
-		p2Frage = (Button) findViewById(R.id.battle2BewFrage);
-		p2Delete = (Button) findViewById(R.id.battle2BewLosch);
-		p2Skip = (Button) findViewById(R.id.battle2BewSkip);
+//		p1Gut = (Button) findViewById(R.id.battle1BewGut);
+//		p1Okay = (Button) findViewById(R.id.battle1BewOk);
+//		p1Schlecht = (Button) findViewById(R.id.battle1BewSchlecht);
+//		p1Frage = (Button) findViewById(R.id.battle1BewFrage);
+//		p1Delete = (Button) findViewById(R.id.battle1BewLosch);
+//		p1Skip = (Button) findViewById(R.id.battle1BewSkip);
+//
+//		// Bewertung Player 2
+//		p2Gut = (Button) findViewById(R.id.battle2BewGut);
+//		p2Okay = (Button) findViewById(R.id.battle2BewOk);
+//		p2Schlecht = (Button) findViewById(R.id.battle2BewSchlecht);
+//		p2Frage = (Button) findViewById(R.id.battle2BewFrage);
+//		p2Delete = (Button) findViewById(R.id.battle2BewLosch);
+//		p2Skip = (Button) findViewById(R.id.battle2BewSkip);
 
 		// Layout Bewertung Player 1
 		p1Layout = (LinearLayout) findViewById(R.id.battle1Layout);
@@ -269,20 +283,20 @@ public class BattleMode extends Activity implements OnClickListener {
 		p2GemDran.setOnClickListener(this);
 
 		// Bewertung Player 1
-		p1Gut.setOnClickListener(this);
-		p1Okay.setOnClickListener(this);
-		p1Schlecht.setOnClickListener(this);
-		p1Frage.setOnClickListener(this);
-		p1Delete.setOnClickListener(this);
-		p1Skip.setOnClickListener(this);
-
-		// Bewertung Player 2
-		p2Gut.setOnClickListener(this);
-		p2Okay.setOnClickListener(this);
-		p2Schlecht.setOnClickListener(this);
-		p2Frage.setOnClickListener(this);
-		p2Delete.setOnClickListener(this);
-		p2Skip.setOnClickListener(this);
+//		p1Gut.setOnClickListener(this);
+//		p1Okay.setOnClickListener(this);
+//		p1Schlecht.setOnClickListener(this);
+//		p1Frage.setOnClickListener(this);
+//		p1Delete.setOnClickListener(this);
+//		p1Skip.setOnClickListener(this);
+//
+//		// Bewertung Player 2
+//		p2Gut.setOnClickListener(this);
+//		p2Okay.setOnClickListener(this);
+//		p2Schlecht.setOnClickListener(this);
+//		p2Frage.setOnClickListener(this);
+//		p2Delete.setOnClickListener(this);
+//		p2Skip.setOnClickListener(this);
 	}
 	
 	// This snippet hides the system bars.

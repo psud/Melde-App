@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class CircleTime {
 
-	public static float CalPercentage(int startSec, int endSec){
+	public float CalPercentage(int startSec, int endSec){
 		
 		float pers;
 		Calendar c = Calendar.getInstance();
