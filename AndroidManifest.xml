@@ -88,6 +88,11 @@
             android:name="com.patsud.melden.BattleStart"
             android:screenOrientation="sensorLandscape" >
         </activity>
+        //Test Time
+        <activity
+            android:name="com.patsud.melden.timepicker.TestTimePicker"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
     </application>
 
 </manifest>

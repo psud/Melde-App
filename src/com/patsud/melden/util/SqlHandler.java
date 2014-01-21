@@ -1,4 +1,4 @@
-package com.patsud.melden;
+package com.patsud.melden.util;
 
 import android.content.ContentValues;
 import android.content.Context;

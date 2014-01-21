@@ -9,6 +9,7 @@ import java.util.TimerTask;
 import com.patsud.melden.customview.PercentView;
 import com.patsud.melden.time.CircleTime;
 import com.patsud.melden.time.TimeKeeper;
+import com.patsud.melden.util.SqlHandler;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -97,7 +98,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		// FULL SCREEN
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		if (prefs.getBoolean("fullscreen", false) == false)
+		if (prefs.getBoolean("fullscreen", false))
 			hideSystemUI();
 
 		// Keep Screen On
@@ -489,7 +490,6 @@ public class InClass extends Activity implements OnClickListener {
 	}
 
 	private void AddGoodness(int goodness) {
-		// TODO Auto-generated method stub
 		// String s = sql
 		// Get Last Row num
 
@@ -695,7 +695,6 @@ public class InClass extends Activity implements OnClickListener {
 		}
 	};
 
-
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
@@ -717,14 +716,9 @@ public class InClass extends Activity implements OnClickListener {
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
-//		View rootView = getWindow().getDecorView();
-//		rootView.setSystemUiVisibility(View.STATUS_BAR_HIDDEN);.
-		// FULL SCREEN
-//				requestWindowFeature(Window.FEATURE_NO_TITLE);
-//				if (prefs.getBoolean("fullscreen", false) == false)
-//					hideSystemUI();
 		super.onResume();
+		hideSystemUI();
+
 	}
 
 }

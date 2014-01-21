@@ -60,6 +60,15 @@
         android:summaryOff="Standarteinstellung für die Erinnerung is Aus"
         android:summaryOn="Standarteinstellung für die Erinnerung is An"
         android:title="Erinnerung Standart" />
+    
+    <PreferenceCategory android:title="@string/multiplayer" />
+    <SwitchPreference
+        android:defaultValue="@bool/showscore_default"
+        android:key="showScore"
+        android:summaryOff="@string/showscore_summary_off"
+        android:summaryOn="@string/showscore_summary_on"
+        android:title="@string/showscore_title" />
+    
 
     <PreferenceCategory android:title="Debugging" />
 

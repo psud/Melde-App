@@ -4,9 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import android.util.Log;
-import android.util.Printer;
 
 public class TimeKeeper {
 
@@ -65,8 +63,8 @@ public class TimeKeeper {
 			//}
 			else {
 				DebugStartEnd();
-				//startTime = "21:45";
-				//endTime = "18:22";
+				startTime = "16:51";
+				endTime = "17:05";
 			}
 		//	break;
 		//}

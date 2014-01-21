@@ -6,6 +6,7 @@
     
     <string name="main_activity">InClass</string>
     <string name="homework">Hausaufgaben</string>
+    <string name="multiplayer">Battle Mode</string>
 
     <string name="rundDran">Runde Dran</string>
     <string name="nuDran">nur Dran</string>

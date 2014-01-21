@@ -1,5 +1,7 @@
 package com.patsud.melden;
 
+import com.patsud.melden.util.SqlHandler;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

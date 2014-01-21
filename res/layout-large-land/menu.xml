@@ -17,37 +17,33 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="In Class" />
+        android:layout_alignParentLeft="true"
+        android:text="     In Class     " />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_toRightOf="@id/button1"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Homework" />
+        android:text="    Homework   " />
     
    
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/button2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="TestView" />
+        android:text="TestView (Battle)" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button3"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_alignLeft="@+id/button2"
-        android:text="HwView" />
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/button3"
+        android:text="  Settings  " />
 
 </RelativeLayout>

@@ -14,7 +14,7 @@ import android.view.View;
 import com.patsud.melden.R;
 
 public class PercentView extends View {
-	
+
 	Context c;
 
 	public PercentView(Context context) {
@@ -35,7 +35,25 @@ public class PercentView extends View {
 		init();
 	}
 
+	private Paint paint;
+	private Paint bgpaint;
+	private Paint p2Stroke;
+	private Paint pText;
+	private RectF rect;
+	private SharedPreferences prefs;
+	private float percentage = 5;
+	private Paint circlePaint;
+	private int dotsNum[] = { -1, -1 };
+	private float [][] dots = new float[2][1000];
+	private String[][] colorCode = new String[2][1000];
+	private String[][] colorGoodness = new String[2][1000];
+	private int pxCut = 75;
+	private int smallCircle = 200;
+	private boolean twoPlayer = false;
+	private boolean showScore;
+
 	private void init() {
+		prefs = PreferenceManager.getDefaultSharedPreferences(c);
 		paint = new Paint();
 		paint.setColor(Color.parseColor(c.getString(R.color.main)));
 		paint.setAntiAlias(true);
@@ -57,25 +75,9 @@ public class PercentView extends View {
 		pText.setAntiAlias(true);
 		pText.setTextAlign(Align.CENTER);
 
-	}
-
-	private Paint paint;
-	private Paint bgpaint;
-	private Paint p2Stroke;
-	private Paint pText;
-	private RectF rect;
-	private float percentage = 5;
-	private Paint circlePaint;
-	private float[][] dots = new float[2][1000];
-	private int dotsNum[] = { -1, -1 };
-	private String[][] colorCode = new String[2][1000];
-	private String[][] colorGoodness = new String[2][1000];
-	private int pxCut = 75;
-	private int smallCircle = 200;
-	private boolean twoPlayer = false;
-
-	public void setTwoPlayer(boolean twoPlayerIn) {
-		this.twoPlayer = twoPlayerIn;
+		boolean scoreDefault;
+		scoreDefault = c.getResources().getBoolean(R.bool.showscore_default);
+		showScore = prefs.getBoolean("showScore", scoreDefault);
 	}
 
 	@Override
@@ -132,15 +134,16 @@ public class PercentView extends View {
 				}
 			}
 			if (twoPlayer) {
-				
-				int pointP1 = dotsNum[0]+1;
-				int pointP2 = dotsNum[1]+1;
-				String pointP1Str = String.valueOf(pointP1);
-				String pointP2Str = String.valueOf(pointP2);
-				String score;
-				score = pointP1Str + " : "+pointP2Str;
-				canvas.drawText(score, this.getWidth()/2, this.getHeight()/2, pText);
-
+				if (showScore) {
+					int pointP1 = dotsNum[0] + 1;
+					int pointP2 = dotsNum[1] + 1;
+					String pointP1Str = String.valueOf(pointP1);
+					String pointP2Str = String.valueOf(pointP2);
+					String score;
+					score = pointP1Str + " : " + pointP2Str;
+					canvas.drawText(score, this.getWidth() / 2,
+							this.getHeight() / 2, pText);
+				}
 				for (int i = 0; i <= dotsNum[1]; i++) {
 					circlePaint.setAntiAlias(true);
 					circlePaint.setColor(Color.parseColor(colorCode[1][i]));
@@ -158,34 +161,38 @@ public class PercentView extends View {
 
 					// For outer Stroke color
 					// check Settings
-					SharedPreferences getPrefs = PreferenceManager
-							.getDefaultSharedPreferences(getContext());
-
-					if (getPrefs.getBoolean("bewertungKreis", true)) {
-						if (!colorGoodness[1][i].equalsIgnoreCase("#ffffff")) {
-							if (colorCode[1][i]
-									.equalsIgnoreCase(colorGoodness[1][i])) {
-								circlePaint.setAntiAlias(true);
-								circlePaint.setColor(Color
-										.parseColor("#ffffff"));
-								circlePaint.setStyle(Paint.Style.STROKE);
-								circlePaint.setStrokeWidth(4);
-								// circlePaint.setStyle(Paint.Style.STROKE);
-								canvas.drawCircle(dotX, dotY, 32, circlePaint);
-							}
-
-							circlePaint.setAntiAlias(true);
-							circlePaint.setColor(Color
-									.parseColor(colorGoodness[1][i]));
-							circlePaint.setStyle(Paint.Style.STROKE);
-							circlePaint.setStrokeWidth(8);
-							// circlePaint.setStyle(Paint.Style.STROKE);
-							canvas.drawCircle(dotX, dotY, 35, circlePaint);
-						}
-					}
+					// SharedPreferences getPrefs = PreferenceManager
+					// .getDefaultSharedPreferences(getContext());
+					//
+					// if (getPrefs.getBoolean("bewertungKreis", true)) {
+					// if (!colorGoodness[1][i].equalsIgnoreCase("#ffffff")) {
+					// if (colorCode[1][i]
+					// .equalsIgnoreCase(colorGoodness[1][i])) {
+					// circlePaint.setAntiAlias(true);
+					// circlePaint.setColor(Color
+					// .parseColor("#ffffff"));
+					// circlePaint.setStyle(Paint.Style.STROKE);
+					// circlePaint.setStrokeWidth(4);
+					// // circlePaint.setStyle(Paint.Style.STROKE);
+					// canvas.drawCircle(dotX, dotY, 32, circlePaint);
+					// }
+					//
+					// circlePaint.setAntiAlias(true);
+					// circlePaint.setColor(Color
+					// .parseColor(colorGoodness[1][i]));
+					// circlePaint.setStyle(Paint.Style.STROKE);
+					// circlePaint.setStrokeWidth(8);
+					// // circlePaint.setStyle(Paint.Style.STROKE);
+					// canvas.drawCircle(dotX, dotY, 35, circlePaint);
+					// }
+					// }
 				}
 			}
 		}
+	}
+
+	public void setTwoPlayer(boolean twoPlayerIn) {
+		this.twoPlayer = twoPlayerIn;
 	}
 
 	public void setPercentage(float inpercentage) {
@@ -198,18 +205,25 @@ public class PercentView extends View {
 
 		switch (type) {
 		case 0:
-			colorCode[playerNum][dotsNum[playerNum]] = "#27ae60";
+			String green;
+			green = c.getString(R.color.green);
+			colorCode[playerNum][dotsNum[playerNum]] = green;
 			break;
 		case 1:
-			colorCode[playerNum][dotsNum[playerNum]] = "#f1c40f";
+			String yellow;
+			yellow = c.getString(R.color.yellow);
+			colorCode[playerNum][dotsNum[playerNum]] = yellow;
 			break;
 		case 2:
-			colorCode[playerNum][dotsNum[playerNum]] = "#e74c3c";
+			String red;
+			red = c.getString(R.color.red);
+			colorCode[playerNum][dotsNum[playerNum]] = red;
 			break;
 		case 3:
-			colorCode[playerNum][dotsNum[playerNum]] = "#34495e";
+			String dark;
+			dark = c.getString(R.color.dark);
+			colorCode[playerNum][dotsNum[playerNum]] = dark;
 			break;
-
 		}
 		colorGoodness[playerNum][dotsNum[playerNum]] = "#ffffff";
 
@@ -220,16 +234,24 @@ public class PercentView extends View {
 	public void setGoodness(int type, int playerNum) {
 		switch (type) {
 		case 0:
-			colorGoodness[playerNum][dotsNum[playerNum]] = "#27ae60";
+			String green;
+			green = c.getString(R.color.green);
+			colorGoodness[playerNum][dotsNum[playerNum]] = green;
 			break;
 		case 1:
-			colorGoodness[playerNum][dotsNum[playerNum]] = "#f1c40f";
+			String yellow;
+			yellow = c.getString(R.color.yellow);
+			colorGoodness[playerNum][dotsNum[playerNum]] = yellow;
 			break;
 		case 2:
-			colorGoodness[playerNum][dotsNum[playerNum]] = "#e74c3c";
+			String red;
+			red = c.getString(R.color.red);
+			colorGoodness[playerNum][dotsNum[playerNum]] = red;
 			break;
 		case 3:
-			colorGoodness[playerNum][dotsNum[playerNum]] = "#34495e";
+			String dark;
+			dark = c.getString(R.color.dark);
+			colorGoodness[playerNum][dotsNum[playerNum]] = dark;
 			break;
 		}
 		invalidate();
