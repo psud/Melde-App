@@ -1,10 +1,19 @@
-package com.patsud.melden;
+package com.patsud.melden.ui;
+
+import com.patsud.melden.Einstellungen;
+import com.patsud.melden.R;
+import com.patsud.melden.R.id;
+import com.patsud.melden.R.layout;
+import com.patsud.melden.deprecated.HaSchreibenNormal;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,16 +51,13 @@ public class Menu extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//startActivity(b2Activity);
-//				Intent i = new Intent("com.gabrielittner.timetable.ui.MainActivity");
-//				startActivity(i);
-				String ttHomework = "com.gabrielittner.timetable.ui.MainActivity";
+				String component = "com.gabrielittner.timetable/com.gabrielittner.timetable.ui.MainActivity";
 				Intent iHomework = new Intent();
-				iHomework.setAction(ttHomework);
+				iHomework.setAction(component);
 				iHomework.putExtra("navigation", 3);
-				//iHomework.putExtra("addtask", true);
-				sendBroadcast(iHomework); 
+//					iHomework.putExtra("addtask", true);
+			    iHomework.setComponent(ComponentName.unflattenFromString(component));
+			    startActivity(iHomework);
 
 			
 			}

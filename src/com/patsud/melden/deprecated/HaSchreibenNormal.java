@@ -1,6 +1,11 @@
-package com.patsud.melden;
+package com.patsud.melden.deprecated;
 
 import java.util.Calendar;
+
+import com.patsud.melden.R;
+import com.patsud.melden.R.anim;
+import com.patsud.melden.R.id;
+import com.patsud.melden.R.layout;
 
 import android.app.ActionBar;
 import android.app.Activity;

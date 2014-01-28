@@ -1,4 +1,7 @@
-package com.patsud.melden;
+package com.patsud.melden.deprecated;
+
+import com.patsud.melden.R;
+import com.patsud.melden.R.drawable;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;

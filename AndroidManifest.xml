@@ -16,9 +16,10 @@
         android:label="@string/app_name" 
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.patsud.melden.Menu"
+            android:name="com.patsud.melden.ui.Menu"
             android:label="@string/app_name"
-            android:screenOrientation="sensorLandscape" >
+            android:screenOrientation="sensorLandscape" 
+            android:theme="@style/Theme.HomeScreen">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.patsud.melden.InClass"
+            android:name="com.patsud.melden.ui.InClass"
             android:screenOrientation="sensorLandscape" >
            
         </activity>
@@ -58,7 +59,7 @@
         </activity>
         //HASchreibenNormal
         <activity
-            android:name="com.patsud.melden.HaSchreibenNormal"
+            android:name="com.patsud.melden.deprecated.HaSchreibenNormal"
             android:label="Ferig"
             android:screenOrientation="sensorLandscape" >
         </activity>
@@ -76,18 +77,18 @@
         </activity>
          //Ha View
         <activity
-            android:name="com.patsud.melden.HaView"
+            android:name="com.patsud.melden.deprecated.HaView"
             android:label="Hausdaufgaben"
             android:screenOrientation="sensorLandscape" >
         </activity>
         //Battle Mode
         <activity
-            android:name="com.patsud.melden.BattleMode"
+            android:name="com.patsud.melden.ui.BattleMode"
             android:screenOrientation="sensorLandscape" >
         </activity>
         //Battle Start
         <activity
-            android:name="com.patsud.melden.BattleStart"
+            android:name="com.patsud.melden.ui.BattleStart"
             android:screenOrientation="sensorLandscape" >
         </activity>
         //Test Time

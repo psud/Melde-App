@@ -1,4 +1,7 @@
-package com.patsud.melden;
+package com.patsud.melden.ui;
+
+import com.patsud.melden.R;
+import com.patsud.melden.R.layout;
 
 import android.app.Activity;
 import android.content.Context;

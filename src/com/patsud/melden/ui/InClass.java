@@ -1,4 +1,4 @@
-package com.patsud.melden;
+package com.patsud.melden.ui;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,6 +6,13 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.patsud.melden.Einstellungen;
+import com.patsud.melden.Fertig;
+import com.patsud.melden.R;
+import com.patsud.melden.R.anim;
+import com.patsud.melden.R.bool;
+import com.patsud.melden.R.id;
+import com.patsud.melden.R.layout;
 import com.patsud.melden.customview.PercentView;
 import com.patsud.melden.time.CircleTime;
 import com.patsud.melden.time.TimeKeeper;
@@ -243,15 +250,6 @@ public class InClass extends Activity implements OnClickListener {
 			startActivity(openFertig);
 			break;
 		case R.id.bHaAufschreiben:
-		//	Intent openCircle = new Intent(this, HaSchreibenNormal.class);
-		//	Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
-		//			getApplicationContext(), R.anim.activityout,
-		//			R.anim.activityin).toBundle();
-		//	startActivity(openCircle, bndlanimation);
-			
-//			Intent i = new Intent("com.gabrielittner.timetable.ui.MainActivity");
-//			startActivity(i);
-			
 			String component = "com.gabrielittner.timetable/com.gabrielittner.timetable.ui.MainActivity";
 			Intent iHomework = new Intent();
 			iHomework.setAction(component);

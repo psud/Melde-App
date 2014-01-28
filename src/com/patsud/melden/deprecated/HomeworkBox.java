@@ -1,6 +1,9 @@
-package com.patsud.melden;
+package com.patsud.melden.deprecated;
 
 import java.util.zip.Inflater;
+
+import com.patsud.melden.R;
+import com.patsud.melden.R.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;

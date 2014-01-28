@@ -1,9 +1,13 @@
-package com.patsud.melden;
+package com.patsud.melden.ui;
 
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.patsud.melden.R;
+import com.patsud.melden.R.anim;
+import com.patsud.melden.R.id;
+import com.patsud.melden.R.layout;
 import com.patsud.melden.customview.PercentView;
 import com.patsud.melden.time.CircleTime;
 import com.patsud.melden.time.TimeKeeper;
