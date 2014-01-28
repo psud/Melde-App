@@ -85,7 +85,7 @@ public class InClass extends Activity implements OnClickListener {
 
 		AnimateCircle();
 
-		GetTimeChanged();
+//		GetTimeChanged();
 
 		registerReceiver(mBatInfoReceiver, new IntentFilter(
 				Intent.ACTION_BATTERY_CHANGED));
@@ -115,31 +115,30 @@ public class InClass extends Activity implements OnClickListener {
 				+ userName.substring(1);
 
 	}
-
+	private Timer timer;
 	private void GetTimeChanged() {
 		// TODO Auto-generated method stub
-		clock.addTextChangedListener(new TextWatcher() {
-
-			SharedPreferences getPrefs = PreferenceManager
-					.getDefaultSharedPreferences(getBaseContext());
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				UpdateCircle();
-			}
-		});
+			timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							UpdateCircle();
+						}
+					});
+				}
+			}, 0, 1000);// Update text every second
+		
 	}
+	
+	@Override
+	protected void onPause() {
+		timer.cancel();
+		super.onPause();
+	}
+	
 
 	private void Initialize() {
 		// TODO Auto-generated method stub
@@ -731,6 +730,7 @@ public class InClass extends Activity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		GetTimeChanged();
 		hideSystemUI();
 
 	}
