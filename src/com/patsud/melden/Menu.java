@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,7 +23,7 @@ public class Menu extends Activity {
 		final Intent b2Activity = new Intent(this, HaSchreibenNormal.class);
 		final Intent b3Activity = new Intent(this, BattleStart.class);
 		final Intent b4Activity = new Intent(this, Einstellungen.class);
-		startActivity(startActivity);
+	//	startActivity(startActivity);
 
 		inclass = (Button) findViewById(R.id.button1);
 		homework = (Button) findViewById(R.id.button2);
@@ -42,8 +43,19 @@ public class Menu extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(b2Activity);
+				//startActivity(b2Activity);
+//				Intent i = new Intent("com.gabrielittner.timetable.ui.MainActivity");
+//				startActivity(i);
+				String ttHomework = "com.gabrielittner.timetable.ui.MainActivity";
+				Intent iHomework = new Intent();
+				iHomework.setAction(ttHomework);
+				iHomework.putExtra("navigation", 3);
+				//iHomework.putExtra("addtask", true);
+				sendBroadcast(iHomework); 
+
+			
 			}
+			
 		});
 		test.setOnClickListener(new View.OnClickListener() {
 

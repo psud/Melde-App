@@ -40,6 +40,12 @@
         android:summaryOn="@string/screenon_summary_on"
         android:title="@string/screenon_title" />
     <SwitchPreference
+        android:defaultValue="@bool/homework_default"
+        android:key="homework"
+        android:summaryOff="@string/homework_summary_off"
+        android:summaryOn="@string/homework_summary_on"
+        android:title="@string/homework_title" />
+    <SwitchPreference
         android:defaultValue="true"
         android:key="showBattery"
         android:summaryOff="Zeigt nie eine Batterieanzeige an"

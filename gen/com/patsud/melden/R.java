@@ -75,6 +75,35 @@ containing a value of this type.
          */
         public static final int showText=0x7f010000;
     }
+    public static final class bool {
+        public static final int bew_default=0x7f080001;
+        public static final int bewkreis_default=0x7f080002;
+        public static final int fullscreen_default=0x7f080003;
+        public static final int homework_default=0x7f080007;
+        public static final int mute_default=0x7f080005;
+        public static final int screenon_default=0x7f080004;
+        public static final int showscore_default=0x7f080006;
+        public static final int skipm_default=0x7f080000;
+    }
+    public static final class color {
+        public static final int actionbar=0x7f090003;
+        public static final int background=0x7f090004;
+        public static final int dark=0x7f09000a;
+        public static final int green=0x7f090007;
+        /** 
+           <color name="orange">#FF6C00</color>
+     <color name="orange_dark">#B54D00</color>
+      <color name="orange_light">#FFA812</color>
+    
+         */
+        public static final int main=0x7f090000;
+        public static final int main_dark=0x7f090001;
+        public static final int main_light=0x7f090002;
+        public static final int pressed=0x7f090006;
+        public static final int red=0x7f090009;
+        public static final int white=0x7f090005;
+        public static final int yellow=0x7f090008;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -82,8 +111,8 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f080000;
-        public static final int activity_vertical_margin=0x7f080001;
+        public static final int activity_horizontal_margin=0x7f0a0000;
+        public static final int activity_vertical_margin=0x7f0a0001;
     }
     public static final class drawable {
         public static final int appicon=0x7f020000;
@@ -297,13 +326,81 @@ containing a value of this type.
         public static final int thebox=0x7f03000d;
     }
     public static final class menu {
-        public static final int actionbarhomework=0x7f0b0000;
-        public static final int menu=0x7f0b0001;
+        public static final int actionbarhomework=0x7f0d0000;
+        public static final int menu=0x7f0d0001;
     }
     public static final class string {
-        public static final int action_settings=0x7f090001;
-        public static final int app_name=0x7f090000;
-        public static final int hello_world=0x7f090002;
+        public static final int action_settings=0x7f0b0001;
+        public static final int app_name=0x7f0b0000;
+        public static final int bew_summary_off=0x7f0b0016;
+        public static final int bew_summary_on=0x7f0b0015;
+        public static final int bew_title=0x7f0b0014;
+        public static final int bewkreis_summary_off=0x7f0b0019;
+        public static final int bewkreis_summary_on=0x7f0b0018;
+        public static final int bewkreis_title=0x7f0b0017;
+        public static final int day_of_week_label_typeface=0x7f0b0030;
+        public static final int day_picker_description=0x7f0b002a;
+        public static final int delete=0x7f0b000a;
+        /**  Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] 
+         */
+        public static final int deleted_key=0x7f0b0033;
+        public static final int done_label=0x7f0b0029;
+        public static final int frage=0x7f0b000b;
+        public static final int fullscreen_summary_off=0x7f0b001c;
+        public static final int fullscreen_summary_on=0x7f0b001b;
+        public static final int fullscreen_title=0x7f0b001a;
+        public static final int gemeldet=0x7f0b0007;
+        public static final int gemeltetDran=0x7f0b0008;
+        public static final int gut=0x7f0b000e;
+        public static final int homework=0x7f0b0003;
+        public static final int homework_summary_off=0x7f0b0028;
+        public static final int homework_summary_on=0x7f0b0027;
+        public static final int homework_title=0x7f0b0026;
+        /** 
+         Content description for the hour selector in the time picker, which displays
+         selectable hours of the day along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    
+         */
+        public static final int hour_picker_description=0x7f0b0034;
+        public static final int item_is_selected=0x7f0b002e;
+        public static final int main_activity=0x7f0b0002;
+        /** 
+         Content description for the minute selector in the time picker, which displays
+         selectable five-minute intervals along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    
+         */
+        public static final int minute_picker_description=0x7f0b0035;
+        public static final int multiplayer=0x7f0b0004;
+        public static final int mute_summary_off=0x7f0b0022;
+        public static final int mute_summary_on=0x7f0b0021;
+        public static final int mute_title=0x7f0b0020;
+        public static final int name_summary=0x7f0b0010;
+        public static final int name_title=0x7f0b000f;
+        public static final int nuDran=0x7f0b0006;
+        public static final int okay=0x7f0b000d;
+        public static final int radial_numbers_typeface=0x7f0b0036;
+        public static final int rundDran=0x7f0b0005;
+        public static final int sans_serif=0x7f0b002f;
+        public static final int schlecht=0x7f0b000c;
+        public static final int screenon_summary_off=0x7f0b001f;
+        public static final int screenon_summary_on=0x7f0b001e;
+        public static final int screenon_title=0x7f0b001d;
+        public static final int select_day=0x7f0b002c;
+        public static final int select_hours=0x7f0b0037;
+        public static final int select_minutes=0x7f0b0038;
+        public static final int select_year=0x7f0b002d;
+        public static final int showscore_summary_off=0x7f0b0025;
+        public static final int showscore_summary_on=0x7f0b0024;
+        public static final int showscore_title=0x7f0b0023;
+        public static final int skip=0x7f0b0009;
+        public static final int skipm_summary_off=0x7f0b0013;
+        public static final int skipm_summary_on=0x7f0b0012;
+        public static final int skipm_title=0x7f0b0011;
+        public static final int time_placeholder=0x7f0b0031;
+        public static final int time_separator=0x7f0b0032;
+        public static final int year_picker_description=0x7f0b002b;
     }
     public static final class style {
         /** 
@@ -327,11 +424,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f0c0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f0c0001;
     }
     public static final class xml {
         public static final int prefs=0x7f050000;

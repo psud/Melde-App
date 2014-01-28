@@ -63,8 +63,8 @@ public class TimeKeeper {
 			//}
 			else {
 				DebugStartEnd();
-				startTime = "16:51";
-				endTime = "17:05";
+				//startTime = "16:51";
+				//endTime = "17:05";
 			}
 		//	break;
 		//}

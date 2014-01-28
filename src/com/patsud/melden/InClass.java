@@ -14,6 +14,7 @@ import com.patsud.melden.util.SqlHandler;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -243,11 +244,24 @@ public class InClass extends Activity implements OnClickListener {
 			startActivity(openFertig);
 			break;
 		case R.id.bHaAufschreiben:
-			Intent openCircle = new Intent(this, HaSchreibenNormal.class);
-			Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
-					getApplicationContext(), R.anim.activityout,
-					R.anim.activityin).toBundle();
-			startActivity(openCircle, bndlanimation);
+		//	Intent openCircle = new Intent(this, HaSchreibenNormal.class);
+		//	Bundle bndlanimation = ActivityOptions.makeCustomAnimation(
+		//			getApplicationContext(), R.anim.activityout,
+		//			R.anim.activityin).toBundle();
+		//	startActivity(openCircle, bndlanimation);
+			
+//			Intent i = new Intent("com.gabrielittner.timetable.ui.MainActivity");
+//			startActivity(i);
+			
+			String component = "com.gabrielittner.timetable/com.gabrielittner.timetable.ui.MainActivity";
+			Intent iHomework = new Intent();
+			iHomework.setAction(component);
+			iHomework.putExtra("navigation", 3);
+			if (prefs.getBoolean("homework", getResources().getBoolean(R.bool.homework_default))){
+				iHomework.putExtra("addtask", true);
+			}
+		    iHomework.setComponent(ComponentName.unflattenFromString(component));
+		    startActivity(iHomework);
 			break;
 		// cases for down Buttons
 		case R.id.bAfGut:
